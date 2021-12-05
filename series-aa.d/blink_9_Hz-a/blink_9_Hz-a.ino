@@ -4,7 +4,12 @@
 
 #define LED 13 // change for your target board
 
-void pulse_once(int interval) { }
+void pulse_once(int interval) {
+    digitalWrite(LED,HIGH);
+    delay(interval);
+    digitalWrite(LED,LOW);
+    delay(interval);
+}
 
 void pulse_at_9_Hz(void) {
     while(-1) {
