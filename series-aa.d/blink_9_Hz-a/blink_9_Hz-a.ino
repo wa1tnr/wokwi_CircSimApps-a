@@ -1,3 +1,9 @@
+// blink_9_Hz-a.ino
+
+// Sun  5 Dec 11:50:37 UTC 2021
+
+// purpose: blink LED at 9 Hertz.
+
 #define i9_Hz 55 // milliseconds
 
 // target: almost any board will do, including the Uno R3
@@ -54,5 +60,4 @@ void loop(void) {
     Serial.println("This never prints.");
 }
 
-// Sun  5 Dec 11:50:37 UTC 2021
 // END.
