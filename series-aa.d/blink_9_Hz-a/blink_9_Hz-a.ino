@@ -1,5 +1,3 @@
-// Sun  5 Dec 12:54:47 UTC 2021
-
 #define i9_Hz 55 // milliseconds
 
 // target: almost any board will do, including the Uno R3
@@ -9,7 +7,9 @@
 void pulse_once(int interval) { }
 
 void pulse_at_9_Hz(void) {
+    while(-1) {
         pulse_once(i9_Hz);
+    }
 }
 
 void pulse(void) { // alias
@@ -34,16 +34,20 @@ void bring_stuff_up(void) {
 }
 
 void blinking(void) {
+    Serial.println("Program begins to blink.");
     pulse();
 }
 
 void setup(void) {
+    delay(700); // recovery chance interval
     bring_stuff_up();
     blinking();
 }
 
 void loop(void) {
     while(-1); // endless
+    Serial.println("This never prints.");
 }
 
+// Sun  5 Dec 11:50:37 UTC 2021
 // END.
