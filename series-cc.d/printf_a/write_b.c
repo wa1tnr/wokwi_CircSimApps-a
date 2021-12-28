@@ -1,4 +1,4 @@
-/* Tue 28 Dec 02:51:05 UTC 2021 */
+/* Tue 28 Dec 03:16:49 UTC 2021 */
 
 /* write and friends */
 
@@ -8,6 +8,10 @@
 
 void space_it(void) {
     printf("%c", ' ');
+}
+
+void newline(void) {
+    printf("%c", '\n');
 }
 
 int main(void) {
@@ -25,21 +29,23 @@ int main(void) {
 
     ssize_t gottem;
 
-    gottem = write(1, buf_ptr, sizeof(buf_ptr));
-    space_it();
 
-    sprintf(buf_ptr, "%d", gottem);
+    newline();
+    gottem = write(1, buf_ptr, sizeof(buf_ptr));
+
+    sprintf(buf_ptr, "\n\n%d", gottem);
     printf(buf_ptr);
-    space_it();
 
     uint64_t adrs;
     adrs = (uint64_t) & buf_ptr;
 
-    sprintf(buf_ptr, "%.12X", adrs);
+    // sprintf(buf_ptr, "\n  %.12X", adrs);
+    sprintf(buf_ptr, "\n     %.8X", adrs);
     space_it();
 
     printf(buf_ptr);
-    sprintf(buf_ptr, "%.16d", adrs);
+    // sprintf(buf_ptr, "\n  %.16u\n\n", adrs);
+    sprintf(buf_ptr, "\n  %.11u\n\n", adrs);
 
     space_it();
     printf(buf_ptr);
