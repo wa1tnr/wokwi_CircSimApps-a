@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <stdint.h>
 
 void space_it(void) {
     printf("%c", ' ');
@@ -31,9 +32,17 @@ int main(void) {
     printf(buf_ptr);
     space_it();
 
-    long int adrs;
-    adrs = (long int) & buf_ptr;
-    printf("%d\n", adrs);
+    uint64_t adrs;
+    adrs = (uint64_t) & buf_ptr;
+
+    sprintf(buf_ptr, "%.12X", adrs);
+    space_it();
+
+    printf(buf_ptr);
+    sprintf(buf_ptr, "%.16d", adrs);
+
+    space_it();
+    printf(buf_ptr);
 }
 
 #if 0
