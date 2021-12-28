@@ -1,4 +1,4 @@
-/* Tue 28 Dec 02:14:27 UTC 2021 */
+/* Tue 28 Dec 02:51:05 UTC 2021 */
 
 /* write and friends */
 
@@ -11,32 +11,29 @@ void space_it(void) {
 
 int main(void) {
     char buffer[20];
-
     char* buf_ptr, buf_buf_ptr;
 
-    buf_ptr = buffer;
-
     /* ssize_t write(int fd, const void *buf, size_t count); */
-    ssize_t gottem;
 
     buffer[0] = 'a';
     buffer[1] = 'b';
     buffer[2] = 'c';
     buffer[3] = '\000';
+
+    buf_ptr = buffer;
+
+    ssize_t gottem;
+
     gottem = write(1, buf_ptr, sizeof(buf_ptr));
-
-    sprintf(buf_ptr, "%d", gottem);
-
     space_it();
 
+    sprintf(buf_ptr, "%d", gottem);
     printf(buf_ptr);
     space_it();
 
     long int adrs;
     adrs = (long int) & buf_ptr;
     printf("%d\n", adrs);
-    // printf("%c", ' ');
-
 }
 
 #if 0
