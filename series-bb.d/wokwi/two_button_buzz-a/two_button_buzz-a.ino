@@ -1,5 +1,3 @@
-// compiles only - nothing tested 13:46z
-c
 #define button_1 12
 #define button_2 11
 #define bz        3
@@ -14,15 +12,19 @@ void pins_setup(void) {
   pinMode(led_2, OUTPUT);
 }
 
-void setup() {
-    pins_setup();
+
+void cpl(int pin) {
+    bool state = digitalRead(pin);
+    state = !state ;
+    digitalWrite(pin, state);
 }
 
 bool button_1_pressed = 0;
 
 void act_on_button_1(void) {
     if (button_1_pressed) {
-      digitalWrite(led_1, 1);
+        cpl(led_1); // digitalWrite(led_1, 1);
+        // delay(1000);
     }
 }
 
@@ -43,9 +45,30 @@ void read_inputs(void) {
     }
 }
 
+void testing_aa(void) {
+    // neither LED lights at all
+    digitalWrite(led_1, 1);
+    digitalWrite(led_2, 1);
+    while(-1);
+}
+
+void testing_bb(void) {
+    cpl(led_1); // make 'em alternate
+    for (int index = 8; index > 0; index--) {
+        cpl(led_2);
+        cpl(led_1); delay(600);
+    }
+}
+
+void setup() {
+    pins_setup();
+    // testing_aa();
+    testing_bb();
+}
+
 void loop() {
     read_inputs();
     evaluate_booleans();
 }
 
-// END.
+// END.c
