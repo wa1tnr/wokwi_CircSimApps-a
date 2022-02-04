@@ -1,7 +1,8 @@
-// progressing - 16:42z
+// progressing - 17:23:28z
 // accidentally implemented behavior similar to desired. ;)
 
-// edit after a break - 16:20z
+// design target is:
+// https://wokwi.com/arduino/new?template=arduino-uno
 
 #define button_1 12
 #define button_2 11
