@@ -1,7 +1,5 @@
-// progressing - 23:16:50z
-
-// progressing - 19:27:51z
-// closer to correct behavior.
+// progressing - 23:41:41z
+// quite good heuristics
 
 // design target is:
 // https://wokwi.com/arduino/new?template=arduino-uno
@@ -25,27 +23,13 @@ void pins_setup(void) {
   pinMode(led_2, OUTPUT);
 }
 
-bool button_1_pressed = 0;
-bool button_2_pressed = 0;
-
-#define hyst 73999
-
-void hysteresis(void) {
-    for (volatile uint64_t slower = hyst;
-    slower > 0; slower--);
-}
+bool button_1_pressed, button_2_pressed = 0;
 
 void cpl(int pin) {
     bool state = digitalRead(pin);
     state = !state ;
     digitalWrite(pin, state);
 }
-
-
-
-
-
-
 
 void act_on_button_1(void) {
     if (button_1_pressed) {
@@ -61,9 +45,17 @@ void act_on_button_2(void) {
     }
 }
 
+#define hyst 98999  // 73999
+
+void hysteresis(void) {
+    for (volatile uint64_t slower = hyst;
+    slower > 0; slower--);
+}
+
 void evaluate_booleans(void) {
     act_on_button_1();
     act_on_button_2();
+    hysteresis();
 }
 
 bool read_inputs(void) {
@@ -76,35 +68,12 @@ bool read_inputs(void) {
     return -1;
 }
 
-void condx_cpls(void) {
-    if (button_1_pressed) { cpl(led_1); }
-    if (button_2_pressed) { cpl(led_2); }
-}
-
 void reading(void) {
     while(!read_inputs());
-    hysteresis();
-}
-
-void testing_aa(void) {
-    // neither LED lights at all
-    digitalWrite(led_1, 1);
-    digitalWrite(led_2, 1);
-    while(-1);
-}
-
-void testing_bb(void) {
-    cpl(led_1); // make 'em alternate
-    for (int index = 8; index > 0; index--) {
-        cpl(led_2);
-        cpl(led_1); delay(600);
-    }
 }
 
 void setup() {
     pins_setup();
-    // testing_aa();
-    // testing_bb();
 }
 
 void loop() {
