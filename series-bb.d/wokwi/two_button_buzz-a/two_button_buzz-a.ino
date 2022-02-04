@@ -1,3 +1,5 @@
+// progressing - 23:16:50z
+
 // progressing - 19:27:51z
 // closer to correct behavior.
 
@@ -12,8 +14,8 @@
 #define button_1 12
 #define button_2 11
 #define bz        3
-#define led_1     9
-#define led_2    10
+#define led_1    10
+#define led_2     9
 
 void pins_setup(void) {
   pinMode(button_1, INPUT);
@@ -24,6 +26,7 @@ void pins_setup(void) {
 }
 
 bool button_1_pressed = 0;
+bool button_2_pressed = 0;
 
 #define hyst 73999
 
@@ -38,30 +41,48 @@ void cpl(int pin) {
     digitalWrite(pin, state);
 }
 
+
+
+
+
+
+
 void act_on_button_1(void) {
     if (button_1_pressed) {
-        // cpl(led_1); // digitalWrite(led_1, 1);
-        // delay(1000);
         button_1_pressed = 0;
-        // hysteresis();
+        cpl(led_1);
+    }
+}
+
+void act_on_button_2(void) {
+    if (button_2_pressed) {
+        button_2_pressed = 0;
+        cpl(led_2);
     }
 }
 
 void evaluate_booleans(void) {
     act_on_button_1();
+    act_on_button_2();
 }
 
 bool read_inputs(void) {
-    button_1_pressed = digitalRead(button_1);
-    if (button_1_pressed) {
-        return -1;
+    button_1_pressed = !digitalRead(button_1);
+    button_2_pressed = !digitalRead(button_2);
+    if (!button_1_pressed &&
+        !button_2_pressed) {
+          return 0;
     }
-    return 0;
+    return -1;
+}
+
+void condx_cpls(void) {
+    if (button_1_pressed) { cpl(led_1); }
+    if (button_2_pressed) { cpl(led_2); }
 }
 
 void reading(void) {
-    while(read_inputs());
-    cpl(led_2);
+    while(!read_inputs());
     hysteresis();
 }
 
