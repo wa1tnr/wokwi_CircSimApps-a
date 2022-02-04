@@ -7,7 +7,7 @@
     {
       "type": "wokwi-buzzer",
       "id": "bz1",
-      "top": -150,
+      "top": -180,
       "left": 180,
       "attrs": { "volume": "0.1" }
     },
@@ -32,14 +32,14 @@
     {
       "type": "wokwi-led",
       "id": "led1",
-      "top": -56.14,
+      "top": -60,
       "left": 385.98,
       "attrs": { "color": "red" }
     },
     {
       "type": "wokwi-led",
       "id": "led2",
-      "top": -47.89,
+      "top": -60,
       "left": -113.13,
       "attrs": { "color": "red" }
     },
@@ -72,7 +72,8 @@
     [ "btn2:2.r", "uno:GND.3", "black", [ "v0" ] ],
     [ "bz1:1", "uno:GND.1", "green", [ "v0" ] ],
     [ "bz1:2", "uno:3", "green", [ "v0" ] ],
-    [ "led1:A", "uno:9", "yellow", [ "v0" ] ],
+    [ "led1:A", "uno:9", "violet",
+    [ "v20", "h50", "v-80", "h0" ] ],
     [ "led1:C", "r4:1", "orange", [ "v0" ] ],
     [ "led2:A", "uno:10", "violet", [ "v20", "h50", "v-80", "h0" ] ],
     [ "led2:C", "r3:1", "green", [ "v0" ] ],
