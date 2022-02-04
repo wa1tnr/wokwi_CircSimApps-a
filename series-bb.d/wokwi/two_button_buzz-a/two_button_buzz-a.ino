@@ -1,8 +1,13 @@
-// progressing - 17:34:38z
+// progressing - 19:27:51z
 // closer to correct behavior.
 
 // design target is:
 // https://wokwi.com/arduino/new?template=arduino-uno
+
+// only one LED and only one pushbutton have
+// been accounted for, though both pairs are
+// present and the second instance is probably
+// correct, electrically. 19:27 UTC Fri 4 Feb 2022
 
 #define button_1 12
 #define button_2 11
