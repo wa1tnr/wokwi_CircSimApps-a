@@ -1,3 +1,5 @@
+// edit after a break - 16:20z
+
 #define button_1 12
 #define button_2 11
 #define bz        3
@@ -63,7 +65,7 @@ void testing_bb(void) {
 void setup() {
     pins_setup();
     // testing_aa();
-    testing_bb();
+    // testing_bb();
 }
 
 void loop() {
@@ -71,4 +73,4 @@ void loop() {
     evaluate_booleans();
 }
 
-// END.c
+// END.
