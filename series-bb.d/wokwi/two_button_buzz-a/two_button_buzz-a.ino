@@ -1,3 +1,5 @@
+// edit after a break - 16:36z
+
 // edit after a break - 16:20z
 
 #define button_1 12
@@ -23,10 +25,17 @@ void cpl(int pin) {
 
 bool button_1_pressed = 0;
 
+void hysteresis(void) {
+    for (volatile uint64_t slower = 19999;
+    slower > 0; slower--);
+}
+
 void act_on_button_1(void) {
     if (button_1_pressed) {
         cpl(led_1); // digitalWrite(led_1, 1);
         // delay(1000);
+        button_1_pressed = 0;
+        hysteresis();
     }
 }
 
@@ -34,16 +43,11 @@ void evaluate_booleans(void) {
     act_on_button_1();
 }
 
-void hysteresis(void) {
-    for (volatile int slower = 9999;
-    slower > 0; slower--);
-}
-
 void read_inputs(void) {
-    button_1_pressed = 0;
-    digitalRead(button_1_pressed);
+     button_1_pressed = digitalRead(button_1);
     if (button_1_pressed) {
-      hysteresis();
+          for (volatile int count = 7; count > 0; count--);
+        // hysteresis();
     }
 }
 
