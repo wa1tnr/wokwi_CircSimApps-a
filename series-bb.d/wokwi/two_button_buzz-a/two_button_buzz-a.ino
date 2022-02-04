@@ -1,5 +1,5 @@
-// progressing - 17:23:28z
-// accidentally implemented behavior similar to desired. ;)
+// progressing - 17:34:38z
+// closer to correct behavior.
 
 // design target is:
 // https://wokwi.com/arduino/new?template=arduino-uno
@@ -18,6 +18,14 @@ void pins_setup(void) {
   pinMode(led_2, OUTPUT);
 }
 
+bool button_1_pressed = 0;
+
+#define hyst 73999
+
+void hysteresis(void) {
+    for (volatile uint64_t slower = hyst;
+    slower > 0; slower--);
+}
 
 void cpl(int pin) {
     bool state = digitalRead(pin);
@@ -25,19 +33,12 @@ void cpl(int pin) {
     digitalWrite(pin, state);
 }
 
-bool button_1_pressed = 0;
-
-void hysteresis(void) {
-    for (volatile uint64_t slower = 19999;
-    slower > 0; slower--);
-}
-
 void act_on_button_1(void) {
     if (button_1_pressed) {
-        cpl(led_1); // digitalWrite(led_1, 1);
+        // cpl(led_1); // digitalWrite(led_1, 1);
         // delay(1000);
         button_1_pressed = 0;
-        hysteresis();
+        // hysteresis();
     }
 }
 
@@ -55,7 +56,8 @@ bool read_inputs(void) {
 
 void reading(void) {
     while(read_inputs());
-    cpl(led_2); // avoid Serial.print debug
+    cpl(led_2);
+    hysteresis();
 }
 
 void testing_aa(void) {
