@@ -1,4 +1,5 @@
-// edit after a break - 16:36z
+// progressing - 16:42z
+// accidentally implemented behavior similar to desired. ;)
 
 // edit after a break - 16:20z
 
@@ -43,12 +44,17 @@ void evaluate_booleans(void) {
     act_on_button_1();
 }
 
-void read_inputs(void) {
-     button_1_pressed = digitalRead(button_1);
+bool read_inputs(void) {
+    button_1_pressed = digitalRead(button_1);
     if (button_1_pressed) {
-          for (volatile int count = 7; count > 0; count--);
-        // hysteresis();
+        return -1;
     }
+    return 0;
+}
+
+void reading(void) {
+    while(read_inputs());
+    cpl(led_2); // avoid Serial.print debug
 }
 
 void testing_aa(void) {
@@ -73,7 +79,7 @@ void setup() {
 }
 
 void loop() {
-    read_inputs();
+    reading();
     evaluate_booleans();
 }
 
