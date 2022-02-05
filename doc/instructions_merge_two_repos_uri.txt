@@ -1,0 +1,4 @@
+https://stackoverflow.com/a/52933095
+
+from:
+https://stackoverflow.com/questions/1683531/how-to-import-existing-git-repository-into-another

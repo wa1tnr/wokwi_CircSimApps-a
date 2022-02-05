@@ -1,0 +1,71 @@
+https://stackoverflow.com/a/52933095
+
+18
+
+A few years have passed and there are well-based up-voted
+solutions
+
+but I want to share mine
+because it was a bit different
+because
+
+I wanted to merge 2 remote repositories into a new one
+without deleting the history from the previous repositories.
+
+Create a new repository in Github.
+
+Download the newly created repo and add the old remote repository.
+
+git clone https://github.com/alexbr9007/Test.git # newest repo - initially empty
+
+cd Test # cd to just-cloned dir
+
+git remote add OldRepo https://github.com/alexbr9007/Django-React.git # add remote for old repos
+
+git remote -v # verify
+
+Fetch for all the files from the old repo so a new branch gets created.
+
+git fetch OldRepo # fetch from just-created remote entry
+
+git branch -a # verify
+
+ * master # shows here
+   remotes/OldRepo/master # also shows here
+
+In the master branch, do a merge to combine the old repo with the newly created one.
+
+git branch | egrep "\*"
+ * master
+
+git merge remotes/OldRepo/master --allow-unrelated-histories
+
+ [IMAGE] not really needed to do this
+
+Create a new folder to store all the new created content
+that was added from the OldRepo and move its files into
+this new folder.
+
+Lastly, you can upload the files from the combined repos
+and safely delete the OldRepo from GitHub.
+
+Hope this can be useful for anyone dealing with merging
+remote repositories.
+
+answered Oct 22 '18 at 15:42
+
+abautista
+
+COMMENT:
+
+This is the only solution that worked for me to preserve
+git history.
+
+Don't forget to remove the remote link to old repo with
+git remote rm OldRepo.
+
+Célia Doolaeghe
+ Jan 23 '20 at 13:45
+ 
+ 
+END.
