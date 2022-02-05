@@ -1,0 +1,41 @@
+TESTED_arduino_ide_Uno.log time-stamped entries mean:
+
+    Tested against the Arduino IDE (Uno board definition).
+
+
+TESTED_on_wokwi_both_ways.log time-stamped entries mean:
+
+    Tested against wokwi online simulator, using both the
+    embedded diagram.json in the .ino file, as well as the
+    same .ino file, but with the explicit diagram.json
+    file loaded.
+
+    The two json variants are normally meant to be identical,
+    but updates may be overlooked, now and then.
+
+
+TESTED_on_wokwi_usual.log time-stamped entries mean:
+
+    Tested 'practically' on wokwi - according to the current
+    workflow method (which is expected to change as 'ideas'
+    come up.
+
+    Meant to indicate the code is tested and runs well, and
+    the diagram.json matches the code (fairly) well, with
+    possible minor features unimplemented (especially where
+    diagram.json advances new hardware connections that have
+    no support (yet) in the code base).
+
+
+None of this is to be taken as guaranteed, so much as a statement
+about the general approach - it is expected to morph towards a
+strong set of coding/testing/updating habits, in the development cycle.
+
+Like all comments, if they do make sense, they do so the most, in
+context in which they were written. Specifically, at that time,
+place, and using the same equipment. ;)
+
+Note: the 'buzzer' is functional in that sounds are present on
+the host PC running the wokwi sim in the web browser.  Nice.
+
+END.
