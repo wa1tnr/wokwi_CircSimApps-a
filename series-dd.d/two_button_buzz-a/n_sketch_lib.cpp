@@ -1,6 +1,7 @@
 // two pushbuttons with buzzer
-// Sat  5 Feb 11:27:51 UTC 2022
+// Mon  7 Feb 15:18:44 UTC 2022
 
+// split to a lib with include Arduino.h
 // quite good heuristics
 
 // design target is:
@@ -8,6 +9,8 @@
 
 // tone:
 // https://www.arduino.cc/reference/en/language/functions/advanced-io/tone/
+
+#include <Arduino.h>
 
 #define button_1 12
 #define button_2 11
@@ -85,11 +88,11 @@ void reading(void) {
     while(!read_inputs());
 }
 
-void setup() {
+void lib_setup() {
     pins_setup();
 }
 
-void loop() {
+void lib_loop() {
     reading();
     evaluate_booleans();
 }
