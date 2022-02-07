@@ -1,1 +1,8 @@
-Mon  7 Feb 15:45:29 UTC 2022
+Mon  7 Feb 15:47:36 UTC 2022
+
+All good - every technique employed functions correctly.
+
+Compile locally on Arduino IDE and/or real Uno testing,
+not conducted recently (or at all?)
+
+END.
