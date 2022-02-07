@@ -1,5 +1,5 @@
 // two pushbuttons with buzzer
-// Mon  7 Feb 19:20:01 UTC 2022
+// Mon  7 Feb 21:27:09 UTC 2022
 
 // with interrupt(s)
 
@@ -15,30 +15,39 @@
 
 #include <Arduino.h>
 
-#define button_1 12
-#define button_2 11
-#define buzzer    3
+#define button_2  2
+#define button_3  3
+#define buzzer    4
 #define led_1    10
 #define led_2     9
 
-bool button_1_pressed, button_2_pressed, isr_triggered = 0;
+volatile bool button_2_pressed, button_3_pressed, isr_triggered = 0;
 
 void buttonPressed_ISR(void) {
-    button_1_pressed = !digitalRead(button_1);
     button_2_pressed = !digitalRead(button_2);
+    button_3_pressed = !digitalRead(button_3);
     isr_triggered = -1;
 }
 
+void make_attached(void) {
+  attachInterrupt (digitalPinToInterrupt (button_2), buttonPressed_ISR, FALLING);
+  attachInterrupt (digitalPinToInterrupt (button_3), buttonPressed_ISR, FALLING);
+}
+
+make_detached(void) {
+  detachInterrupt(digitalPinToInterrupt(button_2));
+  detachInterrupt(digitalPinToInterrupt(button_3));
+}
+
 void pins_setup(void) {
-  pinMode(button_1, INPUT);
   pinMode(button_2, INPUT);
+  pinMode(button_3, INPUT);
   pinMode(led_1, OUTPUT);
   pinMode(led_2, OUTPUT);
 
-  digitalWrite(button_1, HIGH);
   digitalWrite(button_2, HIGH);
-  attachInterrupt (digitalPinToInterrupt (button_1), buttonPressed_ISR, CHANGE);
-  attachInterrupt (digitalPinToInterrupt (button_2), buttonPressed_ISR, CHANGE);
+  digitalWrite(button_3, HIGH);
+  make_attached();
 }
 
 void cpl(int pin) {
@@ -47,7 +56,7 @@ void cpl(int pin) {
     digitalWrite(pin, state);
 }
 
-#define hyst 98999  // 73999
+#define hyst 99111 // 98999  // 73999
 
 void hysteresis(void) {
     for (volatile uint64_t slower = hyst;
@@ -66,31 +75,33 @@ void buzzing(int bz_pin, int pitch) {
 
 #define hertz 440
 
-void act_on_button_1(void) {
-    if (button_1_pressed) {
-        button_1_pressed = 0;
-        cpl(led_1);
-        buzzing(buzzer, hertz);
-    }
-}
-
 void act_on_button_2(void) {
     if (button_2_pressed) {
         button_2_pressed = 0;
         cpl(led_2);
+        buzzing(buzzer, hertz);
+    }
+}
+
+void act_on_button_3(void) {
+    if (button_3_pressed) {
+        button_3_pressed = 0;
+        cpl(led_1);
+        buzzing(buzzer, (hertz + 110));
     }
 }
 
 void evaluate_booleans(void) {
-    act_on_button_1();
     act_on_button_2();
+    act_on_button_3();
 }
 
+/*
 bool read_inputs(void) {
-    button_1_pressed = !digitalRead(button_1);
     button_2_pressed = !digitalRead(button_2);
-    if (!button_1_pressed &&
-        !button_2_pressed) {
+    button_3_pressed = !digitalRead(button_3);
+    if (!button_2_pressed &&
+        !button_3_pressed) {
           return 0;
     }
     return -1;
@@ -100,20 +111,24 @@ void reading(void) {
     while(!isr_triggered);
     // while(!read_inputs());
 }
+*/
 
 
 // no problem with setup() and loop() located in this .CPP file
 
 void setup() {
     pins_setup();
+    interrupts();
 }
 
 void loop() {
-    reading();
+    // reading();
     if (isr_triggered) {
+        make_detached();
         evaluate_booleans();
         isr_triggered =  0;
         hysteresis();
+        make_attached();
     }
 }
 
