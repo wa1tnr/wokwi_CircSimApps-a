@@ -1,0 +1,10 @@
+
+brief instructions
+
+sketch.ino can be renamed, then deleted.
+
+any .cpp file can be uploaded, and will serve a similar purpose.
+
+(wokwi will still do the right thing without any .INO file present.)
+
+diagram.json can be deleted, and a new version uploaded, using this same name.
