@@ -1,5 +1,9 @@
 // two pushbuttons with buzzer
-// Mon  7 Feb 15:39:12 UTC 2022
+// Mon  7 Feb 19:20:01 UTC 2022
+
+// with interrupt(s)
+
+// https://gammon.com.au/interrupts
 
 // quite good heuristics
 
@@ -17,15 +21,25 @@
 #define led_1    10
 #define led_2     9
 
+bool button_1_pressed, button_2_pressed, isr_triggered = 0;
+
+void buttonPressed_ISR(void) {
+    button_1_pressed = !digitalRead(button_1);
+    button_2_pressed = !digitalRead(button_2);
+    isr_triggered = -1;
+}
+
 void pins_setup(void) {
   pinMode(button_1, INPUT);
   pinMode(button_2, INPUT);
-  // pinMode(buzzer, OUTPUT); // push-pull
   pinMode(led_1, OUTPUT);
   pinMode(led_2, OUTPUT);
-}
 
-bool button_1_pressed, button_2_pressed = 0;
+  digitalWrite(button_1, HIGH);
+  digitalWrite(button_2, HIGH);
+  attachInterrupt (digitalPinToInterrupt (button_1), buttonPressed_ISR, CHANGE);
+  attachInterrupt (digitalPinToInterrupt (button_2), buttonPressed_ISR, CHANGE);
+}
 
 void cpl(int pin) {
     bool state = digitalRead(pin);
@@ -70,7 +84,6 @@ void act_on_button_2(void) {
 void evaluate_booleans(void) {
     act_on_button_1();
     act_on_button_2();
-    hysteresis();
 }
 
 bool read_inputs(void) {
@@ -84,7 +97,8 @@ bool read_inputs(void) {
 }
 
 void reading(void) {
-    while(!read_inputs());
+    while(!isr_triggered);
+    // while(!read_inputs());
 }
 
 
@@ -96,7 +110,11 @@ void setup() {
 
 void loop() {
     reading();
-    evaluate_booleans();
+    if (isr_triggered) {
+        evaluate_booleans();
+        isr_triggered =  0;
+        hysteresis();
+    }
 }
 
 #if 0
