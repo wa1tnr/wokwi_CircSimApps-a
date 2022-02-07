@@ -88,11 +88,14 @@ void reading(void) {
     while(!read_inputs());
 }
 
-void lib_setup() {
+
+// no problem with setup() and loop() located in this .CPP file
+
+void setup() {
     pins_setup();
 }
 
-void lib_loop() {
+void loop() {
     reading();
     evaluate_booleans();
 }
