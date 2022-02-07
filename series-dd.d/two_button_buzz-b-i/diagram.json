@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "bbAnonymous maker",
+  "author": "Mon  7 Feb 21:31:46 UTC 2022 online edit",
   "editor": "wokwi",
   "parts": [
     { "type": "wokwi-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
@@ -57,20 +57,20 @@
   ],
   "connections": [
     [ "btn1:1.l", "r1:1", "red", [ "v-20", "h30", "v0" ] ],
-    [ "btn1:1.r", "uno:12", "yellow", [ "v40", "h-140", "v-460", "h265" ] ],
     [ "btn1:2.l", "uno:GND.2", "black", [ "v-30", "h0" ] ],
     [ "btn1:2.r", "r3:2", "black", [ "v20", "h0" ] ],
-    [ "btn2:1.l", "uno:11", "yellow", [ "v40", "h170", "v-460", "h0" ] ],
-    [ "btn2:1.r", "r2:2", "red", [ "v-20", "h-30", "v0" ] ],
     [ "btn2:2.l", "r4:2", "black", [ "v20", "h20" ] ],
     [ "btn2:2.r", "uno:GND.3", "black", [ "v-30", "h0" ] ],
     [ "bz1:1", "uno:GND.1", "black", [ "v-30", "h0" ] ],
-    [ "bz1:2", "uno:3", "red", [ "v-1", "h0", "v-20", "h0" ] ],
     [ "led2:A", "uno:9", "gray", [ "v20", "h50", "v-80", "h0" ] ],
     [ "led2:C", "r4:1", "black", [ "v0" ] ],
     [ "led1:A", "uno:10", "gray", [ "v20", "h50", "v-80", "h0" ] ],
     [ "led1:C", "r3:1", "black", [ "v0" ] ],
     [ "uno:5V", "r1:2", "red", [ "v0" ] ],
-    [ "r1:2", "r2:1", "red", [ "v0" ] ]
+    [ "r1:2", "r2:1", "red", [ "v0" ] ],
+    [ "uno:2", "btn2:1.l", "yellow", [ "v-150", "h270", "v510", "h0" ] ],
+    [ "uno:3", "btn1:1.r", "yellow", [ "v-150", "h-370", "v510", "h0" ] ],
+    [ "btn2:1.r", "r2:2", "green", [ "v0" ] ],
+    [ "bz1:2", "uno:4", "red", [ "v-20", "h0" ] ]
   ]
 }
