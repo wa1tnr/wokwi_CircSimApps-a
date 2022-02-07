@@ -40,8 +40,8 @@ make_detached(void) {
 }
 
 void pins_setup(void) {
-  pinMode(button_2, INPUT);
-  pinMode(button_3, INPUT);
+  // pinMode(button_2, INPUT);
+  // pinMode(button_3, INPUT);
   pinMode(led_1, OUTPUT);
   pinMode(led_2, OUTPUT);
 
