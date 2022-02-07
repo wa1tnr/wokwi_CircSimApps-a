@@ -1,5 +1,8 @@
 // two pushbuttons with buzzer
-// Mon  7 Feb 15:12:26 UTC 2022
+// Mon  7 Feb 15:38:10 UTC 2022
+
+// design target is:
+// https://wokwi.com/arduino/new?template=arduino-uno
 
 // EMPTY .INO 15:23 UTC 7 Feb 2022
 
@@ -9,9 +12,6 @@
 // not sure what 'works'.
 
 // restructured as a library for wokwi.com
-
-// design target is:
-// https://wokwi.com/arduino/new?template=arduino-uno
 
 // extern void lib_setup(void);
 // extern void lib_loop(void);

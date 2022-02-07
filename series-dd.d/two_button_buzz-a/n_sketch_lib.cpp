@@ -1,7 +1,6 @@
 // two pushbuttons with buzzer
-// Mon  7 Feb 15:18:44 UTC 2022
+// Mon  7 Feb 15:39:12 UTC 2022
 
-// split to a lib with include Arduino.h
 // quite good heuristics
 
 // design target is:
