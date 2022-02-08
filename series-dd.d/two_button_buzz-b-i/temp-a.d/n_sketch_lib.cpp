@@ -1,5 +1,6 @@
 // two pushbuttons with buzzer
-// Tue  8 Feb 22:19:49 UTC 2022
+// Tue  8 Feb 22:48:02 UTC 2022
+// online edit - experiments
 
 // with interrupt(s)
 
@@ -25,13 +26,17 @@ volatile bool button_2_pressed, button_3_pressed, isr_triggered = 0;
 
 void buttonPressed_ISR(void) {
     button_2_pressed = !digitalRead(button_2);
-    button_3_pressed = !digitalRead(button_3);
+    // button_3_pressed = !digitalRead(button_3);
     isr_triggered = -1;
 }
 
+void buttonPressed_ISR_b(void) {
+    button_3_pressed = !digitalRead(button_3);
+    isr_triggered = -1;
+}
 void make_attached(void) {
   attachInterrupt (digitalPinToInterrupt (button_2), buttonPressed_ISR, FALLING);
-  attachInterrupt (digitalPinToInterrupt (button_3), buttonPressed_ISR, FALLING);
+  attachInterrupt (digitalPinToInterrupt (button_3), buttonPressed_ISR_b, FALLING);
 }
 
 make_detached(void) {
@@ -56,7 +61,7 @@ void cpl(int pin) {
     digitalWrite(pin, state);
 }
 
-#define hyst 99111 // 98999  // 73999
+#define hyst 122555 // 99111
 
 void hysteresis(void) {
     for (volatile uint64_t slower = hyst;
@@ -67,10 +72,10 @@ void hysteresis(void) {
 // https://learn.adafruit.com/using-piezo-buzzers-with-circuitpython-arduino/arduino
 
 void buzzing(int bz_pin, int pitch) {
-    tone(bz_pin, pitch); // ON until 'notone'
+    tone(bz_pin, pitch, 220); // ON until 'notone'
     // tone(bz_pin, pitch, 800); // optional duration
-    hysteresis(); // cheap delay
-    noTone(bz_pin);
+    // hysteresis(); // cheap delay
+    // noTone(bz_pin);
 }
 
 #define hertz 440
@@ -118,7 +123,7 @@ void reading(void) {
 
 void setup() {
     pins_setup();
-    interrupts();
+    // interrupts();
 }
 
 void loop() {
@@ -127,6 +132,7 @@ void loop() {
         make_detached();
         evaluate_booleans();
         isr_triggered =  0;
+        // make_attached(); // responsive during hysteresis period
         hysteresis();
         make_attached();
     }
