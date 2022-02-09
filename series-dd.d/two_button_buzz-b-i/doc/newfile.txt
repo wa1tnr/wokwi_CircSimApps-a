@@ -1,1 +1,15 @@
 Wed  9 Feb 12:13:14 UTC 2022
+
+https://www.arduino.cc/reference/en/language/functions/external-interrupts/attachinterrupt/
+
+Good general advice/write-up.
+
+https://forum.arduino.cc/t/debouncing-a-switch-on-an-interrupt-pin/632166/6
+
+https://playground.arduino.cc/Main/MsTimer2/
+
+https://forum.arduino.cc/t/debouncing-an-interrupt-trigger/45110/15
+
+in irons on this one, now. 9 Feb 2022 12:16 UTC
+
+END.
