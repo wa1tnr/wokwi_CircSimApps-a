@@ -30,6 +30,8 @@ nice diagram of events:
 
 https://arduino.stackexchange.com/questions/17443/how-to-simulate-delay-to-debounce-mechanical-button-using-millis/18545#18545
 
+quite nice hardware debouncing discussion (not evaluted as such, though):
 
+https://arduino.stackexchange.com/questions/34054/multiple-buttons-on-single-interrupt-how-to-debounce
 
 END.
