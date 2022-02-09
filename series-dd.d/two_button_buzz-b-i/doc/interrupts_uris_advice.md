@@ -1,4 +1,4 @@
-Wed  9 Feb 12:47:39 UTC 2022
+Wed  9 Feb 19:19:47 UTC 2022
 
 Basically, the prevailing advice (atm, not all read of course) seems to imply that the human factor governs - interrupts on pushbuttons not normally a great idea.
 
@@ -30,8 +30,12 @@ nice diagram of events:
 
 https://arduino.stackexchange.com/questions/17443/how-to-simulate-delay-to-debounce-mechanical-button-using-millis/18545#18545
 
-quite nice hardware debouncing discussion (not evaluted as such, though):
+nice hardware debouncing discussion:
 
 https://arduino.stackexchange.com/questions/34054/multiple-buttons-on-single-interrupt-how-to-debounce
+
+also, quite good hardware debounce discussion here:
+
+http://www.ganssle.com/debouncing-pt2.htm
 
 END.
