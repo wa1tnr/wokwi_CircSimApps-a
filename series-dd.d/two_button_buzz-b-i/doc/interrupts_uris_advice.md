@@ -1,6 +1,6 @@
-Wed  9 Feb 19:19:47 UTC 2022
+Wed  9 Feb 19:28:49 UTC 2022
 
-Basically, the prevailing advice (atm, not all read of course) seems to imply that the human factor governs - interrupts on pushbuttons not normally a great idea.
+Basically, the prevailing advice (atm, not all read of course) seems to imply that the human factor governs - interrupts on pushbuttons not normally a great idea (scroll to JUST_WHY).
 
 Unlike, say, a rotary encoder, with much finer timings (presumed here in this write-up, anway) - the pushbutton switch needs to be carefully debounced for human factors.
 
@@ -37,5 +37,18 @@ https://arduino.stackexchange.com/questions/34054/multiple-buttons-on-single-int
 also, quite good hardware debounce discussion here:
 
 http://www.ganssle.com/debouncing-pt2.htm
+
+
+
+JUST_WHY
+
+At Ganssle it was said:
+
+_Similarly, don't tie undebounced switches, even if Schmitt Triggered, to interrupt inputs on the CPU. Usually the interrupt pin goes to the clock input of an internal flip flop. As processors become more complex their datasheets give less useful electrical information; they're awash in programming data but leave designers adrift without complete timing specs. Generally we have no idea what the CPU expects as a max rise time or the min pulse width. Those internal flops aren't perfect, so don't flirt with danger by feeding them garbage._
+
+
+This makes sense and doesn't rely on an unsourced heuristic.  It sounds solid (to me).
+
+_smokimus gunimus_
 
 END.
