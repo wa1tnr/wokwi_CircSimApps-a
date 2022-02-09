@@ -1,4 +1,8 @@
-Wed  9 Feb 19:28:49 UTC 2022
+Wed  9 Feb 20:48:11 UTC 2022
+
+search:
+
+arduino debounce with interrupt site:arduino.stackexchange.com
 
 Basically, the prevailing advice (atm, not all read of course) seems to imply that the human factor governs - interrupts on pushbuttons not normally a great idea (scroll to JUST_WHY).
 
