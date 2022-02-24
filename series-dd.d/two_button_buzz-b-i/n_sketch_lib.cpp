@@ -1,6 +1,9 @@
 // two pushbuttons with buzzer
 // Mon  7 Feb 21:27:09 UTC 2022
 
+// load fast with:
+// https://wokwi.com/arduino/projects/324426125782549074
+
 // with interrupt(s)
 
 // https://gammon.com.au/interrupts
