@@ -1,1 +1,8 @@
-Sun 27 Feb 22:02:29 UTC 2022
+// rp2040_reflash_inc.h
+
+// rp2040_reflash.inc
+
+#include "pico/bootrom.h"
+void reflash(void) {  /*  --  */
+    reset_usb_boot(0, 0);
+}
