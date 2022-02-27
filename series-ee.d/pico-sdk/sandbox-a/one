@@ -1,1 +1,7 @@
-Sun 27 Feb 22:02:20 UTC 2022
+{
+  "version": 1,
+  "author": "Anonymous b 33 maker  21:41:11z",
+  "editor": "wokwi",
+  "parts": [ { "id": "pico", "type": "wokwi-pi-pico", "attrs": { "builder": "pico-sdk" } } ],
+  "connections": [ [ "pico:GP0", "$serialMonitor:RX", "" ], [ "pico:GP1", "$serialMonitor:TX", "" ] ]
+}
