@@ -153,7 +153,7 @@ void _OVER (void) {
 
 #include "Cortex-Forth.h" // balance of upstream code is here
 
-void interpreter(void) {
+void interpreter_nomore(void) {
    uint8_t gotkey ;
    _KEY();
    gotkey = T;
