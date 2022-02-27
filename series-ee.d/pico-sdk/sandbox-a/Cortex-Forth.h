@@ -168,7 +168,8 @@ void _INVERT (void) {
 }
 
 void _ABS (void) {
-  T = abs (T);
+  // T = abs (T);
+  _DUP (); _DROP ();
 }
 
 void _NEGATE (void) {
