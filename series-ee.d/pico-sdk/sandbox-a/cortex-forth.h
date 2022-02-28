@@ -1,9 +1,7 @@
-// cortex-forth.h 27 Feb 2022
-
 /*
   Forth virtual machine
 
-  This code is in the public domain.
+  This code is in the public  domain.
 
 */
 
