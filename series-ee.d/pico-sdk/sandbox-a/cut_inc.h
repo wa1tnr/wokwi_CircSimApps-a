@@ -13,7 +13,7 @@ void init_cutter(void) {
 
 /*
  *      Remove given section from string. Negative len means remove
- *      everything up to the end.
+ *      everything up to the end. xc
  */
 
 int str_cut(char *str, int begin, int len) {
