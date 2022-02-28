@@ -1,5 +1,3 @@
-// rp2040_reflash_inc.h
-
 // rp2040_reflash.inc
 
 #include "pico/bootrom.h"
