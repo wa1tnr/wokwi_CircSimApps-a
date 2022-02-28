@@ -1,7 +1,7 @@
 #define DATE_STAMP "Mon Mar  8 05:21:42 UTC 2021"
 // old standard width for this field: #define BRANCH_STAMP "erase_sector-a"
 #define BRANCH_STAMP  "main-with-flash-ops-a-no-emit-a-   __"
-#define COMMIT_STAMP  "62600eb"
+#define COMMIT_STAMP  "62600eb" // xcc
 #define FEATURE_STAMP "+auto_load +rewind +flaccept         "
 // #define MODE_STAMP "copy_to_ram"
 #define MODE_STAMP "copy_to_ram"
@@ -107,7 +107,7 @@ unsigned char ROMDICT[1024];
 #endif
 
 #ifdef RP2040_PICO
-#include "rp2040_pico.inc"
+#include "rp2040_pico_inc.h"
 #endif
 
 /* 
@@ -652,7 +652,9 @@ CODE(dots) {    /* print stack, for testing */
     while (p >= psp) { printf(" %8X", *p--); } // changed conversion to upper case ABCDEF
 }
 
-extern int _pico_LED(void);
+#include "pico-LED_c.h"
+
+// extern int _pico_LED(void);
 CODE(blink) { /* -- */
     _pico_LED();
 }
@@ -660,7 +662,7 @@ CODE(blink) { /* -- */
 #define AINSU_DUMP_EXTERN
 // #undef AINSU_DUMP_EXTERN // temporary for testing 00:44 Sat 20 Feb 2021
 #ifdef AINSU_DUMP_EXTERN
-#include "dump.inc"
+#include "dump_inc.h"
 #endif // #ifdef AINSU_DUMP_EXTERN
 
 #ifndef AINSU_DUMP_EXTERN
@@ -679,16 +681,20 @@ CODE(dump) {   /* adr n -- */
 #endif // #ifndef AINSU_DUMP_EXTERN
 
 // #include "rp2040_runtime.inc"
-#include "rp2040_reflash.inc"
+// #include "rp2040_reflash_inc.h"
 
-extern void flash_write_test(void);
-CODE(flwrite) { /* -- */
+/* extern void flash_write_test(void); */
+
+/*
+CODE(flwrite) {
+
     flash_write_test();
     _pico_LED();
 }
+*/
 
-#include "rp2040_reading.inc"
-#include "rp2040_flash_ops.inc"
+#include "rp2040_reading_inc.h"
+// #include "rp2040_flash_ops_inc.h" // uploaded 23:27z 27 Feb 2022
 /*
   1 // rp2040_reading.inc
 
@@ -698,8 +704,10 @@ CODE(flwrite) { /* -- */
 */
 
 
-extern void flash_write_buffer(void);
-CODE(buf2flash) { /* -- */
+/* extern void flash_write_buffer(void); */
+
+/*
+CODE(buf2flash) {
     flash_write_buffer();
     _pico_LED();
 }
@@ -707,6 +715,8 @@ CODE(buf2flash) { /* -- */
 CODE(rewind) { // reset flash loader to the base of that sector
     getFlKey_counter = 0;
 }
+
+*/
 
 CODE(bye) {
     run = 0;
@@ -808,11 +818,11 @@ PRIMITIVE(dots);
 PRIMITIVE(dump);
 PRIMITIVE(blink);
 // PRIMITIVE(runtime_init);
-PRIMITIVE(reflash);
-PRIMITIVE(flwrite);
-PRIMITIVE(buf2flash);
-PRIMITIVE(rewind);
-PRIMITIVE(erase);
+// PRIMITIVE(reflash);
+// PRIMITIVE(flwrite);
+// PRIMITIVE(buf2flash);
+// PRIMITIVE(rewind);
+// PRIMITIVE(erase);
 PRIMITIVE(reading);
 PRIMITIVE(bye);
 
@@ -1693,14 +1703,27 @@ HEADER(dothhhh, dothh, 0, "\005.HHHH");
 HEADER(dots, dothhhh, 0, "\002.S");
 HEADER(dump, dots, 0, "\004DUMP");
 HEADER(words, dump, 0, "\005WORDS");
+
+
 HEADER(blink, words, 0, "\005blink");
-HEADER(reflash, blink, 0, "\007reflash");
-HEADER(flwrite, reflash, 0, "\007flwrite");
-HEADER(buf2flash, flwrite, 0, "\011buf2flash");
-HEADER(erase, buf2flash, 0, "\005erase");
-HEADER(reading, erase, 0, "\007reading");
-HEADER(rewind, reading, 0, "\006rewind");
-HEADER(flkey, rewind, 0, "\005flkey");
+
+/* HEADER(reflash, blink, 0, "\007reflash"); */
+
+/* HEADER(flwrite, blink, 0, "\007flwrite"); */
+
+// HEADER(buf2flash, blink, 0, "\011buf2flash");
+
+/* HEADER(erase, buf2flash, 0, "\005erase"); */
+
+
+HEADER(reading, blink, 0, "\007reading");
+
+// HEADER(rewind, reading, 0, "\006rewind");
+
+
+HEADER(flkey, reading, 0, "\005flkey");
+
+
 HEADER(flaccept, flkey, 0, "\010flaccept");
 HEADER(flquit, flaccept, 0, "\006flquit");
 HEADER(cold, flquit, 0, "\004COLD");
