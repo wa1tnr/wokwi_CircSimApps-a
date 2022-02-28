@@ -1,5 +1,5 @@
 // eight captures main.c peculiar to wokwi pico-sdk
-
+// on sim
 /*
   Forth virtual machine
 
@@ -24,7 +24,14 @@
 #include "pico/stdlib.h"
 #include "rp2040_pico.h"
 
+
+
+
+
 /* cortex forth */
+
+
+/*
 #include "cortex-forth.h"
 
 #define RAM_SIZE 0x1200
@@ -35,12 +42,20 @@
 #define CODE(m, a) {memory.program [m] = a;}
 #define DATA(m, a) {memory.data [m] = a;}
 #define IMMED 0x80
+*/
 
 #define RP2040_PICO
 #ifdef RP2040_PICO
 
 // #include "rp2040_pico.inc"
-#include "rp2040_pico_inc.h"
+// #include "rp2040_pico_inc.h"
+
+
+#include "forth_c.h"
+
+
+
+
 
 // #include "rp2040_reflash.inc"
 #include "rp2040_reflash_inc.h"
@@ -50,12 +65,14 @@
 #endif
 
 // global variables
+/*
 union Memory {
   int data [RAM_SIZE];
   void (*program [0]) (void);
 } memory;
-
+*/
 // String tib = "";
+/*
 int S = S0; // data stack pointer
 int R = R0; // return stack pointer
 int I = 0; // instruction pointer
@@ -66,7 +83,7 @@ int H = 0; // dictionary pointer, HERE
 int D = 0; // dictionary list entry point
 int base = 10;
 bool state = false; // compiling or not
-
+*/
 /*  A word in the dictionary has these fields:
   name  32b word,  a 32 bit int, made up of byte count and three letters
   link  32b word, point to next word in list, 0 says end of list
@@ -80,6 +97,7 @@ bool state = false; // compiling or not
 
 // primitive definitions
 
+/*
 void _LBRAC (void) {
   state = false; // interpreting
 }
@@ -148,11 +166,13 @@ void _OVER (void) {
   _DUP ();
   T = memory.data [S + 1];
 }
-
+*/
 // #include "rp2040_reflash.inc"
 
-#include "Cortex-Forth.h" // balance of upstream code is here
+// #include "Cortex-Forth.h" // balance of upstream code is here
+// #include "forth_c.h" // camelforth-a  in src
 
+/*
 void interpreter_nomore(void) {
    uint8_t gotkey ;
    _KEY();
@@ -169,6 +189,8 @@ void interpreter_nomore(void) {
     }
     _EMIT();//  _CR(); _OK();
 }
+
+*/
 
 // Mon Feb 22 17:15:42 UTC 2021
 
@@ -197,13 +219,22 @@ void interpreter_nomore(void) {
 
 #define UART_TX_PIN 0
 #define UART_RX_PIN 1
-extern void interpreter(void);
+
+/*  abc  */
+
+// extern void interpreter(void);
 // extern int _pico_LED(void);
 
 // void interpreter(void) { }
 
-extern void _OK(void);
+// extern void _OK(void);
 // extern char print_string[stack_buffer_length];
+
+
+
+// #include "forth_c.h"
+
+extern void interpreter(void); // forth_c.h
 
 int main() {
     sleep_ms(1800);
@@ -220,7 +251,7 @@ int main() {
     // for (int i=3;i>0;i--) _pico_LED();
     // uart_puts(UART_ID, "\r\n\r\n   cortex-forth-rp2040-aU r0.1.0-pre-alpha\r\n\r\n");
     //      0.1.0-pre-alpha  checked carefully - available and appropriate
-    _OK(); // Cortex-Forth.c
+    // _OK(); // Cortex-Forth.c
     uart_puts(UART_ID, "\r\n\r\n   cortex-forth-rp2040-a r0.1.0-pre-alpha\r\n\r\n");
     putchar(' ');
     putchar(' ');
