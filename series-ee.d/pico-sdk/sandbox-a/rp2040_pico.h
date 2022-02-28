@@ -1,5 +1,3 @@
-// rp2040_pico.h
-
 #define stack_buffer_length 64
 
 #if CONF_USBD_HS_SP
