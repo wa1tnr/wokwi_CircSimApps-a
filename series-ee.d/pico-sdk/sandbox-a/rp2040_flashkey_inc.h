@@ -1,7 +1,7 @@
 // Sun Mar  7 16:57:29 UTC 2021
 #include "rp2040_pico.h"
 #include "pico/stdlib.h"
-#define FL_KEY_BASE 0x10040000 // same as example code SDK
+#define FL_KEY_BASE 0x10040000 // same as example code SDK // xcc
 
 // uint32_t getFlKey_counter = 0;
 
