@@ -1,10 +1,6 @@
-// seven captures rp2040_pico_inc.h
-
-// establishes camelforth-a as source of this .. code. 27 Feb 2022
-
 /****h* camelforth-a/src/cf/rp2040_pico/rp2040_pico.inc
  *
- * from:
+ * from:  xcc
  ****h* camelforth/tivaio.c
  *
  * NAME
@@ -49,14 +45,16 @@
  *  or via email to bj@camelforth.com
  */
 
-#include "rp2040_pico.h"
-// #include "rp2040_pico_getkey_usb.inc"
-#include "rp2040_pico_getkey_usb_inc.h"
-// #include "cut.inc"              // string cutter utility, for long USB printf's
-#include "cut_inc.h"              // string cutter utility, for long USB printf's
+// DEFINITELY seems  to be the right place 27 Feb 2022:
 
-// extern unsigned int getKey(void);       // hardware-independent wrapper
-extern uint8_t getKey(void);       // hardware-independent wrapper
+ #include "rp2040_pico.h"
+ #include "rp2040_pico_getkey_usb_inc.h"
+ #include "rp2040_flashkey_inc.h"
+ #include "cut_inc.h"              // string cutter utility, for long USB printf's
+ 
+ extern uint8_t getKey(void);       // hardware-independent wrapper
+ extern uint8_t getFlKey(void);     // get 'keystroke' from QSPI flashROM RP2040
+
 // extern int _pico_LED();
 
 /*
