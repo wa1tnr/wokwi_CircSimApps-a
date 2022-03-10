@@ -1,6 +1,7 @@
-// Thu 10 Mar 13:17:43 UTC 2022 def ONLINE edit
+// Thu 10 Mar 14:16:46 UTC 2022 efg ONLINE edit
+// bit of a mess now. ;)
 
-#define ID_IN_SERIAL_MON(x) Serial.println("yj724b-bb")
+#define ID_IN_SERIAL_MON(x) Serial.println("yj724b-cc")
 
 // 13:17z - factored 'every_n_ms()'
 
@@ -28,29 +29,67 @@ void cls(void) {
     FastLED.show();
 }
 
+unsigned long counter = 0;
 // second factored function to do something every n milliseconds
 void every_n_ms(void) {
+    // unsigned long counter = 0;
     EVERY_N_MILLISECONDS( 100) { // from the FastLED library
+    counter++;
+    Serial.write(' ');
+    Serial.print(counter);
+    Serial.write(' ');
+
+// void bump_leds(void) {
         for( int i=NUM_LEDS-1; i>0; i--) {
             leds[i] = leds[i-1];
         }
-        leds[0] = BACKGROUND_COLOR; // background color as default
-        int n = strlen( buffer);
-        if( n > 0) {
-            if( buffer[0] != ' ') {
-#warning NESTED IF LINE 43
-                leds[0] = FOREGROUND_COLOR;
-            }
-        for( int i=0; i<n; i++) {
-            buffer[i] = buffer[i+1];
+// }
+
+        leds[0] = CRGB::CRGB::Orange; // BACKGROUND_COLOR;
+
+        bool not_trunc = false;
+        bool nospace = false;
+
+        int n = strlen(buffer);
+
+        Serial.print("\nstrlen buffer is: ");
+        Serial.print(n); Serial.write(' ');  Serial.write('Q');
+
+
+        if (n > 0) { not_trunc = true; } // not_truncated
+
+
+        if ( buffer[0] != ' ') { nospace = true; }
+
+
+        if (not_trunc && nospace) {
+
+            Serial.print(" 'not_trunc and nospace' "); }
+
+        if (not_trunc) { Serial.print(" not_trunc "); }
+        if (nospace)   { Serial.print(" nospace "); }
+
+
+        if (not_trunc & nospace) {
+            leds[0] = FOREGROUND_COLOR;
         }
-        } // end of nested IF
+        if (not_trunc & !nospace) {
+            leds[0] = CRGB::Turquoise;
+        }
+            for( int i=0; i<n; i++) {
+                buffer[i] = buffer[i+1];
+                Serial.write('.');
+            }
+       // } // end of formerly-nested IF
+
+  
         FastLED.show(); // make the leds[] data visible
     }
 }
 
 void setup(void) {
     Serial.begin(115200); Serial.write(' ');
+    buffer[0] = '\0';
     ID_IN_SERIAL_MON();
     // Serial.println("yj724b-aa");
 
