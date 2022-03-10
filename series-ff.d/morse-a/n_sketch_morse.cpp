@@ -1,12 +1,12 @@
-// Thu 10 Mar 11:58:18 UTC 2022
+// Thu 10 Mar 11:58:18 UTC 2022 bc
 // ORIG: MorsecodeToLedstrip.ino
 
 // 9 March 2022, Version 1, by Koepel, Public Domain
-
+#include <Arduino.h>
 #include <FastLED.h>
 
 #define LED_PIN  5
-#define NUM_LEDS 240
+#define NUM_LEDS 24
 CRGB leds[NUM_LEDS];
 
 #define BACKGROUND_COLOR CRGB::Blue
