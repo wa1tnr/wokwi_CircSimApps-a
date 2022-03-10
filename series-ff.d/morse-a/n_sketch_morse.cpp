@@ -9,17 +9,16 @@
 
 CRGB leds[NUM_LEDS];
 
-
 const int potPin = A0;
 
 byte buffer[40];
 
 void setup(void) {
   Serial.begin(115200);
-  Serial.print( "The size of the morse code table is: ");
-  Serial.print( sizeof( morseTable));
-  Serial.println( " bytes");
-  Serial.println("Enter the text");
+  // Serial.print( "The size of the morse code table is: ");
+  // Serial.print( sizeof( morseTable));
+  // Serial.println( " bytes");
+  // Serial.println("Enter the text");
 
   FastLED.addLeds<WS2811, LED_PIN, GRB>(leds, NUM_LEDS);
 
