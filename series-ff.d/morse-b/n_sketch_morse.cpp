@@ -1,4 +1,4 @@
-// Thu 10 Mar 15:35:33 UTC 2022 hijk OFFLINE edit
+// Thu 10 Mar 18:38:54 UTC 2022 hijk OFFLINE edit
 // bit of a mess now. ;)
 
 #define ID_IN_SERIAL_MON(x) Serial.println("yj724b-ff")
@@ -19,11 +19,11 @@ CRGB leds[NUM_LEDS];
 
 const int potPin = A0;
 
-byte buffer[40];
+byte buffer[80];
 
 // very first factored function to clear the display:
 void cls(void) {
-    for( int i=0; i<NUM_LEDS; i++) {
+    for( int i=0; i<NUM_LEDS+0; i++) {
         leds[i] = CRGB::AntiqueWhite; // BACKGROUND_COLOR;
     }
     FastLED.show();
@@ -32,8 +32,8 @@ void cls(void) {
 unsigned long counter = 0;
 
 // second factored function to do something every n milliseconds
-void every_n_ms(void) {
-    EVERY_N_MILLISECONDS( 500) { // from the FastLED library
+void every_n_ms(bool calling) {
+    EVERY_N_MILLISECONDS( 200) { // from the FastLED library
         counter++;
         Serial.write(' ');
         Serial.print(counter);
@@ -45,7 +45,7 @@ void every_n_ms(void) {
         }
         // }
 
-        leds[0] = CRGB::CRGB::Orange; // BACKGROUND_COLOR;
+        leds[0] = LEAD_OR_TRAIL; // BACKGROUND_COLOR;
 
         bool not_trunc = false;
         bool nospace = false;
@@ -83,15 +83,23 @@ void setup(void) {
 }
 
 void loop(void) {
-
-    every_n_ms();
+    bool call = false;
+    every_n_ms(call);
 
 if( strlen( buffer) == 0) // ready to accept new data ?
 {
-if( Serial.available() > 0)
+
+int available_chars = Serial.available();
+
+if( available_chars > 0)
 {
+
 byte serialChar = Serial.read();
 serialChar = toupper( serialChar); // no lower case in the morse code
+
+if (available_chars == 1) { call = true; }
+
+if (call) { interchar_sp(); Serial.write('c'); }// KLUDGE/EXP 18:22z
 
 // search for character in the table
 bool marker = false; // a test for '#' marker
