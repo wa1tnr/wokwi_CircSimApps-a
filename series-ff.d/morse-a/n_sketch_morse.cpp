@@ -1,4 +1,5 @@
-// Thu 10 Mar 12:31:09 UTC 2022 bc
+// factored one function 'cls()'
+// Thu 10 Mar 12:52:22 UTC 2022 bcd ONLINE edit
 // n_sketch_morse.cpp    ORIG: MorsecodeToLedstrip.ino
 
 // 9 March 2022, Version 1, by Koepel, Public Domain
@@ -13,21 +14,21 @@ const int potPin = A0;
 
 byte buffer[40];
 
-void setup(void) {
-  Serial.begin(115200);
-  // Serial.print( "The size of the morse code table is: ");
-  // Serial.print( sizeof( morseTable));
-  // Serial.println( " bytes");
-  // Serial.println("Enter the text");
-
-  FastLED.addLeds<WS2811, LED_PIN, GRB>(leds, NUM_LEDS);
-
-  // pre-fill with background.
-  for( int i=0; i<NUM_LEDS; i++)
+// very first factored function to clear the display:
+void cls(void) {
+    for( int i=0; i<NUM_LEDS; i++)
   {
-    leds[i] = BACKGROUND_COLOR;
+    leds[i] = CRGB::AntiqueWhite; // BACKGROUND_COLOR;
   }
   FastLED.show();
+}
+
+void setup(void) {
+  Serial.begin(115200); Serial.write(' ');
+  Serial.println("yj724b-aa");
+  
+  FastLED.addLeds<WS2811, LED_PIN, GRB>(leds, NUM_LEDS);
+  cls(); // new function 12:50z
 }
 
 
