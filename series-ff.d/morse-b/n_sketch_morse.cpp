@@ -1,7 +1,7 @@
-// Thu 10 Mar 20:51:55 UTC 2022 cd klmn ONLINE datestamped edit
+// Thu 10 Mar 20:54:58 UTC 2022 cd lmno OFFLINE datestamped edit
 // bit of a mess now. ;)
 
-#define ID_IN_SERIAL_MON(x) Serial.println("yj724b-hh")
+#define ID_IN_SERIAL_MON(x) Serial.println("yj724b-ii")
 
 // 13:17z - factored 'every_n_ms()'
 
