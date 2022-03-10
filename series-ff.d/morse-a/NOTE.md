@@ -8,5 +8,8 @@
     none.
 
     https://github.com/wa1tnr/wokwi_CircSimApps-a/series-ff.d/morse-a
+    
+  UPSTREAM:
+    https://wokwi.com/projects/325693840020210260
 
 END.
