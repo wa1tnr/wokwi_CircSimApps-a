@@ -30,59 +30,42 @@ void cls(void) {
 }
 
 unsigned long counter = 0;
+
 // second factored function to do something every n milliseconds
 void every_n_ms(void) {
-    // unsigned long counter = 0;
     EVERY_N_MILLISECONDS( 500) { // from the FastLED library
-    counter++;
-    Serial.write(' ');
-    Serial.print(counter);
-    Serial.write(' ');
+        counter++;
+        Serial.write(' ');
+        Serial.print(counter);
+        Serial.write(' ');
 
-// void bump_leds(void) {
+        // void bump_leds(void) {
         for( int i=NUM_LEDS-1; i>0; i--) {
             leds[i] = leds[i-1];
         }
-// }
+        // }
 
         leds[0] = CRGB::CRGB::Orange; // BACKGROUND_COLOR;
 
         bool not_trunc = false;
         bool nospace = false;
-
         int n = strlen(buffer);
 
         Serial.print("\nstrlen buffer is: ");
-        Serial.print(n); Serial.write(' ');  Serial.write('Q');
 
+        Serial.print(n); Serial.write(' '); Serial.write('Q');
 
         if (n > 0) { not_trunc = true; } // not_truncated
-
-
-        if ( buffer[0] != ' ') { nospace = true; }
-
-
-        if (not_trunc && nospace) {
-
-            Serial.print(" 'not_trunc and nospace' "); }
+        if (buffer[0] != ' ') { nospace = true; }
+        if (not_trunc && nospace) { Serial.print(" 'not_trunc and nospace' "); }
 
         if (not_trunc) { Serial.print(" not_trunc "); }
-        if (nospace)   { Serial.print(" nospace "); }
+        if (nospace)   { Serial.print(" nospace ");   }
 
-
-        if (not_trunc & nospace) {
-            leds[0] = FOREGROUND_COLOR;
-        }
-        if (not_trunc & !nospace) {
-            leds[0] = CRGB::Turquoise;
-        }
-            for( int i=0; i<n; i++) {
-                buffer[i] = buffer[i+1];
-                Serial.write('.');
-            }
-       // } // end of formerly-nested IF
-
-  
+        if (not_trunc & nospace) { leds[0] = FOREGROUND_COLOR; }
+        if (not_trunc & !nospace) { leds[0] = CRGB::Turquoise; }
+        x
+        for( int i=0; i<n; i++) { buffer[i] = buffer[i+1]; Serial.write('.'); }
         FastLED.show(); // make the leds[] data visible
     }
 }
@@ -95,10 +78,8 @@ void setup(void) {
     Serial.begin(115200); Serial.write(' ');
     buffer[0] = '\0';
     ID_IN_SERIAL_MON();
-    // Serial.println("yj724b-aa");
-
     FastLED.addLeds<WS2811, LED_PIN, GRB>(leds, NUM_LEDS);
-    cls(); // new function 12:50z
+    cls();
 }
 
 void loop(void) {
