@@ -1,6 +1,9 @@
+// began to factor 'every_n_ms()'
+
 // factored one function 'cls()'
-// previous commit ran fine. ;)
-// Thu 10 Mar 12:56:53 UTC 2022 bcd ONLINE edit
+
+// Thu 10 Mar 13:05:05 UTC 2022 cde OFFLINE edit
+
 // n_sketch_morse.cpp ORIG: MorsecodeToLedstrip.ino
 
 // 9 March 2022, Version 1, by Koepel, Public Domain
@@ -32,7 +35,14 @@ void setup(void) {
 }
 
 
+void every_n_ms(void) {
+    // function
+}
+
 void loop(void) {
+
+    every_n_ms();
+// #if 0
     EVERY_N_MILLISECONDS( 100) { // from the FastLED library
         for( int i=NUM_LEDS-1; i>0; i--) {
             leds[i] = leds[i-1];
@@ -40,7 +50,8 @@ void loop(void) {
         leds[0] = BACKGROUND_COLOR; // background color as default
         int n = strlen( buffer);
         if( n > 0) {
-            if( buffer[0] != ' ') { #warning NESTED IF LINE 43
+            if( buffer[0] != ' ') {
+#warning NESTED IF LINE 43
                 leds[0] = FOREGROUND_COLOR;
             }
         for( int i=0; i<n; i++) {
@@ -49,6 +60,7 @@ void loop(void) {
         } // end of nested IF
         FastLED.show(); // make the leds[] data visible
     } // end of every n millisec - good candidate for factoring
+// #endif // #if 0 every n millis
 
 if( strlen( buffer) == 0) // ready to accept new data ?
 {
