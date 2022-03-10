@@ -26,23 +26,13 @@ void cls(void) {
     FastLED.show();
 }
 
-void setup(void) {
-    Serial.begin(115200); Serial.write(' ');
-    Serial.println("yj724b-aa");
-
-    FastLED.addLeds<WS2811, LED_PIN, GRB>(leds, NUM_LEDS);
-    cls(); // new function 12:50z
-}
 
 
 void every_n_ms(void) {
+
+
     // function
-}
 
-void loop(void) {
-
-    every_n_ms();
-// #if 0
     EVERY_N_MILLISECONDS( 100) { // from the FastLED library
         for( int i=NUM_LEDS-1; i>0; i--) {
             leds[i] = leds[i-1];
@@ -60,6 +50,27 @@ void loop(void) {
         } // end of nested IF
         FastLED.show(); // make the leds[] data visible
     } // end of every n millisec - good candidate for factoring
+
+}
+
+
+
+void setup(void) {
+    Serial.begin(115200); Serial.write(' ');
+    Serial.println("yj724b-aa");
+
+    FastLED.addLeds<WS2811, LED_PIN, GRB>(leds, NUM_LEDS);
+    cls(); // new function 12:50z
+}
+
+
+
+void loop(void) {
+
+    every_n_ms();
+// #if 0
+
+
 // #endif // #if 0 every n millis
 
 if( strlen( buffer) == 0) // ready to accept new data ?
