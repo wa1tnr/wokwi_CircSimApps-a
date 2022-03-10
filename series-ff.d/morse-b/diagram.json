@@ -2,25 +2,19 @@
   "version": 1,
   "author": "Koepel and wa1tnr mods",
   "editor": "wokwi",
-  "stamped": "Thu 10 Mar 17:49:57 UTC 2022 def",
+  "stamped": "Thu 10 Mar 18:11:26 UTC 2022 efg",
 
   "parts": [
-    { "type": "wokwi-arduino-mega", "id": "mega",
-    "top": 60, "left": 2768, "attrs": {} },
-    {
-      "type": "wokwi-neopixel-canvas",
-      "id": "strip1",
-      "top": -20,
-      "left": 2280,
-      "attrs": { "rows": "1", "cols": "60" }
-    },
-    { "type": "wokwi-potentiometer", "id": "pot1", "top": 170, "left": 3221.64, "attrs": {} }
+    { "type": "wokwi-arduino-mega",    "id": "mega",   "top":  60, "left": 2770, "attrs": {                           } },
+    { "type": "wokwi-neopixel-canvas", "id": "strip1", "top": -20, "left": 2280, "attrs": { "rows": "1", "cols": "60" } },
+    { "type": "wokwi-neopixel-canvas", "id": "strip1", "top": -20, "left": 2280, "rotate": 180, "attrs": { "rows": "1", "cols": "60" } },
+    { "type": "wokwi-potentiometer",   "id": "pot1",   "top": 170, "left": 3220, "attrs": {                           } }
   ],
   "connections": [
-    [ "mega:A0", "pot1:SIG", "Purple", [ "v20", "h282", "v20" ] ],
+    [ "mega:A0",    "pot1:SIG", "Purple", [ "v20", "h282", "v20" ] ],
     [ "mega:GND.3", "pot1:GND", "black", [ "v28", "h300", "v0" ] ],
     [ "strip1:VSS", "mega:GND.3", "black", [ "v30", "h-250", "v240", "h0" ] ],
-    [ "mega:5V", "pot1:VCC", "red", [ "v38", "h334", "v0" ] ],
+    [ "mega:5V",    "pot1:VCC", "red", [ "v38", "h334", "v0" ] ],
     [ "strip1:VDD", "mega:5V", "red", [ "v20", "h-260", "v260", "h225", "v0" ] ],
     [ "strip1:DIN", "mega:5", "LimeGreen", [ "v0" ] ]
   ]
