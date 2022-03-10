@@ -1,7 +1,7 @@
-// Thu 10 Mar 14:29:27 UTC 2022 ghi ONLINE edit
+// Thu 10 Mar 15:18:21 UTC 2022 ghij ONLINE edit
 // bit of a mess now. ;)
 
-#define ID_IN_SERIAL_MON(x) Serial.println("yj724b-dd")
+#define ID_IN_SERIAL_MON(x) Serial.println("yj724b-ee")
 
 // 13:17z - factored 'every_n_ms()'
 
@@ -64,7 +64,7 @@ void every_n_ms(void) {
 
         if (not_trunc & nospace) { leds[0] = FOREGROUND_COLOR; }
         if (not_trunc & !nospace) { leds[0] = CRGB::Turquoise; }
-        x
+
         for( int i=0; i<n; i++) { buffer[i] = buffer[i+1]; Serial.write('.'); }
         FastLED.show(); // make the leds[] data visible
     }
