@@ -2,11 +2,12 @@
 
 
   NEW:
-    https://wokwi.com/projects/325745150143758930
+    https://wokwi.com/projects/325757740679955026
 
   OLDER:
-    none.
+    https://wokwi.com/projects/325745150143758930
 
+  SRC:
     https://github.com/wa1tnr/wokwi_CircSimApps-a/series-ff.d/morse-a
     
   UPSTREAM:
