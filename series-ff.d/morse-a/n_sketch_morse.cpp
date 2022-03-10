@@ -1,5 +1,6 @@
 // factored one function 'cls()'
-// Thu 10 Mar 12:52:22 UTC 2022 bcd ONLINE edit
+// previous commit ran fine. ;)
+// Thu 10 Mar 12:56:53 UTC 2022 bcd ONLINE edit
 // n_sketch_morse.cpp ORIG: MorsecodeToLedstrip.ino
 
 // 9 March 2022, Version 1, by Koepel, Public Domain
@@ -16,53 +17,38 @@ byte buffer[40];
 
 // very first factored function to clear the display:
 void cls(void) {
-for( int i=0; i<NUM_LEDS; i++) {
-leds[i] = CRGB::AntiqueWhite; // BACKGROUND_COLOR;
-}
-FastLED.show();
+    for( int i=0; i<NUM_LEDS; i++) {
+        leds[i] = CRGB::AntiqueWhite; // BACKGROUND_COLOR;
+    }
+    FastLED.show();
 }
 
 void setup(void) {
-Serial.begin(115200); Serial.write(' ');
-Serial.println("yj724b-aa");
+    Serial.begin(115200); Serial.write(' ');
+    Serial.println("yj724b-aa");
 
-FastLED.addLeds<WS2811, LED_PIN, GRB>(leds, NUM_LEDS);
-cls(); // new function 12:50z
+    FastLED.addLeds<WS2811, LED_PIN, GRB>(leds, NUM_LEDS);
+    cls(); // new function 12:50z
 }
 
 
-void loop() 
-{
-EVERY_N_MILLISECONDS( 100) // from the FastLED library
-{
-// Move the pixels one pixel to the right.
-// If there is no morse data, then there is nothing to shift,
-// but it is shifted anyway.
-for( int i=NUM_LEDS-1; i>0; i--)
-{
-leds[i] = leds[i-1];
-}
-
-leds[0] = BACKGROUND_COLOR; // background color as default
-
-// The buffer contains the new data to be entered into the ledstrip.
-int n = strlen( buffer);
-if( n > 0)
-{
-if( buffer[0] != ' ')
-{
-leds[0] = FOREGROUND_COLOR;
-}
-
-// Move buffer to the left.
-// The zero-terminator is also copied
-for( int i=0; i<n; i++)
-{
-buffer[i] = buffer[i+1];
-}
-}
-FastLED.show(); // make the leds[] data visible
-}
+void loop(void) {
+    EVERY_N_MILLISECONDS( 100) { // from the FastLED library
+        for( int i=NUM_LEDS-1; i>0; i--) {
+            leds[i] = leds[i-1];
+        }
+        leds[0] = BACKGROUND_COLOR; // background color as default
+        int n = strlen( buffer);
+        if( n > 0) {
+            if( buffer[0] != ' ') { #warning NESTED IF LINE 43
+                leds[0] = FOREGROUND_COLOR;
+            }
+        for( int i=0; i<n; i++) {
+            buffer[i] = buffer[i+1];
+        }
+        } // end of nested IF
+        FastLED.show(); // make the leds[] data visible
+    } // end of every n millisec - good candidate for factoring
 
 if( strlen( buffer) == 0) // ready to accept new data ?
 {
