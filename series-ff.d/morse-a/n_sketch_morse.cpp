@@ -1,8 +1,8 @@
+// Thu 10 Mar 13:11:55 UTC 2022 cde OFFLINE edit
+
 // began to factor 'every_n_ms()'
 
 // factored one function 'cls()'
-
-// Thu 10 Mar 13:05:05 UTC 2022 cde OFFLINE edit
 
 // n_sketch_morse.cpp ORIG: MorsecodeToLedstrip.ino
 
