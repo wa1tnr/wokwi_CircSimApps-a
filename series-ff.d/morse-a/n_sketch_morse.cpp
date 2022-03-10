@@ -1,31 +1,34 @@
-// Thu 10 Mar 11:58:18 UTC 2022 bc
-// ORIG: MorsecodeToLedstrip.ino
+// Thu 10 Mar 12:31:09 UTC 2022 bc
+// n_sketch_morse.cpp    ORIG: MorsecodeToLedstrip.ino
 
 // 9 March 2022, Version 1, by Koepel, Public Domain
+
 #include <Arduino.h>
 #include <FastLED.h>
+#include "sketch_morse.h"
 
-#define LED_PIN  5
-#define NUM_LEDS 24
+// #define LED_PIN  5
+// #define NUM_LEDS 24 // 240
 CRGB leds[NUM_LEDS];
 
-#define BACKGROUND_COLOR CRGB::Blue
-#define FOREGROUND_COLOR CRGB::Red
+// #define BACKGROUND_COLOR CRGB::Blue
+// #define FOREGROUND_COLOR CRGB::Red
 
 const int potPin = A0;
 
 byte buffer[40];
 
-#define MORSE_DOT '.'
-#define MORSE_DASH '-'
-#define MORSE_INTERCODE ' '
-#define MORSE_INTERCHAR '#'
+// #define MORSE_DOT '.'
+// #define MORSE_DASH '-'
+// #define MORSE_INTERCODE ' '
+// #define MORSE_INTERCHAR '#'
 
-#define MORSE_DOT_LENGTH 1
-#define MORSE_DASH_LENGTH 3
-#define MORSE_INTERCODE_LENGTH 3
-#define MORSE_INTERCHAR_LENGTH 8
+// #define MORSE_DOT_LENGTH 1
+// #define MORSE_DASH_LENGTH 3
+// #define MORSE_INTERCODE_LENGTH 3
+// #define MORSE_INTERCHAR_LENGTH 8
 
+#if 0
 const byte morseTable[] PROGMEM =
   "#  " // a space; a gap between words
   "#A.-" "#B-..." "#C-.-." "#D-.." "#E." "#F..-."
@@ -38,6 +41,7 @@ const byte morseTable[] PROGMEM =
   "#\--..--" "#?..--.." "#/-..-."
   "#\r  " "#\n  "
   "#";
+#endif
 
 void setup(void) {
   Serial.begin(115200);
