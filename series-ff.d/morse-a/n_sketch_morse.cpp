@@ -1,29 +1,20 @@
 // Thu 10 Mar 11:58:18 UTC 2022
 // ORIG: MorsecodeToLedstrip.ino
 
-// For: https://forum.arduino.cc/t/making-a-long-memory-led-chase-sequence/967584/
-
 // 9 March 2022, Version 1, by Koepel, Public Domain
-//   Working a little, not checked, not a good sketch, it is bad in some parts.
-
-//   By using a buffer between the conversion table and the ledstrip,
-//   it is easier to translate the (compact) conversion table and shift
-//   the pattern to the ledstrip.
-//   That buffer also makes it easy to add color information.
 
 #include <FastLED.h>
 
 #define LED_PIN  5
-#define NUM_LEDS 240     // 240 leds could be possible with an Arduino Uno
+#define NUM_LEDS 240
+CRGB leds[NUM_LEDS];
 
-CRGB leds[NUM_LEDS];     // leds[0] is the first led on the left
-
-#define BACKGROUND_COLOR CRGB::Blue       // the background color for the ledstrip
-#define FOREGROUND_COLOR CRGB::Red        // the morse code foreground color
+#define BACKGROUND_COLOR CRGB::Blue
+#define FOREGROUND_COLOR CRGB::Red
 
 const int potPin = A0;
 
-byte buffer[40];  // a buffer that holds the morse code to be shifted into the ledstrip
+byte buffer[40];
 
 #define MORSE_DOT '.'
 #define MORSE_DASH '-'
@@ -35,61 +26,20 @@ byte buffer[40];  // a buffer that holds the morse code to be shifted into the l
 #define MORSE_INTERCODE_LENGTH 3
 #define MORSE_INTERCHAR_LENGTH 8
 
-// The conversion text for the morse code is made for:
-//   - showing the morse code in readable format.
-//   - compact
-//   - code that needs time to search is okay
 const byte morseTable[] PROGMEM =
-  "#  "            // something special, a space, that is a gap between words
-  "#A.-"           // ASCII character is 'A' code is ".-" no spaces in code
-  "#B-..."
-  "#C-.-."
-  "#D-.."
-  "#E."
-  "#F..-."
-  "#G--."
-  "#H...."
-  "#I.."
-  "#J.---"
-  "#K-.-"
-  "#L.-.."
-  "#M--"
-  "#N-."
-  "#O---"
-  "#P.--."
-  "#Q--.-"
-  "#R.-."
-  "#S..."
-  "#T-"
-  "#U..-"
-  "#V...-"
-  "#W.--"
-  "#X-..-"
-  "#Y-.--"
-  "#Z--.."
-  "#1.----"
-  "#2..---"
-  "#3...--"
-  "#4....-"
-  "#5....."
-  "#6-...."
-  "#7--..."
-  "#8---.."
-  "#9----."
-  "#0-----"
-  "#..-.-.-"
-  "#;-.-.-."
-  "#\--..--"
-  "#?..--.."
-  "#/-..-."
-  "#\r  "                 // end of line, should be a larger gap
-  "#\n  "                 // end of line, should be a larger gap
-  "#";                    // end of list
+  "#  " // a space; a gap between words
+  "#A.-" "#B-..." "#C-.-." "#D-.." "#E." "#F..-."
+  "#G--." "#H...." "#I.." "#J.---" "#K-.-" "#L.-.."
+  "#M--" "#N-." "#O---" "#P.--." "#Q--.-" "#R.-."
+  "#S..." "#T-" "#U..-" "#V...-" "#W.--" "#X-..-"
+  "#Y-.--" "#Z--.." "#1.----" "#2..---" "#3...--"
+  "#4....-" "#5....." "#6-...." "#7--..." "#8---.."
+  "#9----." "#0-----" "#..-.-.-" "#;-.-.-."
+  "#\--..--" "#?..--.." "#/-..-."
+  "#\r  " "#\n  "
+  "#";
 
-
-
-void setup() 
-{
+void setup(void) {
   Serial.begin(115200);
   Serial.print( "The size of the morse code table is: ");
   Serial.print( sizeof( morseTable));
