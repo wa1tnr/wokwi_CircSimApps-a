@@ -1,6 +1,8 @@
-// Thu 10 Mar 13:11:55 UTC 2022 cde OFFLINE edit
+// Thu 10 Mar 13:17:43 UTC 2022 def ONLINE edit
 
-// began to factor 'every_n_ms()'
+#define ID_IN_SERIAL_MON(x) Serial.println("yj724b-bb")
+
+// 13:17z - factored 'every_n_ms()'
 
 // factored one function 'cls()'
 
@@ -26,13 +28,8 @@ void cls(void) {
     FastLED.show();
 }
 
-
-
+// second factored function to do something every n milliseconds
 void every_n_ms(void) {
-
-
-    // function
-
     EVERY_N_MILLISECONDS( 100) { // from the FastLED library
         for( int i=NUM_LEDS-1; i>0; i--) {
             leds[i] = leds[i-1];
@@ -49,29 +46,21 @@ void every_n_ms(void) {
         }
         } // end of nested IF
         FastLED.show(); // make the leds[] data visible
-    } // end of every n millisec - good candidate for factoring
-
+    }
 }
-
-
 
 void setup(void) {
     Serial.begin(115200); Serial.write(' ');
-    Serial.println("yj724b-aa");
+    ID_IN_SERIAL_MON();
+    // Serial.println("yj724b-aa");
 
     FastLED.addLeds<WS2811, LED_PIN, GRB>(leds, NUM_LEDS);
     cls(); // new function 12:50z
 }
 
-
-
 void loop(void) {
 
     every_n_ms();
-// #if 0
-
-
-// #endif // #if 0 every n millis
 
 if( strlen( buffer) == 0) // ready to accept new data ?
 {
