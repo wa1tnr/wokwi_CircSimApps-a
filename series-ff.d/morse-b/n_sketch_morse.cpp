@@ -1,4 +1,4 @@
-// Thu 10 Mar 18:47:20 UTC 2022 cd jklm OFFLINE datestamped edit
+// Thu 10 Mar 20:09:16 UTC 2022 cd jklm OFFLINE datestamped edit
 // bit of a mess now. ;)
 
 #define ID_IN_SERIAL_MON(x) Serial.println("yj724b-gg")
@@ -35,9 +35,13 @@ unsigned long counter = 0;
 void every_n_ms(bool calling) {
     EVERY_N_MILLISECONDS( 200) { // from the FastLED library
         counter++;
+        // TRAP:
+        if (counter > 999999) { while(-1); }
+#if 0
         Serial.write(' ');
         Serial.print(counter);
         Serial.write(' ');
+#endif
 
         // void bump_leds(void) {
         for( int i=NUM_LEDS-1; i>0; i--) {
@@ -51,21 +55,30 @@ void every_n_ms(bool calling) {
         bool nospace = false;
         int n = strlen(buffer);
 
+
+        if (n > 0) { not_trunc = true; } // not_truncated
+        if (buffer[0] != ' ') { nospace = true; }
+
+#if 0
         Serial.print("\nstrlen buffer is: ");
 
         Serial.print(n); Serial.write(' '); Serial.write('Q');
 
-        if (n > 0) { not_trunc = true; } // not_truncated
-        if (buffer[0] != ' ') { nospace = true; }
         if (not_trunc && nospace) { Serial.print(" 'not_trunc and nospace' "); }
+
 
         if (not_trunc) { Serial.print(" not_trunc "); }
         if (nospace)   { Serial.print(" nospace ");   }
+#endif
 
         if (not_trunc & nospace) { leds[0] = FOREGROUND_COLOR; }
         if (not_trunc & !nospace) { leds[0] = CRGB::Turquoise; }
 
-        for( int i=0; i<n; i++) { buffer[i] = buffer[i+1]; Serial.write('.'); }
+        for( int i=0; i<n; i++) {
+            buffer[i] = buffer[i+1];
+#if 0
+            Serial.write('.'); }
+#endif
         FastLED.show(); // make the leds[] data visible
     }
 }
@@ -99,7 +112,12 @@ serialChar = toupper( serialChar); // no lower case in the morse code
 
 if (available_chars == 1) { call = true; }
 
-if (call) { interchar_sp(); Serial.write('c'); }// KLUDGE/EXP 18:22z
+if (call) {
+    interchar_sp();
+#if 0
+    Serial.write('c');
+#endif
+}// KLUDGE/EXP 18:22z
 
 // search for character in the table
 bool marker = false; // a test for '#' marker
