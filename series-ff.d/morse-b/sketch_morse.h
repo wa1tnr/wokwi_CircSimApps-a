@@ -1,16 +1,14 @@
-// Thu 10 Mar 15:35:33 UTC 2022 cd
+// Thu 10 Mar 18:38:54 UTC 2022 cd
 // sketch_morse.h
 
 // 9 March 2022, Version 1, by Koepel, Public Domain
 
-// #include <Arduino.h>
-// #include <FastLED.h>
-
 #define LED_PIN  5
-#define NUM_LEDS 24 // 240
+#define NUM_LEDS 60
 
 #define BACKGROUND_COLOR CRGB::Blue
 #define FOREGROUND_COLOR CRGB::Red
+#define LEAD_OR_TRAIL    CRGB::Brown
 
 #define MORSE_DOT '.'
 #define MORSE_DASH '-'
