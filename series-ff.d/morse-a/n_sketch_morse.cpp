@@ -1,6 +1,6 @@
 // factored one function 'cls()'
 // Thu 10 Mar 12:52:22 UTC 2022 bcd ONLINE edit
-// n_sketch_morse.cpp    ORIG: MorsecodeToLedstrip.ino
+// n_sketch_morse.cpp ORIG: MorsecodeToLedstrip.ino
 
 // 9 March 2022, Version 1, by Koepel, Public Domain
 
@@ -16,135 +16,134 @@ byte buffer[40];
 
 // very first factored function to clear the display:
 void cls(void) {
-    for( int i=0; i<NUM_LEDS; i++)
-  {
-    leds[i] = CRGB::AntiqueWhite; // BACKGROUND_COLOR;
-  }
-  FastLED.show();
+for( int i=0; i<NUM_LEDS; i++) {
+leds[i] = CRGB::AntiqueWhite; // BACKGROUND_COLOR;
+}
+FastLED.show();
 }
 
 void setup(void) {
-  Serial.begin(115200); Serial.write(' ');
-  Serial.println("yj724b-aa");
-  
-  FastLED.addLeds<WS2811, LED_PIN, GRB>(leds, NUM_LEDS);
-  cls(); // new function 12:50z
+Serial.begin(115200); Serial.write(' ');
+Serial.println("yj724b-aa");
+
+FastLED.addLeds<WS2811, LED_PIN, GRB>(leds, NUM_LEDS);
+cls(); // new function 12:50z
 }
 
 
 void loop() 
 {
-  EVERY_N_MILLISECONDS( 100)           // from the FastLED library
-  {
-    // Move the pixels one pixel to the right.
-    // If there is no morse data, then there is nothing to shift,
-    // but it is shifted anyway.
-    for( int i=NUM_LEDS-1; i>0; i--)
-    {
-      leds[i] = leds[i-1];
-    }
+EVERY_N_MILLISECONDS( 100) // from the FastLED library
+{
+// Move the pixels one pixel to the right.
+// If there is no morse data, then there is nothing to shift,
+// but it is shifted anyway.
+for( int i=NUM_LEDS-1; i>0; i--)
+{
+leds[i] = leds[i-1];
+}
 
-    leds[0] = BACKGROUND_COLOR;            // background color as default
+leds[0] = BACKGROUND_COLOR; // background color as default
 
-    // The buffer contains the new data to be entered into the ledstrip.
-    int n = strlen( buffer);
-    if( n > 0)
-    {
-      if( buffer[0] != ' ')
-      {
-        leds[0] = FOREGROUND_COLOR;
-      }
+// The buffer contains the new data to be entered into the ledstrip.
+int n = strlen( buffer);
+if( n > 0)
+{
+if( buffer[0] != ' ')
+{
+leds[0] = FOREGROUND_COLOR;
+}
 
-      // Move buffer to the left.
-      // The zero-terminator is also copied
-      for( int i=0; i<n; i++)
-      {
-        buffer[i] = buffer[i+1];
-      }
-    }
-    FastLED.show();                // make the leds[] data visible
-  }
+// Move buffer to the left.
+// The zero-terminator is also copied
+for( int i=0; i<n; i++)
+{
+buffer[i] = buffer[i+1];
+}
+}
+FastLED.show(); // make the leds[] data visible
+}
 
-  if( strlen( buffer) == 0)        // ready to accept new data ?
-  {
-    if( Serial.available() > 0)
-    {
-      byte serialChar = Serial.read();
-      serialChar = toupper( serialChar);          // no lower case in the morse code
+if( strlen( buffer) == 0) // ready to accept new data ?
+{
+if( Serial.available() > 0)
+{
+byte serialChar = Serial.read();
+serialChar = toupper( serialChar); // no lower case in the morse code
 
-      // search for character in the table
-      bool marker = false;         // a test for '#' marker
-      bool found = false;
-      int index;
-      byte morseChar;
+// search for character in the table
+bool marker = false; // a test for '#' marker
+bool found = false;
+int index;
+byte morseChar;
 
-      for( index=0; index<strlen_P(morseTable); index++)
-      {       
-        byte morseChar = pgm_read_byte_near( morseTable + index);
-   
-        if( marker)                  // was previous character the marker ?
-        {
-          if( serialChar == morseChar)   // found the ASCII character ?
-          {
-            found = true;
-            break;
-          }
-        }
+for( index=0; index<strlen_P(morseTable); index++)
+{ 
+byte morseChar = pgm_read_byte_near( morseTable + index);
 
-        if( morseChar = '#')         // found marker ?
-          marker = true;
-        else
-          marker = false;
-      }
+if( marker) // was previous character the marker ?
+{
+if( serialChar == morseChar) // found the ASCII character ?
+{
+found = true;
+break;
+}
+}
 
-      if( found)
-      {
-        // Convert the character into morse code and put it in the buffer
-        // This is the hard part
-        // For now, just use a fixed pattern
-        index++;           // point to data after the ASCII character
-        do
-        {
-          morseChar = pgm_read_byte_near( morseTable + index);
+if( morseChar = '#') // found marker ?
+marker = true;
+else
+marker = false;
+}
 
-          if( morseChar == '#')   // marker for new character ?
-          {
-            break;
-          }
-          else
-          {
-            if( morseChar == '.')
-              strcat( buffer, "X ");
-            else if( morseChar == '-')
-              strcat( buffer, "XXX ");
-            else if( morseChar == ' ')
-              strcat( buffer, " ");
-          }
-          
-          index++;
+if( found)
+{
+// Convert the character into morse code and put it in the buffer
+// This is the hard part
+// For now, just use a fixed pattern
+index++; // point to data after the ASCII character
+do
+{
+morseChar = pgm_read_byte_near( morseTable + index);
 
-        } while( morseChar != '\0');
-        strcat( buffer, "   ");         // spacing between characters
-      }
-      else
-      {
-        Serial.print("Character not found in morse table: ");
-        // The isPrintable() is a Arduino function
-        // The isprint() is a 'C' function
-        if( isprint( serialChar))        
-        {
-          Serial.print( (char) serialChar);
-        }
-        else
-        {
-          Serial.print( "0x");
-          if( serialChar < 0x10)
-            Serial.print( "0");
-          Serial.print( serialChar, HEX);
-        }
-        Serial.println();
-      }
-    } 
-  }
+if( morseChar == '#') // marker for new character ?
+{
+break;
+}
+else
+{
+if( morseChar == '.')
+strcat( buffer, "X ");
+else if( morseChar == '-')
+strcat( buffer, "XXX ");
+else if( morseChar == ' ')
+strcat( buffer, " ");
+}
+
+index++;
+
+} while( morseChar != '\0');
+strcat( buffer, " "); // spacing between characters
+}
+else
+{
+Serial.print("Character not found in morse table: ");
+// The isPrintable() is a Arduino function
+// The isprint() is a 'C' function
+if( isprint( serialChar)) 
+{
+Serial.print( (char) serialChar);
+}
+else
+{
+Serial.print( "0x");
+if( serialChar < 0x10)
+Serial.print( "0");
+Serial.print( serialChar, HEX);
+}
+Serial.println();
+}
+} 
+}
 }
 // END.
