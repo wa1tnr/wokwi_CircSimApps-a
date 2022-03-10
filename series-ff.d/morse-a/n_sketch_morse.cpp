@@ -1,7 +1,7 @@
-// Thu 10 Mar 14:18:34 UTC 2022 fgh OFFLINE edit
+// Thu 10 Mar 14:29:27 UTC 2022 ghi ONLINE edit
 // bit of a mess now. ;)
-// bounce-back edit
-#define ID_IN_SERIAL_MON(x) Serial.println("yj724b-cc")
+
+#define ID_IN_SERIAL_MON(x) Serial.println("yj724b-dd")
 
 // 13:17z - factored 'every_n_ms()'
 
@@ -33,7 +33,7 @@ unsigned long counter = 0;
 // second factored function to do something every n milliseconds
 void every_n_ms(void) {
     // unsigned long counter = 0;
-    EVERY_N_MILLISECONDS( 100) { // from the FastLED library
+    EVERY_N_MILLISECONDS( 500) { // from the FastLED library
     counter++;
     Serial.write(' ');
     Serial.print(counter);
@@ -85,6 +85,10 @@ void every_n_ms(void) {
   
         FastLED.show(); // make the leds[] data visible
     }
+}
+
+void interchar_sp(void) {
+    strcat( buffer, "     "); // spacing between characters
 }
 
 void setup(void) {
@@ -160,7 +164,8 @@ strcat( buffer, " ");
 index++;
 
 } while( morseChar != '\0');
-strcat( buffer, " "); // spacing between characters
+interchar_sp();
+// strcat( buffer, "     "); // spacing between characters
 }
 else
 {
