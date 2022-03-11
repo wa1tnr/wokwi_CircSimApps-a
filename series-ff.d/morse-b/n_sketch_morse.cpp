@@ -1,11 +1,7 @@
-// Thu 10 Mar 20:54:58 UTC 2022 cd lmno OFFLINE datestamped edit
+// Fri 11 Mar 11:34:19 UTC 2022  mnop  ONLINE edit
 // bit of a mess now. ;)
 
-#define ID_IN_SERIAL_MON(x) Serial.println("yj724b-ii")
-
-// 13:17z - factored 'every_n_ms()'
-
-// factored one function 'cls()'
+#define ID_IN_SERIAL_MON(x) Serial.println("yj724b-jj-ee")
 
 // n_sketch_morse.cpp ORIG: MorsecodeToLedstrip.ino
 
@@ -21,7 +17,6 @@ const int potPin = A0;
 
 byte buffer[80];
 
-// very first factored function to clear the display:
 void cls(void) {
   for ( int i = 0; i < NUM_LEDS + 0; i++) {
     leds[i] = CRGB::AntiqueWhite; // BACKGROUND_COLOR;
@@ -31,7 +26,19 @@ void cls(void) {
 
 unsigned long counter = 0;
 
-// second factored function to do something every n milliseconds
+void step_leds(void) {
+    // operates on led[] and NUM_LEDS
+    for ( int i = NUM_LEDS - 1; i > 0; i--) {
+      leds[i] = leds[i - 1];
+    }
+}
+
+void step_buffer(int buf_len) {
+    for (int i = 0; i < buf_len; i++) {
+      buffer[i] = buffer[i + 1];
+    }
+}
+
 void every_n_ms(bool calling) {
   EVERY_N_MILLISECONDS( 200) { // from the FastLED library
     counter++;
@@ -39,34 +46,29 @@ void every_n_ms(bool calling) {
     if (counter > 999999) {
       while (-1);
     }
-    // void bump_leds(void) {
-    for ( int i = NUM_LEDS - 1; i > 0; i--) {
-      leds[i] = leds[i - 1];
-    }
-    // }
+    step_leds();
 
     leds[0] = LEAD_OR_TRAIL; // BACKGROUND_COLOR;
 
-    bool not_trunc = false;
+    bool not_trunc = false; // not truncated
     bool nospace = false;
     int n = strlen(buffer);
 
     if (n > 0) {
-      not_trunc = true;  // not_truncated
+      not_trunc = true;
     }
     if (buffer[0] != ' ') {
       nospace = true;
     }
-    if (not_trunc & nospace) {
+    if ( not_trunc & nospace) {
       leds[0] = FOREGROUND_COLOR;
+      // Serial.print(" dit-or-dah  ");
     }
-    if (not_trunc & !nospace) {
+    if ( // not_trunc & factored out!
+        !nospace) {
       leds[0] = CRGB::Turquoise;
     }
-
-    for ( int i = 0; i < n; i++) {
-      buffer[i] = buffer[i + 1];
-    }
+    step_buffer(n);
     FastLED.show(); // make the leds[] data visible
   }
 }
