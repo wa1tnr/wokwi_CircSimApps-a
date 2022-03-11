@@ -1,8 +1,26 @@
-// Fri 11 Mar 11:46:15 UTC 2022
+##Morse code visual annunciator
+
+// Fri 11 Mar 12:13:16 UTC 2022
 
   NEW:
 
   https://wokwi.com/projects/325829049702154836
+
+upstream: 9 March 2022, Version 1, by Koepel, Public Domain
+
+Uses addressible RGB variant in wokwi
+(no singleton dot-shaped LED's - more of a canvas)
+
+Just type stuff in.
+
+Valid input are simple Morse Code characters,
+represented by what you type.
+
+Add spaces for delays in parts of the message
+to be 'sent' to the RGB array.
+
+ * Potentiometer inop
+ * No buzzer or other sounds
 
   RECENT:
 
