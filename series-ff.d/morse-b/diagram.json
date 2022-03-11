@@ -2,8 +2,7 @@
   "version": 1,
   "author": "Koepel and wa1tnr mods",
   "editor": "wokwi",
-  "stamped": "Thu 10 Mar 18:47:20 UTC 2022 fgh",
-
+  "stamped": "Fri 11 Mar 10:15:42 UTC 2022 ghi",
   "parts": [
     { "type": "wokwi-arduino-mega",    "id": "mega",   "top":  60, "left": 2770, "attrs": {                           } },
     { "type": "wokwi-neopixel-canvas", "id": "strip1", "top": -20, "left": 2280, "attrs": { "rows": "1", "cols": "60" } },
