@@ -3,6 +3,10 @@
 
 // https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/series-gg.d/timer-counter-a
 
+// NEW:
+// https://wokwi.com/projects/326126843778302548
+
+// OLD:
 // https://wokwi.com/projects/326120084410991187
 
 #include <Arduino.h>
