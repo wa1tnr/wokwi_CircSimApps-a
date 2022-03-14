@@ -1,4 +1,7 @@
 {
-    "placeholder": "none",
-    "time": "Mon 14 Mar 15:23:57 UTC 2022"
+  "version": 1,
+  "author": "nis - wa1tnr - Mon 14 Mar 15:23:57 UTC 2022",
+  "editor": "wokwi",
+  "parts": [ { "id": "uno", "type": "wokwi-arduino-uno" } ],
+  "connections": []
 }
