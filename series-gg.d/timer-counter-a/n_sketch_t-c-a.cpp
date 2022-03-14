@@ -1,4 +1,4 @@
-// Mon 14 Mar 16:06:01 UTC 2022
+// Mon 14 Mar 17:09:12 UTC 2022
 // n_sketch_t-c-a.cpp
 
 // https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/series-gg.d/timer-counter-a
@@ -6,6 +6,36 @@
 // https://wokwi.com/projects/326120084410991187
 
 #include <Arduino.h>
+
+const byte LED_timed = 3;  // Timer 2 "B" output: OC2B
+
+const long frequency = 50000L;  // Hz
+
+const byte n =   39 ; // fine adjustment of the tone
+
+void setup_timer(void) {
+  pinMode (LED_timed, OUTPUT);
+
+  TCCR2A = bit (WGM20)
+         | bit (WGM21)
+         | bit (COM2B1);
+
+// IMPORTANT
+
+// setup your tone here using the prescaler bits CS22-CS20:
+
+  TCCR2B = bit (WGM22)
+  // comment out one or two of these three lines:
+         | bit (CS22)
+         | bit (CS21) // very high pitch if singleton set-bit
+    //   | bit (CS20)
+  ; // ends this utterance ;)
+
+  OCR2A = n;
+  OCR2B = ((OCR2A + 1) / 2) - 1;
+}
+
+// cant see it so using piezo instead of LED
 
 void cpl(int PIN) {
   bool state = digitalRead(PIN);
@@ -40,11 +70,12 @@ void setup_gpio(void) {
 void setup() {
   setup_serial();
   setup_gpio();
+  setup_timer();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-    blink(LED_pin);
+    // blink(LED_pin);
 }
 
 #if 0
@@ -63,6 +94,27 @@ This is used to count approximately every millisecond.
 
 This provides you with the figure that the millis()
 function returns.
+
+
+example sketch from Nick Gammon follows.
+
+const byte LED_timed = 3;  // Timer 2 "B" output: OC2B
+
+const long frequency = 50000L;  // Hz
+
+void setup_timer(void) {
+  pinMode (LED_timed, OUTPUT);
+
+  TCCR2A = bit (WGM20) | bit (WGM21) | bit (COM2B1); // fast PWM, clear OC2B on compare
+  TCCR2B = bit (WGM22) | bit (CS21);         // fast PWM, prescaler of 8
+  OCR2A =  ((F_CPU / 8) / frequency) - 1;    // zero relative  
+  OCR2B = ((OCR2A + 1) / 2) - 1;             // 50% duty cycle
+}
+
+void loop()
+  {
+  // do other stuff here
+  }
 
 #endif
 // END.
