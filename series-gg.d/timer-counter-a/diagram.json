@@ -1,7 +1,32 @@
 {
   "version": 1,
-  "author": "nis - wa1tnr - Mon 14 Mar 15:23:57 UTC 2022",
+  "author": "nis - wa1tnr - Mon 14 Mar 15:59:22 UTC 2022",
   "editor": "wokwi",
-  "parts": [ { "id": "uno", "type": "wokwi-arduino-uno" } ],
-  "connections": []
+  "parts": [
+    { "type": "wokwi-arduino-uno",
+       "id": "uno",
+       "top": 45,
+       "left": 0,
+       "attrs": {}
+    },
+    { "type": "wokwi-led",
+      "id": "led1",
+      "top": 0,
+      "left": 220,
+      "rotate": 90,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -10,
+      "left": 132,
+      "attrs": { "value": "1000" }
+    }
+  ],
+  "connections": [
+    [ "led1:A", "uno:5", "yellow", [ "h0" ] ],
+    [ "led1:C", "r1:2", "green", [ "h-14", "v0" ] ],
+    [ "r1:1", "uno:GND.1", "black", [ "h-17", "v0" ] ]
+  ]
 }
