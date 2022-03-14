@@ -1,16 +1,46 @@
-// Mon 14 Mar 15:24:21 UTC 2022
+// Mon 14 Mar 15:59:22 UTC 2022
 // n_sketch_t-c-a.cpp
 
 #include <Arduino.h>
 
-void setup() {
-  // put your setup code here, to run once:
+void cpl(int PIN) {
+  bool state = digitalRead(PIN);
+  state = !state;
+  digitalWrite(PIN, state);
+}
 
+#define ON_TIME 250
+#define OFF_TIME 1700
+
+void blink(int PIN) {
+  cpl(PIN);
+  delay(ON_TIME);
+  cpl(PIN);
+  delay(OFF_TIME);
+}
+
+void setup_serial(void) {
+  Serial.begin(115200);
+  delay(400);
+  while(!Serial) { delay(10); }
+  Serial.write(' ');
+}
+
+const int LED_pin = 5;
+
+void setup_gpio(void) {
+  pinMode(LED_pin, OUTPUT);
+  digitalWrite(LED_pin, LOW);
+}
+
+void setup() {
+  setup_serial();
+  setup_gpio();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-
+    blink(LED_pin);
 }
 
 #if 0
