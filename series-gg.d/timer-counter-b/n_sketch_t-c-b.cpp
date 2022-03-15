@@ -1,4 +1,4 @@
-// Tue 15 Mar 01:04:05 UTC 2022
+// Tue 15 Mar 12:39:37 UTC 2022
 // n_sketch_t-c-b.cpp
 
 // https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/series-gg.d/timer-counter-b
@@ -7,20 +7,22 @@
 
 // https://wokwi.com/projects/326154839088169556
 
+// https://oscarliang.com/arduino-timer-and-interrupt-tutorial/
+
 // OLD (Uno R3-based):
 // https://wokwi.com/projects/326126843778302548
 
 
 #include <Arduino.h>
 
-const byte LED_timed = 3;  // Timer 2 "B" output: OC2B
+const byte BUZZER = 3;  // Timer 2 "B" output: OC2B
 
 const long frequency = 50000L;  // Hz
 
 const byte n =   39 ; // fine adjustment of the tone
 
 void setup_timer(void) {
-  pinMode (LED_timed, OUTPUT);
+  pinMode (BUZZER, OUTPUT);
 
 #if 0
 
