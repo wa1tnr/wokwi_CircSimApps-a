@@ -17,7 +17,7 @@
 
 #include <Arduino.h>
 
-const byte BUZZER = 2;  // Timer 2 "B" output: OC2B
+const byte BUZZER = 2;  // Timer 3 "B" output: OC3B
 
 const long frequency = 50000L;  // Hz
 
@@ -32,20 +32,12 @@ void setup_timer(void) {
 //  5 2 3  mapped to A B or C
 // 17.11.2
   TCCR3A =
-    //       bit (COM3A1)
-    //     |
-    //       bit (COM3A0)
-    //     | 
     //       bit (COM3B1) // table 17-5
     //     | 
-             bit (COM3B0)
-    //     | 
-    //       bit (COM3C1)
-    //     | 
-    //       bit (COM3C0)
-    //     | 
-    //       |
-    //         bit (WGM30) // Fast PWM, 8-bit table 17-what
+             bit (COM3B0) // seems to make constant sound visually in wokwi
+    //     |
+           |
+             bit (WGM30) // Fast PWM, 8-bit table 17-what
   ; 
 
 // IMPORTANT
@@ -59,11 +51,11 @@ void setup_timer(void) {
     //     |
 
    //     |
-          bit (WGM32) // TCCR3B 17.11.6
+             bit (WGM32) // TCCR3B 17.11.6
   // comment out one or two of these three lines:
-  //     | bit (CS32)
-  //    | bit (CS31) // very high pitch if singleton set-bit
-        | bit (CS30)
+         | bit (CS32)
+  //     | bit (CS31) // very high pitch if singleton set-bit
+         | bit (CS30)
   ; // ends this utterance ;)
  // OC3A OC3B OC3C not to be conflated;
  // COM3A1 B1 C1 A0 B0 C0 may be the things.
