@@ -1,10 +1,12 @@
-// Tue 15 Mar 16:02:45 UTC 2022
-
-//   RE-EDIT  16:12:54z
+// Tue 15 Mar 22:24:22 UTC 2022
 
 // n_sketch_t-c-b.cpp
 
 // https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/series-gg.d/timer-counter-b
+
+// AND_THEN (here):
+// https://wokwi.com/projects/326235653444469332
+
 
 // SUCCESS:
 
@@ -12,6 +14,8 @@
 
 
 #include <Arduino.h>
+
+const byte TONE = 88;
 
 const byte BUZZER = 2;  // Timer 3 "B" output: OC3B
 
@@ -24,16 +28,20 @@ void setup_timer(void) {
   // tone(2, 500); while(-1); // test wiring
 
   // Arduino MEGA  2560 MCU:
-  TCCR3A = bit (COM3B1)
+  TCCR3A = 
+        bit (COM3B1)
       | bit (WGM31)
       | bit (WGM30)
-  ; 
-
-  TCCR3B = bit (WGM32)
-  //  | bit (CS32)
-      | bit (CS31)
-      | bit (CS30)
   ;
+  // MODE 15 WGM33 32 31 and 30 all set
+  TCCR3B = 
+        bit (WGM33)
+     |  bit (WGM32)
+     |  bit (CS32)
+  // |  bit (CS31)
+     |  bit (CS30)
+  ;
+  OCR3A = TONE; // RESPONSIVE! 21:48 UTC 15 Mar 2022
 }
 
 // cant see it so using piezo instead of LED
@@ -74,9 +82,30 @@ void setup() {
   setup_timer();
 }
 
+#define SLOWNESS ((2*1000)+777)
+#define UPNESS   5
+#define DOWNNESS 11
+
+void sweeping(void) {
+  for (int i=DOWNNESS; i >=UPNESS; i--)
+  {
+    OCR3A = i;
+    for (volatile long int slower = SLOWNESS; slower > 0; slower--) ;
+    // delay(15);
+  }
+
+  for (int i=UPNESS; i <=DOWNNESS; i++)
+  {
+    OCR3A = i;
+    for (volatile long int slower = SLOWNESS; slower > 0; slower--) ;
+    // delay(15);
+  }
+}
+
 void loop() {
   // put your main code here, to run repeatedly:
-  blink(LED_pin);
+  // blink(LED_pin);
+  sweeping();
 }
 
 #if 0
