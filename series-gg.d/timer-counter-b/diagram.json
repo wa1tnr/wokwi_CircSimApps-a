@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "nis - wa1tnr - Tue 15 Mar 01:04:05 UTC 2022",
+  "author": "nis - wa1tnr - Tue 15 Mar 15:09:31 UTC 2022",
   "editor": "wokwi",
   "parts": [
     { "type": "wokwi-arduino-mega", "id": "mega", "top": 45, "left": 0, "attrs": {} },
@@ -33,7 +33,7 @@
     [ "led1:A", "mega:5", "yellow", [ "h-7", "v11", "h0" ] ],
     [ "led1:C", "r1:1", "grey", [ "v0" ] ],
     [ "r1:2", "mega:GND.1", "black", [ "v2", "h0" ] ],
-    [ "bz1:2", "mega:3", "red", [ "h0" ] ],
-    [ "bz1:1", "mega:GND.1", "black", [ "h-11", "v-10", "h-212", "v80", "h21", "v0" ] ]
+    [ "bz1:1", "mega:GND.1", "black", [ "h-11", "v-10", "h-212", "v80", "h21", "v0" ] ],
+    [ "bz1:2", "mega:2", "green", [ "h0" ] ]
   ]
 }
