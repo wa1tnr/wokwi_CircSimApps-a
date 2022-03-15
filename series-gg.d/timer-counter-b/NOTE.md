@@ -1,17 +1,22 @@
-Tue 15 Mar 15:09:31 UTC 2022
+Tue 15 Mar 15:54:35 UTC 2022
 
 ATMega2560 board variant
 
-  https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/series-gg.d/timer-counter-b
-  
-SUCCESS III:
+  https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-bb/series-gg.d/timer-counter-b
+
+
+SUCCESS III (this very):
 
   https://wokwi.com/projects/326210683296285266
 
 
-
 SUCCESS II:
+
   https://wokwi.com/projects/326209618982208084
+
+SUCCESS:
+
+  https://wokwi.com/projects/326210683296285266
 
 NEW:
 
