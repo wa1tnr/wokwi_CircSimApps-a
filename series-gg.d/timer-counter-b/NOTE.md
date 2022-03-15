@@ -4,7 +4,10 @@ ATMega2560 board variant
 
   https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/series-gg.d/timer-counter-b
 
-NEW:
+SUCCESS:
+  https://wokwi.com/projects/326209618982208084
+
+oldNEW:
 
   https://wokwi.com/projects/326154839088169556
 
