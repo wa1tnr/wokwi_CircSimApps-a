@@ -1,9 +1,12 @@
-// Tue 15 Mar 14:48:45 UTC 2022
+// Tue 15 Mar 15:09:31 UTC 2022
 // n_sketch_t-c-b.cpp
 
-// D2 working for buzzer - visual buzz but no audio
+// successful code captured - correct buzzer pin used - can hear the audio nice.
 
 // https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/series-gg.d/timer-counter-b
+
+// SUCCESS:
+// wokwi URI here TODO 15:15z
 
 // NEW:
 
@@ -24,20 +27,20 @@ const long frequency = 50000L;  // Hz
 const byte n =   249 ; // fine adjustment of the tone
 
 void setup_timer(void) {
-  // tone(11, 500); // test wiring
   pinMode (BUZZER, OUTPUT);
+  // tone(2, 500); while(-1); // test wiring
 // anything 16.something was for 8-bit and is wrong here.
 
 // Arduino MEGA  2560 MCU:
 //  5 2 3  mapped to A B or C
 // 17.11.2
   TCCR3A =
-    //       bit (COM3B1) // table 17-5
+             bit (COM3B1) // table 17-5
     //     | 
-             bit (COM3B0) // seems to make constant sound visually in wokwi
-    //     |
+    //         bit (COM3B0) // seems to make constant sound visually in wokwi
            |
-             bit (WGM30) // Fast PWM, 8-bit table 17-what
+          
+          bit (WGM30) // Fast PWM, 8-bit table 17-what
   ; 
 
 // IMPORTANT
@@ -51,11 +54,12 @@ void setup_timer(void) {
     //     |
 
    //     |
-             bit (WGM32) // TCCR3B 17.11.6
+  //       bit (WGM32) // TCCR3B 17.11.6
   // comment out one or two of these three lines:
-         | bit (CS32)
-  //     | bit (CS31) // very high pitch if singleton set-bit
-         | bit (CS30)
+  //       | bit (CS32)
+        bit (CS31) // very high pitch if singleton set-bit
+          | 
+         bit (CS30)
   ; // ends this utterance ;)
  // OC3A OC3B OC3C not to be conflated;
  // COM3A1 B1 C1 A0 B0 C0 may be the things.
