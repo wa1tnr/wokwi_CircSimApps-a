@@ -1,8 +1,13 @@
-// Tue 15 Mar 22:24:22 UTC 2022
+// Tue 15 Mar 23:00:09 UTC 2022
 
 // n_sketch_t-c-b.cpp
 
 // https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/series-gg.d/timer-counter-b
+
+// RTTYVARG:
+
+// https://wokwi.com/projects/326239532234048084
+
 
 // AND_THEN (here):
 // https://wokwi.com/projects/326235653444469332
@@ -15,13 +20,9 @@
 
 #include <Arduino.h>
 
-const byte TONE = 88;
+const byte TONE = 88;  // not used much
 
 const byte BUZZER = 2;  // Timer 3 "B" output: OC3B
-
-const long frequency = 50000L;  // Hz
-
-const byte n =   233 ; // UNUSED
 
 void setup_timer(void) {
   pinMode (BUZZER, OUTPUT);
@@ -39,12 +40,12 @@ void setup_timer(void) {
      |  bit (WGM32)
      |  bit (CS32)
   // |  bit (CS31)
-     |  bit (CS30)
+  // |  bit (CS30)
   ;
-  OCR3A = TONE; // RESPONSIVE! 21:48 UTC 15 Mar 2022
+  OCR3A = TONE;
 }
 
-// cant see it so using piezo instead of LED
+// can't see it so using piezo instead of LED
 
 void cpl(int PIN) {
   bool state = digitalRead(PIN);
@@ -82,20 +83,17 @@ void setup() {
   setup_timer();
 }
 
-#define SLOWNESS ((2*1000)+777)
-#define UPNESS   5
-#define DOWNNESS 11
+#define SLOWNESS ((1*100)+177)
+#define UPNESS   38  // RTTY MARK
+#define DOWNNESS 54  // RTTY SPACE
 
 void sweeping(void) {
-  for (int i=DOWNNESS; i >=UPNESS; i--)
-  {
+  for (int i=DOWNNESS; i >=UPNESS; i--) {
     OCR3A = i;
     for (volatile long int slower = SLOWNESS; slower > 0; slower--) ;
-    // delay(15);
   }
 
-  for (int i=UPNESS; i <=DOWNNESS; i++)
-  {
+  for (int i=UPNESS; i <=DOWNNESS; i++) {
     OCR3A = i;
     for (volatile long int slower = SLOWNESS; slower > 0; slower--) ;
     // delay(15);
