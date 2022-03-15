@@ -1,13 +1,15 @@
-// Mon 14 Mar 17:09:12 UTC 2022
-// n_sketch_t-c-a.cpp
+// Tue 15 Mar 01:04:05 UTC 2022
+// n_sketch_t-c-b.cpp
 
-// https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/series-gg.d/timer-counter-a
+// https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/series-gg.d/timer-counter-b
 
 // NEW:
+
+// https://wokwi.com/projects/326154839088169556
+
+// OLD (Uno R3-based):
 // https://wokwi.com/projects/326126843778302548
 
-// OLD:
-// https://wokwi.com/projects/326120084410991187
 
 #include <Arduino.h>
 
@@ -20,6 +22,9 @@ const byte n =   39 ; // fine adjustment of the tone
 void setup_timer(void) {
   pinMode (LED_timed, OUTPUT);
 
+#if 0
+
+// Arduino Uno R3  328p MCU:
   TCCR2A = bit (WGM20)
          | bit (WGM21)
          | bit (COM2B1);
@@ -37,6 +42,7 @@ void setup_timer(void) {
 
   OCR2A = n;
   OCR2B = ((OCR2A + 1) / 2) - 1;
+#endif
 }
 
 // cant see it so using piezo instead of LED
@@ -74,12 +80,12 @@ void setup_gpio(void) {
 void setup() {
   setup_serial();
   setup_gpio();
-  setup_timer();
+  // setup_timer();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-    // blink(LED_pin);
+  blink(LED_pin);
 }
 
 #if 0
