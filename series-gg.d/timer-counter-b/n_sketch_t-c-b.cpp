@@ -1,16 +1,14 @@
 // Tue 15 Mar 16:02:45 UTC 2022
+
+//   RE-EDIT  16:12:54z
+
 // n_sketch_t-c-b.cpp
 
 // https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/series-gg.d/timer-counter-b
 
-// NEW:
+// SUCCESS:
 
-// https://wokwi.com/projects/326154839088169556
-
-// https://oscarliang.com/arduino-timer-and-interrupt-tutorial/
-
-// OLD (Uno R3-based):
-// https://wokwi.com/projects/326126843778302548
+// https://wokwi.com/projects/326213297742283348
 
 
 #include <Arduino.h>
