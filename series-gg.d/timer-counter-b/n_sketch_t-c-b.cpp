@@ -1,5 +1,7 @@
-// Tue 15 Mar 12:39:37 UTC 2022
+// Tue 15 Mar 14:48:45 UTC 2022
 // n_sketch_t-c-b.cpp
+
+// D2 working for buzzer - visual buzz but no audio
 
 // https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/series-gg.d/timer-counter-b
 
@@ -15,36 +17,60 @@
 
 #include <Arduino.h>
 
-const byte BUZZER = 3;  // Timer 2 "B" output: OC2B
+const byte BUZZER = 2;  // Timer 2 "B" output: OC2B
 
 const long frequency = 50000L;  // Hz
 
-const byte n =   39 ; // fine adjustment of the tone
+const byte n =   249 ; // fine adjustment of the tone
 
 void setup_timer(void) {
+  // tone(11, 500); // test wiring
   pinMode (BUZZER, OUTPUT);
+// anything 16.something was for 8-bit and is wrong here.
 
-#if 0
-
-// Arduino Uno R3  328p MCU:
-  TCCR2A = bit (WGM20)
-         | bit (WGM21)
-         | bit (COM2B1);
+// Arduino MEGA  2560 MCU:
+//  5 2 3  mapped to A B or C
+// 17.11.2
+  TCCR3A =
+    //       bit (COM3A1)
+    //     |
+    //       bit (COM3A0)
+    //     | 
+    //       bit (COM3B1) // table 17-5
+    //     | 
+             bit (COM3B0)
+    //     | 
+    //       bit (COM3C1)
+    //     | 
+    //       bit (COM3C0)
+    //     | 
+    //       |
+    //         bit (WGM30) // Fast PWM, 8-bit table 17-what
+  ; 
 
 // IMPORTANT
 
 // setup your tone here using the prescaler bits CS22-CS20:
+// 17.11.6
+  TCCR3B =
+    //       bit (ICNC3)
+    //     |
+    //       bit (ICES3)
+    //     |
 
-  TCCR2B = bit (WGM22)
+   //     |
+          bit (WGM32) // TCCR3B 17.11.6
   // comment out one or two of these three lines:
-         | bit (CS22)
-         | bit (CS21) // very high pitch if singleton set-bit
-    //   | bit (CS20)
+  //     | bit (CS32)
+  //    | bit (CS31) // very high pitch if singleton set-bit
+        | bit (CS30)
   ; // ends this utterance ;)
+ // OC3A OC3B OC3C not to be conflated;
+ // COM3A1 B1 C1 A0 B0 C0 may be the things.
 
-  OCR2A = n;
-  OCR2B = ((OCR2A + 1) / 2) - 1;
-#endif
+  OCR3A = n;
+  OCR3B = ((OCR3A + 1) / 2) - 1
+  ;
 }
 
 // cant see it so using piezo instead of LED
@@ -82,7 +108,7 @@ void setup_gpio(void) {
 void setup() {
   setup_serial();
   setup_gpio();
-  // setup_timer();
+  setup_timer();
 }
 
 void loop() {
