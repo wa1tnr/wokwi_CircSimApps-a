@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "wa1tnr / nis - 28 Feb Mon 02:04:37z 2022",
+  "author": "wa1tnr / nis - Mon 28 Mar 22:58:53 UTC 2022",
   "editor": "wokwi",
   "parts": [ { "id": "pico", "type": "wokwi-pi-pico", "attrs": { "builder": "pico-sdk" } } ],
   "connections": [ [ "pico:GP0", "$serialMonitor:RX", "" ], [ "pico:GP1", "$serialMonitor:TX", "" ] ]
