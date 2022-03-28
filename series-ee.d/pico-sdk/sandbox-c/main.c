@@ -1,3 +1,5 @@
+// Mon 28 Mar 23:27:37 UTC 2022 - captured ONLINE edit - mass code DISABLE
+
 // Mon 28 Mar 22:58:53 UTC 2022 - captured ONLINE edit
 
 // mass capture all required stuff into main.c with NO testing done
@@ -61,6 +63,11 @@ char print_string[stack_buffer_length];
 #define DOFILLS_datus ("\237\n\n " FEATURE_STAMP DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST   \n " MODE_STAMP " mode\n\n");
 // special attempt: make some pointerish things more robust by superstitiously using 'volatile' all over the place ;)
 // surprisingly, all these changes in this commit do compile cleanly.
+
+
+#if 0
+// mass code disable 28 Mar 23:05:53 first instance of this.
+
 /****h* camelforth/forth.c
  * NAME
  *  forth.c
@@ -102,8 +109,15 @@ char print_string[stack_buffer_length];
  *  or via email to bj@camelforth.com
  */
 
+#endif
+
 #include <stdint.h>
 #include <stdbool.h>
+
+
+
+#if 0
+
 // #include "forth.h"
 // ///////////////////// // #include "forth.h"       /////////////////////
 // ///////////////////// // #include "forth.h"       /////////////////////
@@ -147,9 +161,16 @@ char print_string[stack_buffer_length];
 // #define LINUX                  /* for development under Linux */
 // #define TIVA_C                 /* for use with TI TM4C12x */
 // #define SAMDX1                    /* for use with Adafruit Feather M0 Express */
+#endif
+
+
+
 #define RP2040_PICO               /* for use with Raspberry Pi Pico RP2040 based target */
 #define USB_IFACE                 /* only some implementations */
 
+
+
+#if 0
 /* 
  * CONFIGURATION PARAMETERS
  */
@@ -196,6 +217,7 @@ struct Header {
 #define OFFSET(n)   (void *)(n*CELL)       /* see CELL above, = 4 */
 #define LIT(n)      (void *)(n)
 
+#endif
 
 // ///////////////////// // #include "forth.h"       /////////////////////
 // ///////////////////// // #include "forth.h"       /////////////////////
@@ -203,6 +225,9 @@ struct Header {
 
 /* not sure where this goes 07 Mar 2021 tnr */
 uint32_t getFlKey_counter = 0;
+
+
+#if 0
 
 /*
  * DATA STACKS
@@ -230,7 +255,7 @@ unsigned char holdarea[HOLDSIZE];
 /* STUBS TBD */
 unsigned char RAMDICT[8192];
 unsigned char ROMDICT[1024];
-
+#endif
 
 
 #ifdef RP2040_PICO
@@ -360,6 +385,10 @@ void queryKey(void) {
 
 #define FL_KEY_BASE 0x10040000 // same as example code SDK // xcc
 
+
+
+
+#if 0
 // uint32_t getFlKey_counter = 0;
 
 uint8_t acquire_flash_char() {
@@ -381,7 +410,7 @@ uint8_t getFlKey(void) {     // hardware-independent wrapper
     getFlKey_counter++;
     return ch_read;
 }
-
+#endif
 // ENiD,
 
 // ///////////////////// // #include "rp2040_flashkey_inc.h"       ///////
@@ -620,6 +649,21 @@ int getquery(void) {
 
 #endif
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if 0
+
 /* 
  * RUN-TIME FUNCTIONS FOR DEFINED WORDS
  */
@@ -678,6 +722,12 @@ void Fdobuilds (void * pfa) {
         w += CELL;
         (*xt)(w);               /* call function w/adrs of word def */
 }
+
+#endif
+
+
+
+#if 0
 
 /* 
  * PRIMITIVE FUNCTIONS
@@ -784,7 +834,20 @@ CODE(rpfetch) {
 CODE(rpstore) {
     rsp = (unsigned int *)(*psp++);
 }
+#endif
 
+
+
+
+
+
+
+
+
+
+
+
+#if 0
 /* MEMORY OPERATIONS */
 
 CODE(fetch) {
@@ -971,6 +1034,35 @@ CODE(qbranch) {    /* Tbranch,-4  loops back to itself */
         ip += CELL;
     }
 }
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* '83 and ANSI standard +LOOP behavior:  (per dpans-6)
  * "Add n to the loop index. If the loop index did not cross the boundary 
@@ -983,6 +1075,38 @@ CODE(qbranch) {    /* Tbranch,-4  loops back to itself */
 /* circular comparison of two unsigned ints, returns true if x>=y */
 #define CIRCULARGE(x,y)  ((signed int)(x-y) >= 0)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if 0
 CODE(xplusloop) {   /* n -- */
     int offset;
     bool f;
@@ -1116,6 +1240,33 @@ CODE(sequal) {  /* c-addr1 c-addr2 u -- n */
     *--psp = (unsigned int)result;
 }
 
+
+
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if 0
 /* TERMINAL I/O */
 
 CODE(key) {
@@ -1135,7 +1286,29 @@ CODE(emit) {
 CODE(keyq) {
     *--psp = getquery(); 
 }
+#endif
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if 0
 CODE(dot) {        /* temporary definition for testing */
     printf(" %d", *psp++);
 }
@@ -1161,6 +1334,9 @@ CODE(dots) {    /* print stack, for testing */
  // while (p >= psp) printf(" %8x", *p--); // crashes the interpreter - wa1tnr 10 Sep 2018
     while (p >= psp) { printf(" %8X", *p--); } // changed conversion to upper case ABCDEF
 }
+#endif
+
+
 
 // #include "pico-LED_c.h"
 // ///////////////////// // #include "pico-LED_c.h"       ////////////////
@@ -1188,16 +1364,34 @@ int _pico_LED() {
 }
 
 
+
+#if 0
 // ///////////////////// // #include "pico-LED_c.h"       ////////////////
 // ///////////////////// // #include "pico-LED_c.h"       ////////////////
+
 
 // extern int _pico_LED(void);
 CODE(blink) { /* -- */
     _pico_LED();
 }
+#endif
+
+
+
+
+
+
 
 #define AINSU_DUMP_EXTERN
 // #undef AINSU_DUMP_EXTERN // temporary for testing 00:44 Sat 20 Feb 2021
+
+
+
+
+
+
+#if 0 // terminated fairly far, below  28 Mar 2022 23:17z
+
 #ifdef AINSU_DUMP_EXTERN
 // #include "dump_inc.h"
 // ///////////////////// // #include "dump_inc.h"       //////////////////
@@ -1206,10 +1400,10 @@ CODE(blink) { /* -- */
 
 // dump.inc
 
-#ifndef AINSU_DUMP_EXTERN
-#define AINSU_DUMP_EXTERN
+  #ifndef AINSU_DUMP_EXTERN
+    #define AINSU_DUMP_EXTERN
 // #undef AINSU_DUMP_EXTERN
-#endif
+  #endif
 // xbc
 /* Charley Shatttuck's rdumps() */
 
@@ -1279,6 +1473,17 @@ CODE(dump) {                    /* adr n -- */
 // ///////////////////// // #include "dump_inc.h"       //////////////////
 #endif // #ifdef AINSU_DUMP_EXTERN
 
+
+
+
+
+
+
+
+
+
+
+
 #ifndef AINSU_DUMP_EXTERN
 
 CODE(dump) {   /* adr n -- */
@@ -1293,6 +1498,13 @@ CODE(dump) {   /* adr n -- */
 }       
 
 #endif // #ifndef AINSU_DUMP_EXTERN
+
+
+
+#endif // #if 0 above AINSU_DUMP_EXTERN stuff
+
+
+
 
 // ###bookmark-f
 // #include "rp2040_reading_inc.h"
@@ -1311,11 +1523,15 @@ CODE(dump) {   /* adr n -- */
 
 char buffer[READING_SIZE];
 
-CODE(reading) {
+// CODE(reading) {
+
+
+void reading_kludge(void) {  // 28 Mar 2022 23:26z
+
     uint32_t location = (uint32_t) &buffer[0];
     int bufpos = 0;
     uint8_t ch_read, ch_test;
-    --psp; psp[0] = (uint32_t) location; // push location
+//    --psp; psp[0] = (uint32_t) location; // push location
     int count=0;
     int flip, flop;
     const uint LED_PIN = 25;
@@ -1372,6 +1588,10 @@ CODE(reading) {
 
 // ///////////////////// // #include "rp2040_reading_inc.h"       ////////
 // ///////////////////// // #include "rp2040_reading_inc.h"       ////////
+
+
+
+#if 0  // above should be balanced delimited already wrt if 0 stuff 28 Mar 2022 23:19z
 
 /* extern void flash_write_buffer(void); */
 
@@ -1483,6 +1703,16 @@ PRIMITIVE(blink);
 PRIMITIVE(reading);
 PRIMITIVE(bye);
 
+
+
+#endif
+
+
+
+
+
+
+#if 0
 /* USER VARIABLES */
 
 THREAD(u0) = { Fdouser, LIT(0) };
@@ -1653,18 +1883,56 @@ THREAD(flnospace) = { Fenter, Tlit, LIT(0x20), Tdrop, Texit };
 
 THREAD(spaces) = { Fenter, Tdup, Tqbranch, OFFSET(5), Tspace, Toneminus,
                 Tbranch, OFFSET(-6), Tdrop, Texit };
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if 0
+
+
 
 #ifdef LINUX
 #define NEWLINE 0x0a
 #define BACKSPACE 0x7f      /* key returned for backspace */
 #define BACKUP  8           /* what to emit for backspace */
 #else
+
 #define NEWLINE 0x0a // attempt 11 Feb 2021
 // #define NEWLINE 0x0d
 #define BACKSPACE 8         /* key returned for backspace */
 #define BACKUP  8           /* what to emit for backspace */
 #endif
 
+
+#endif
+
+
+
+
+
+
+
+
+
+
+#if 0
 THREAD(accept) = { Fenter, Tover, Tplus, Toneminus, Tover,
 /* 1 */  Tkey, Tdup, Tlit, LIT(NEWLINE), Tnotequal, Tqbranch, OFFSET(27 /*5*/),
          Tdup, Tlit, LIT(BACKSPACE), Tequal, Tqbranch, OFFSET(12 /*3*/),
@@ -1812,7 +2080,30 @@ THREAD(qnumber) = { Fenter, Tdup, Tzero, Tdup, Trot, Tcount,
         Tnegate,
  /*2*/  Tminusone,
  /*3*/  Texit };
+#endif
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if 0
 // extern const void * Tabort[];   /* forward reference */
 extern void * Tflabort[];   /* forward reference */
 
@@ -2041,7 +2332,28 @@ THREAD(words) = { Fenter, Tlatest, Tfetch,
         Tnfatolfa, Thfetch, Tdup, Tzeroequal, Tqbranch, OFFSET(-12),
         Tdrop, Texit, };
 
+#endif
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if 0
 /* MAIN ENTRY POINT */
 
 // const char coldprompt[] = "\103CamelForth in C v0.1 - 14 Feb 2016 - 09 Feb 2021 15:36:16 UTC      ";
@@ -2063,9 +2375,49 @@ THREAD(cold) = { Fenter,
     xt w x are 'inside jobs' and don't get touched
     psp rsp ip and run are from outside world and are candidates
 */
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void interpreter(void)
 {
+#if 0
+
+
+
+
+
+
+
     void (*xt)(void *);     /* pointer to code function */
     void *w, *x;            /* generic pointers */
     
@@ -2082,6 +2434,12 @@ void interpreter(void)
         w += CELL;
         (*xt)(w);               /* call function w/adrs of word def */
     }        
+
+
+
+
+
+#endif
 }
 
 // #define DOFILLS_aaaaa ("\103abcde dot dot dot dot dot dash dot dash period question delve dout ");
@@ -2102,6 +2460,33 @@ void crufty_printer(void) {
     printf("%s", dofilldatus);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if 0
 /*
  * DICTIONARY HEADERS
  */
@@ -2385,9 +2770,57 @@ HEADER(flaccept, flkey, 0, "\010flaccept");
 HEADER(flquit, flaccept, 0, "\006flquit");
 HEADER(cold, flquit, 0, "\004COLD");
 
+#endif
+
+
+
+
+
 
 // ///////////////////// // #include "forth_c.h"     /////////////////////
 // ///////////////////// // #include "forth_c.h"     /////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ###bookmark-g  everything done for forth.c mainfile
 
@@ -2401,10 +2834,12 @@ HEADER(cold, flquit, 0, "\004COLD");
 // rp2040_reflash.inc
 
 #include "pico/bootrom.h"
+
+#if 0
 void reflash(void) {  /*  --  */
     reset_usb_boot(0, 0);
 }
-
+#endif
 // ///////////////////// // #include "rp2040_reflash_inc.h"     //////////
 // ///////////////////// // #include "rp2040_reflash_inc.h"     //////////
 
