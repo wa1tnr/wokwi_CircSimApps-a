@@ -1,8 +1,8 @@
-// Tue 29 Mar 17:40:14 UTC 2022 - ONLINE edit
+// Tue 29 Mar 17:58:24 UTC 2022 - ONLINE edit
 
 // PRESERVED WIRING VERTICAL TARGET ORIENTATION
 
-// https://wokwi.com/projects/327415555705274962  current Tue 29 Mar 17:07:57 UTC 2022  REUSED OLDER ONE
+// https://wokwi.com/projects/327415555705274962  current Tue 29 Mar 17:58:24 UTC 2022  REUSED OLDER ONE
 
 // https://wokwi.com/projects/327487469083689556  recent  Tue 29 Mar 17:40:14 UTC 2022  LAST VERT TARGET
 
@@ -488,7 +488,7 @@ int main() {
     putchar('\r');
     putchar('\n');
 
-    strcpy(print_string, "  greet  Tue 29 Mar 17:40:14 UTC 2022");
+    strcpy(print_string, "  greet  Tue 29 Mar 17:58:24 UTC 2022");
     printf("%s", print_string);
     putchar('\n');
 
