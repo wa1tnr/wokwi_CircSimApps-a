@@ -1,15 +1,11 @@
-// Mon 28 Mar 23:31:49 UTC 2022 - captured ONLINE edit - mass code DISABLE
+// Tue 29 Mar 00:20:32 UTC 2022 - captured ONLINE edit - keyboard echo good.
+
+// https://wokwi.com/projects/327418197022081618  current 29 Mar 00:20:32
+
+
 
 // https://wokwi.com/projects/327415555705274962  new uri 28 M_r aa
 
-// eight captures main.c peculiar to wokwi pico-sdk
-// not on sim
-
-/*
-
-  28 February 2022   11:22:55 UTC
-
-*/
 
 /* rp2040 */
 #include <stdio.h>
@@ -2897,13 +2893,15 @@ int main() {
 114:  printf("%s", print_string);
 */
 
-    strcpy(print_string, "  greet  27 Feb 21:23 UTC 2022");
+    strcpy(print_string, "  greet  Tue 29 Mar 00:20:32 UTC 2022");
     printf("%s", print_string);
     putchar('\n');
 
     while(1) {
         // _pico_LED(); // test using GPIO hardware to blink Pi Pico onboard LED
-        interpreter(); // camelforth
+        // interpreter(); // camelforth
+        uint8_t ch_key = getKey();
+        putchar(ch_key); // seems okay - no further research yet
     }
 }
 
