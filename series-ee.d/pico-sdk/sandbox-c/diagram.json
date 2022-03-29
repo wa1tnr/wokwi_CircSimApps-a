@@ -1,1 +1,30 @@
-x
+{
+  "version": 1,
+  "author": "wa1tnr / nis - Tue 29 Mar 02:47:21 UTC 2022",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-pi-pico",
+      "id": "pico",
+      "top": 0,
+      "left": 0,
+      "attrs": { "builder": "pico-sdk" }
+    },
+    { "type": "wokwi-lcd2004",
+      "id": "lcd1", "top": -340, "left": -150,
+      "attrs": {} }
+  ],
+  "connections": [
+    [ "pico:GP0", "$serialMonitor:RX", "", [] ],
+    [ "pico:GP1", "$serialMonitor:TX", "", [] ],
+    [ "pico:GND.1", "lcd1:VSS", "black", [ "h-145", "v-140", "h0" ] ],
+    [ "pico:VBUS", "lcd1:VDD", "red", [ "h30", "v-40", "h0" ] ],
+    [ "pico:GP26", "lcd1:RS", "blue", [ "h40", "v-140", "h0" ] ],
+    [ "pico:GND.1", "lcd1:RW", "black", [ "h-145", "v-140", "h0" ] ],
+    [ "pico:GP18", "lcd1:D7", "gray", [ "h90", "v-280", "h0" ] ],
+    [ "pico:GP19", "lcd1:D6", "gold", [ "h80", "v-260", "h0" ] ],
+    [ "pico:GP20", "lcd1:D5", "brown", [ "h70", "v-240", "h0" ] ],
+    [ "pico:GP21", "lcd1:D4", "green", [ "h60", "v-220", "h0" ] ],
+    [ "pico:GP22", "lcd1:E", "purple", [ "h50", "v-180", "h0" ] ]
+   ]
+}
