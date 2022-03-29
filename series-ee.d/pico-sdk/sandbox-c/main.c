@@ -1,10 +1,6 @@
-// Mon 28 Mar 23:27:37 UTC 2022 - captured ONLINE edit - mass code DISABLE
+// Mon 28 Mar 23:31:49 UTC 2022 - captured ONLINE edit - mass code DISABLE
 
-// Mon 28 Mar 22:58:53 UTC 2022 - captured ONLINE edit
-
-// mass capture all required stuff into main.c with NO testing done
-
-// https://wokwi.com/projects/327415555705274962  new uri 28 Mar aa
+// https://wokwi.com/projects/327415555705274962  new uri 28 M_r aa
 
 // eight captures main.c peculiar to wokwi pico-sdk
 // not on sim
@@ -48,8 +44,8 @@ char print_string[stack_buffer_length];
 
 // ///////////////////// // #include "forth_c.h"     /////////////////////
 // ///////////////////// // #include "forth_c.h"     /////////////////////
-// #define DATE_STAMP "Mon Mar  8 05:21:42 UTC 2021"
-#define DATE_STAMP "Mon Feb 28 11:25:51 UTC 2022"
+// #define DATE_STAMP "Mon Feb 28 11:25:51 UTC 2022"
+#define DATE_STAMP "Mon 28 Mar 23:31:49 UTC 2022"
 // old standard width for this field: #define BRANCH_STAMP "erase_sector-a"
 #define BRANCH_STAMP  "dvlp-aa                            __"
 #define COMMIT_STAMP  "49723cf"
@@ -66,7 +62,7 @@ char print_string[stack_buffer_length];
 
 
 #if 0
-// mass code disable 28 Mar 23:05:53 first instance of this.
+// mass code disable 28 M_r 2022 23:05:53 first instance of this.
 
 /****h* camelforth/forth.c
  * NAME
@@ -223,7 +219,7 @@ struct Header {
 // ///////////////////// // #include "forth.h"       /////////////////////
 
 
-/* not sure where this goes 07 Mar 2021 tnr */
+/* not sure where this goes 07 M_r 2021 tnr */
 uint32_t getFlKey_counter = 0;
 
 
@@ -379,7 +375,7 @@ void queryKey(void) {
 
 
 
-// Sun Mar  7 16:57:29 UTC 2021
+// Sun M_r  7 16:57:29 UTC 2021
 // #include "rp2040_pico.h" // redundant? YES.
 // #include "pico/stdlib.h" // redundant?  YES.
 
@@ -1390,7 +1386,7 @@ CODE(blink) { /* -- */
 
 
 
-#if 0 // terminated fairly far, below  28 Mar 2022 23:17z
+#if 0 // terminated fairly far, below  28 M_r 2022 23:17z
 
 #ifdef AINSU_DUMP_EXTERN
 // #include "dump_inc.h"
@@ -1514,7 +1510,7 @@ CODE(dump) {   /* adr n -- */
 
 // rp2040_reading.inc
 
-// Thu Mar  4 18:07:47 UTC 2021 // xdv
+// Thu M_r  4 18:07:47 UTC 2021 // xdv
 
 // read keyboard store in ram 1023 bytes plus a terminating NULL '\0' for 1024 byte buffer
 
@@ -1526,7 +1522,7 @@ char buffer[READING_SIZE];
 // CODE(reading) {
 
 
-void reading_kludge(void) {  // 28 Mar 2022 23:26z
+void reading_kludge(void) {  // 28 M_r 2022 23:26z
 
     uint32_t location = (uint32_t) &buffer[0];
     int bufpos = 0;
@@ -1591,7 +1587,7 @@ void reading_kludge(void) {  // 28 Mar 2022 23:26z
 
 
 
-#if 0  // above should be balanced delimited already wrt if 0 stuff 28 Mar 2022 23:19z
+#if 0  // above should be balanced delimited already wrt if 0 stuff 28 M_r 2022 23:19z
 
 /* extern void flash_write_buffer(void); */
 

@@ -1,11 +1,12 @@
-Mon 28 Mar 22:52:42 UTC 2022
+Mon 28 Mar 23:31:49 UTC 2022
+
   SCAFFOLDING:  (in various states of clean compilation and broken compilation):
   
-  https://wokwi.com/projects/327418197022081618    28 Mar 23:29:36 UTC
+  https://wokwi.com/projects/327418197022081618    Mon 28 Mar 23:31:49 UTC 2022
 
   NEW:
 
-  https://wokwi.com/projects/327415555705274962  new uri 28 Mar aa
+  https://wokwi.com/projects/327415555705274962  new uri 28 M_r aa
 
   https://github.com/wa1tnr/wokwi_CircSimApps-a/series-ee.d/pico-sdk/sandbox-c
 
