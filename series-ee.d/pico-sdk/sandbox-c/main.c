@@ -1,11 +1,8 @@
-// Tue 29 Mar 00:20:32 UTC 2022 - captured ONLINE edit - keyboard echo good.
+// Tue 29 Mar 00:50:48 UTC 2022 - OFFLINE edit - keyboard echo good.
 
-// https://wokwi.com/projects/327418197022081618  current 29 Mar 00:20:32
+// https://wokwi.com/projects/327415555705274962  current Tue 29 Mar 00:50:48z  REUSED OLDER ONE
 
-
-
-// https://wokwi.com/projects/327415555705274962  new uri 28 M_r aa
-
+// https://wokwi.com/projects/327418197022081618  recent  Tue 29 Mar 00:20:32z
 
 /* rp2040 */
 #include <stdio.h>
