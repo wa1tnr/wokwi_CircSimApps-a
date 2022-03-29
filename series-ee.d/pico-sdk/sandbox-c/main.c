@@ -1,4 +1,4 @@
-// Tue 29 Mar 01:43:23 UTC 2022 - ONLINE edit - mass code delete
+// Tue 29 Mar 01:52:11 UTC 2022 - ONLINE edit
 
 // https://wokwi.com/projects/327415555705274962  current Tue 29 Mar 01:43:23 UTC 2022  REUSED OLDER ONE
 
@@ -463,7 +463,7 @@ int main() {
     putchar('\r');
     putchar('\n');
 
-    strcpy(print_string, "  greet  Tue 29 Mar 01:43:23 UTC 2022");
+    strcpy(print_string, "  greet  Tue 29 Mar 01:52:11 UTC 2022");
     printf("%s", print_string);
     putchar('\n');
 
