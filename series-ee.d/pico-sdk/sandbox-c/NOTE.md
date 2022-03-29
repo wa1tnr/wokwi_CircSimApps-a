@@ -1,8 +1,13 @@
-Tue 29 Mar 01:52:11 UTC 2022
+Tue 29 Mar 17:40:14 UTC 2022  ONLINE edit
 
   NEW:
 
   https://wokwi.com/projects/327415555705274962  current Tue 29 Mar 01:43:23 UTC 2022  REUSED OLDER ONE
+
+
+  OLD WIRING VERTICAL TARGET:
+
+  https://wokwi.com/projects/327487469083689556  recent  Tue 29 Mar 17:40:14 UTC 2022
 
   SCAFFOLDING:  (in various states of clean compilation and broken compilation):
   
