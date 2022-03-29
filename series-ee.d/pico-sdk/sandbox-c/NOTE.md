@@ -4,6 +4,8 @@ Tue 29 Mar 17:58:24 UTC 2022  ONLINE edit
 
   https://wokwi.com/projects/327415555705274962  current Tue 29 Mar 17:58:24 UTC 2022  REUSED OLDER ONE
 
+  PROOF:
+  https://wokwi.com/projects/327496766680203859  shows LCD in use.
 
   OLD WIRING VERTICAL TARGET:
 
