@@ -1,9 +1,34 @@
-// Tue 29 Mar 01:52:11 UTC 2022 - ONLINE edit
+// Tue 29 Mar 17:40:14 UTC 2022 - ONLINE edit
 
-// https://wokwi.com/projects/327415555705274962  current Tue 29 Mar 01:43:23 UTC 2022  REUSED OLDER ONE
+// PRESERVED WIRING VERTICAL TARGET ORIENTATION
 
+// https://wokwi.com/projects/327415555705274962  current Tue 29 Mar 17:07:57 UTC 2022  REUSED OLDER ONE
+
+// https://wokwi.com/projects/327487469083689556  recent  Tue 29 Mar 17:40:14 UTC 2022  LAST VERT TARGET
 
 // https://wokwi.com/projects/327418197022081618  recent  Tue 29 Mar 00:20:32z
+
+#if 0
+// we are pico-sdk not Arduino IDE
+
+// RS E D4 D5 D6 D7
+
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(
+ 21, // RS blue   to Uno:D12 pico:GP21
+ 20, //  E purple to Uno:D11 pico:GP20
+ // 4-bit data bus:
+ 19, // D4 green  to Uno:D10 pico:GP19
+ 18, // D5 brown  to Uno:D9  pico:GP18
+ 17, // D6 gold   to Uno:D8  pico:GP17
+ 16  // D7 gray   to Uno:D7  pico:GP16
+);
+
+// Connect K Kathode to GND
+// Connect Uno:5 Volts to A Anode via 330 Ohms
+#endif
+
 
 /* rp2040 */
 #include <stdio.h>
@@ -463,7 +488,7 @@ int main() {
     putchar('\r');
     putchar('\n');
 
-    strcpy(print_string, "  greet  Tue 29 Mar 01:52:11 UTC 2022");
+    strcpy(print_string, "  greet  Tue 29 Mar 17:40:14 UTC 2022");
     printf("%s", print_string);
     putchar('\n');
 
