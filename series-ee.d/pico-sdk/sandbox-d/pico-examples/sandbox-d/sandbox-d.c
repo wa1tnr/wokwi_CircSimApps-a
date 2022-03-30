@@ -52,6 +52,12 @@ void blink_loop(void) {
     _loop_delay_local();
 }
 
+
+// forth.c
+// 468:int forth_main() {
+
+extern int forth_main();
+
 int main(void) {
     sleep_ms(1800);
     uart_init(UART_ID, BAUD_RATE);
@@ -109,10 +115,12 @@ int main(void) {
     // printf("%8X", start_address);
 
     // printf("%s", "\n");
+    // extern int forth_main();
+    int result_ing = forth_main();
 
-    while(1) {
+    // while(1) {
         // interpreter(); // camelforth
-    }
+    // }
 }
 // END.
 

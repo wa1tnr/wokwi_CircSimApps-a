@@ -30,5 +30,5 @@ if ( CMAKE_COMPILER_IS_GNUCC )
 endif()
 
 add_subdirectory(forth)
-add_subdirectory(pico-hw)
+# add_subdirectory(pico-hw)
 add_subdirectory(pio)
