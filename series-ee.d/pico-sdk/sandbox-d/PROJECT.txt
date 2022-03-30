@@ -1,0 +1,16 @@
+Sun 27 Mar 12:13:46 UTC 2022
+
+Do a compiled Forth for RPi Pico RP2040 target that
+operates a 20x4 char LCD w/ 4-bit bus.
+
+The memory.h type file will have the Forth program,
+already compiled (on the host PC) and ready for the VM.
+
+Necessary Forth primitives authored in C++ for the
+RP2040 - initial platform is mbed (arduino.cc)
+under platformio.
+
+gforth compiles 'bytecode' for the Forth VM, from
+recognizable Forth source code (held on the host PC).
+
+END.
