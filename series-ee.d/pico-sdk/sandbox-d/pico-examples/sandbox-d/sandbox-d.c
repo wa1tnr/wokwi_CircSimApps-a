@@ -59,7 +59,7 @@ void blink_loop(void) {
 extern int forth_main();
 
 int main(void) {
-    sleep_ms(1800);
+    sleep_ms(4800);
     uart_init(UART_ID, BAUD_RATE);
 
     gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
@@ -118,6 +118,7 @@ int main(void) {
 
     // printf("%s", "\n");
     // extern int forth_main();
+    printf( "   wokwi port 30 March 2022\n\n");
     int result_ing = forth_main();
 
     // while(1) {
