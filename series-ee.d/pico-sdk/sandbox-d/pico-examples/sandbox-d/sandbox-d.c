@@ -69,7 +69,13 @@ int main(void) {
 
     // uart_putc_raw(UART_ID, 'A');
 
-    sleep_ms(800);
+    sleep_ms(1800);
+    printf( "\n  Hello - aa\n\n");
+    sleep_ms(1800);
+    printf( "\n  Hello - bb\n\n");
+    sleep_ms(1800);
+    printf( "\n  Hello - cc\n\n");
+    sleep_ms(1800);
     // if bool     tud_cdc_n_connected       (uint8_t itf);
     // _pico_LED_init();
 //    while (! tud_cdc_n_connected (0)) {
@@ -80,6 +86,7 @@ int main(void) {
 
     // stale message text follows - poorly maintained.
     // poor testing of latest edits - may cause issues.  However, brief test seemed okay.
+
     uart_puts(UART_ID, "\r\n   camelforth-rp2040-b-MS-U r0.1.8-pre-alpha\r\n\r\n");
     printf(              "\n   camelforth-rp2040-b-MS-U r0.1.8-pre-alpha\n\n");
 
