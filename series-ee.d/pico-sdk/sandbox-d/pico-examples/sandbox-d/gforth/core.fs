@@ -1,4 +1,5 @@
 \ core.fs 
+\ Wed 30 Mar 23:46:58 UTC 2022 - further local mods + wokwi
 \ Thu  6 Jan 17:55:54 UTC 2022 - local mods
 
 0 [if]
@@ -243,15 +244,15 @@ here [ 4 + constant dict ]
     false tib ! false
     begin drop
     \ kludge one line 27 Mar 23:36z:
-    $2e #, emit
-    $2e #, emit
-    $2e #, emit
+    \ $2e #, emit
+    \ $2e #, emit
+    \ $2e #, emit
 
     key 
 
-    $2f #, emit
-    $2f #, emit
-    $2f #, emit
+    \ $2f #, emit
+    \ $2f #, emit
+    \ $2f #, emit
 
     BL max BL xor until BL xor echo tib!
     begin key BL max BL xor while BL xor echo tib! repeat

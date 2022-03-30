@@ -1,4 +1,4 @@
-// Wed 30 Mar 20:56:36 UTC 2022
+// Wed 30 Mar 23:46:58 UTC 2022
 
 //  h# 20    enters  decimal 32 literal
 
@@ -592,15 +592,6 @@ void _on(){
     DROP;
 }
 
-
-
-
-
-
-
-
-
-
 void _emit(){
     // Serial1.write(T);
     putchar(T); // provisional 29 Mar
@@ -742,7 +733,7 @@ void _dotsh(){
 void _dnumber(){
     DUP;
     // T=Serial1.parseInt(SKIP_WHITESPACE);
-    T=7;
+    T=43;
 }
 
 void _counter(){

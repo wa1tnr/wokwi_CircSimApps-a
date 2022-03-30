@@ -1,3 +1,5 @@
+\ Wed 30 Mar 23:46:58 UTC 2022
+
 : stimex 384 \ 900
   #, for
       msec
@@ -185,7 +187,8 @@
   again
 
 ;
+: run 5 #, 3 #, over over cr ." dot S: " .s cr ;
 
-: run n867 ;
+\ : run n867 ;
 
 \ end.
