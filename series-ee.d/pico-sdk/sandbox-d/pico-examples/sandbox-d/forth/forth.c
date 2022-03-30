@@ -462,7 +462,7 @@ void reflash(void) {  /*  --  */
 #define UART_RX_PIN 1
 
 
-// extern void loop_forth();
+extern void loop_forth();
 
 
 int forth_main() {
@@ -509,7 +509,7 @@ int forth_main() {
     while(1) {
         uint8_t ch_key = getKey();
         putchar(ch_key); // seems okay - no further research yet
-        // loop_forth();
+        loop_forth();
     }
 }
 
