@@ -1,3 +1,5 @@
+# Wed 30 Mar 20:44:06 UTC 2022
+
 if ( CMAKE_COMPILER_IS_GNUCC )
     set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 endif()
