@@ -1,10 +1,10 @@
-Tue 29 Mar 22:37:32 UTC 2022 - OFFLINE edit
+Wed 30 Mar 10:21:14 UTC 2022  ONLINE edit
+
+  working arm forth:
+
+  https://wokwi.com/projects/327506579910820436
 
   NEW:
-
-  https://wokwi.com/projects/327506579910820436 current NOW
-
-  RECENT_NEW:
 
   https://wokwi.com/projects/327415555705274962  current Tue 29 Mar 17:58:24 UTC 2022  REUSED OLDER ONE
 
@@ -24,10 +24,6 @@ Tue 29 Mar 22:37:32 UTC 2022 - OFFLINE edit
   OLD_NEW:
 
     https://wokwi.com/arduino/projects/324803566934950484
-
-  OLD_ESP32:
-
-    https://wokwi.com/projects/327213648502063700
 
     https://github.com/wa1tnr/camelforth-rp2040-a/tree/main/17-camelforth-a.d/pico-examples
 
