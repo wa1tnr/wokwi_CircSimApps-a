@@ -1,6 +1,6 @@
-// Wed Apr 14 20:45:28 UTC 2021
+// Wed Mar 30 19:41:36 UTC 2022
 // wa1tnr
-// camelforth
+// was old camelforth
 
 /**
  * Copyright (c) 2020 Raspberry Pi (Trading) Ltd.
@@ -13,7 +13,7 @@
 #include <stdlib.h>         // rp2040_flash_ops.inc
 #include "pico/stdlib.h"
 #include "hardware/flash.h" // rp2040_flash_ops.inc
-#include "tusb.h"
+// #include "tusb.h"
 // #include "cdc_device.h" // mystery location
 
 // #define FLASH_TARGET_OFFSET_B (256 * 1024)
@@ -39,12 +39,12 @@ extern int _this_ws2812();
 // extern int _pico_LED(void);
 
 void _loop_delay_local(void) {
-    if (tud_cdc_n_connected (0)) return;
-    for (volatile int i=288;i>0;i--) { // 144 okay
-        for (volatile int j=455555;j>0;j--) {
-        }
-        if (tud_cdc_n_connected (0)) return;
-    }
+//    if (tud_cdc_n_connected (0)) return;
+//    for (volatile int i=288;i>0;i--) { // 144 okay
+//        for (volatile int j=455555;j>0;j--) {
+//        }
+//        if (tud_cdc_n_connected (0)) return;
+//    }
 }
 
 void blink_loop(void) {
@@ -72,9 +72,9 @@ int main(void) {
     sleep_ms(800);
     // if bool     tud_cdc_n_connected       (uint8_t itf);
     // _pico_LED_init();
-    while (! tud_cdc_n_connected (0)) {
-        blink_loop(); // no while - done only once
-    }
+//    while (! tud_cdc_n_connected (0)) {
+//        blink_loop(); // no while - done only once
+//    }
 
     // for (int i=3;i>0;i--) _pico_LED();
 
@@ -94,7 +94,7 @@ int main(void) {
 
    // crufty_printer(); // examine ram with this nonsense function
 
-    int result = _this_ws2812(); // do a NEOPIX thing here
+// int result = _this_ws2812(); // do a NEOPIX thing here
 
     printf( "   NEOPIX activity here\n\n");
 
