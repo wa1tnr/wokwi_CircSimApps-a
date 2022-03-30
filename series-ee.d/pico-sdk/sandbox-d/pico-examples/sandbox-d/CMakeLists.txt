@@ -11,7 +11,8 @@ target_compile_definitions(sandbox-d PRIVATE
 )
 
 # 11 May 00:40z trying PRIVATE on line below first time ever
-target_link_libraries(sandbox-d PRIVATE forth pico-LED ws2812 hardware_flash pico_stdlib)
+# target_link_libraries(sandbox-d PRIVATE forth pico-LED ws2812 hardware_flash pico_stdlib)
+target_link_libraries(sandbox-d PRIVATE forth ws2812 hardware_flash pico_stdlib)
 
 # pico_set_binary_type(sandbox-d copy_to_ram)
 pico_set_binary_type(sandbox-d copy_to_ram)
