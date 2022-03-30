@@ -1,4 +1,11 @@
-Wed 30 Mar 10:21:14 UTC 2022  ONLINE edit
+Wed 30 Mar 19:29:09 UTC 2022  ONLINE edit on github
+
+dvlp-xrc
+
+  regroup - want CMake compatible:
+  
+  https://wokwi.com/projects/327585255775011410
+
 
   working arm forth:
 
