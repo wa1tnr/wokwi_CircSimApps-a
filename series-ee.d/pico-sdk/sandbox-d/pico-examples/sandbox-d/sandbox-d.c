@@ -34,9 +34,9 @@ const uint8_t *flash_target_contents_b = (const uint8_t *) (XIP_BASE + FLASH_TAR
 extern int _this_ws2812();
 // extern void crufty_printer(void);
 
-extern void _pico_LED_init(void);
-extern void _pico_pip(void);
-extern int _pico_LED(void);
+// extern void _pico_LED_init(void);
+// extern void _pico_pip(void);
+// extern int _pico_LED(void);
 
 void _loop_delay_local(void) {
     if (tud_cdc_n_connected (0)) return;
@@ -48,7 +48,7 @@ void _loop_delay_local(void) {
 }
 
 void blink_loop(void) {
-    _pico_pip();
+    // _pico_pip();
     _loop_delay_local();
 }
 
@@ -71,11 +71,13 @@ int main(void) {
 
     sleep_ms(800);
     // if bool     tud_cdc_n_connected       (uint8_t itf);
-    _pico_LED_init();
+    // _pico_LED_init();
     while (! tud_cdc_n_connected (0)) {
         blink_loop(); // no while - done only once
     }
-    for (int i=3;i>0;i--) _pico_LED();
+
+    // for (int i=3;i>0;i--) _pico_LED();
+
     // stale message text follows - poorly maintained.
     // poor testing of latest edits - may cause issues.  However, brief test seemed okay.
     uart_puts(UART_ID, "\r\n   camelforth-rp2040-b-MS-U r0.1.8-pre-alpha\r\n\r\n");
