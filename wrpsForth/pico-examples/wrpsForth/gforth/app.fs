@@ -1,4 +1,4 @@
-\ Wed 30 Mar 23:46:58 UTC 2022
+\ Thu 31 Mar 18:18:41 UTC 2022
 
 : stimex 384 \ 900
   #, for
@@ -188,7 +188,7 @@
 
 ;
 
-: tell ." Thu 31 Mar 16:47:19 UTC 2022 " cr ;
+: tell ." Thu 31 Mar 18:18:41 UTC 2022 " cr ;
 
 : run 5 #, 3 #, over over cr ." dot S: " .s cr ;
 
