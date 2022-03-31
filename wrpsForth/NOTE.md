@@ -46,4 +46,8 @@ Upload only these files, to wokwi.com:
 
     wokwi_CircSimApps-a/series-ee.d/pico-sdk/sandbox-a
 
+  SOFTLINKS explainer:
+
+    https://stackoverflow.com/questions/954560/how-does-git-handle-symbolic-links
+
 END.
