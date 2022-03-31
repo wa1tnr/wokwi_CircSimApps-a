@@ -1,5 +1,7 @@
 // Thu 31 Mar 00:29:05 UTC 2022
 
+// ../gforth/memory.h read by CMakeLists.txt
+
 //  h# 20    enters  decimal 32 literal
 
 // +  and  .s  wark mostly as-expected.
@@ -813,7 +815,7 @@ void _depth(){
 void _huh(){
     // Serial1.write(" ?\n");
     putchar(' ');
-    putchar('w');
+    putchar('?');
     putchar('\n');
     _abort();
 }

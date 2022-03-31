@@ -187,6 +187,9 @@
   again
 
 ;
+
+: tell ." Thu 31 Mar 16:47:19 UTC 2022 " cr ;
+
 : run 5 #, 3 #, over over cr ." dot S: " .s cr ;
 
 \ : run n867 ;

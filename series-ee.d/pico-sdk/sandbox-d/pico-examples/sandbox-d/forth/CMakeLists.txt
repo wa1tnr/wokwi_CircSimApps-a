@@ -10,5 +10,6 @@ endif()
 # target_link_libraries(forth pico_runtime flash pico_stdlib)
 
 include_directories(../include)
+include_directories(../gforth)
 add_library(forth forth.c)
 target_link_libraries(forth pico_runtime hardware_flash pico_stdlib)
