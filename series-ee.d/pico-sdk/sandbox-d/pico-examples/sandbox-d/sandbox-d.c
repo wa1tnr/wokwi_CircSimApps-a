@@ -1,4 +1,4 @@
-// Wed 30 Mar 20:56:36 UTC 2022
+// Thu 31 Mar 00:29:05 UTC 2022
 
 // GOOD ARM Forth seems to 'work' reasonably well but needs much work
 
@@ -18,15 +18,10 @@
 #include <stdlib.h>         // rp2040_flash_ops.inc
 #include "pico/stdlib.h"
 #include "hardware/flash.h" // rp2040_flash_ops.inc
-// #include "tusb.h"
-// #include "cdc_device.h" // mystery location
 
-// #define FLASH_TARGET_OFFSET_B (256 * 1024)
 #define FLASH_TARGET_OFFSET_B 0x1E0000
 
-// super kludge to do this here this way 27 Feb 2021:
 const uint8_t *flash_target_contents_b = (const uint8_t *) (XIP_BASE + FLASH_TARGET_OFFSET_B);
-
 
 /// \tag::hello_uart[]
 
@@ -35,28 +30,19 @@ const uint8_t *flash_target_contents_b = (const uint8_t *) (XIP_BASE + FLASH_TAR
 
 #define UART_TX_PIN 0
 #define UART_RX_PIN 1
-// extern void interpreter(void);
 extern int _this_ws2812();
-// extern void crufty_printer(void);
 
+// extern void crufty_printer(void);
 // extern void _pico_LED_init(void);
 // extern void _pico_pip(void);
 // extern int _pico_LED(void);
 
 void _loop_delay_local(void) {
-//    if (tud_cdc_n_connected (0)) return;
-//    for (volatile int i=288;i>0;i--) { // 144 okay
-//        for (volatile int j=455555;j>0;j--) {
-//        }
-//        if (tud_cdc_n_connected (0)) return;
-//    }
 }
 
 void blink_loop(void) {
-    // _pico_pip();
     _loop_delay_local();
 }
-
 
 // forth.c
 // 468:int forth_main() {
@@ -64,7 +50,7 @@ void blink_loop(void) {
 extern int forth_main();
 
 int main(void) {
-    sleep_ms(4800);
+    sleep_ms(400);
     uart_init(UART_ID, BAUD_RATE);
 
     gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
@@ -72,25 +58,20 @@ int main(void) {
 
     stdio_init_all();
 
-    // uart_putc_raw(UART_ID, 'A');
+    sleep_ms(50);
+#if 0
+    printf( "\n  Hello - aa\n");
+    sleep_ms(200);
+    printf( "\n  Hello - bb\n");
+    sleep_ms(200);
+    printf( "\n  Hello - cc\n");
+    sleep_ms(200);
+#endif
+#if 0
 
-    sleep_ms(1800);
-    printf( "\n  Hello - aa\n\n");
-    sleep_ms(1800);
-    printf( "\n  Hello - bb\n\n");
-    sleep_ms(1800);
-    printf( "\n  Hello - cc\n\n");
-    sleep_ms(1800);
-    // if bool     tud_cdc_n_connected       (uint8_t itf);
-    // _pico_LED_init();
-//    while (! tud_cdc_n_connected (0)) {
-//        blink_loop(); // no while - done only once
-//    }
-
-    // for (int i=3;i>0;i--) _pico_LED();
-
-    // stale message text follows - poorly maintained.
-    // poor testing of latest edits - may cause issues.  However, brief test seemed okay.
+ // ///////////////////////   KEEP     ////////////////////
+ // ///////////////////////   KEEP     ////////////////////
+ // ///////////////////////   KEEP     ////////////////////
 
     uart_puts(UART_ID, "\r\n   camelforth-rp2040-b-MS-U r0.1.8-pre-alpha\r\n\r\n");
     printf(              "\n   camelforth-rp2040-b-MS-U r0.1.8-pre-alpha\n\n");
@@ -104,11 +85,17 @@ int main(void) {
     uart_puts(UART_ID, "        +reflash +dump +blink +UART +USB\r\n");
     printf(            "        +reflash +dump +blink +UART +USB\n");
 
+ // ///////////////////////   KEEP     ////////////////////
+ // ///////////////////////   KEEP     ////////////////////
+ // ///////////////////////   KEEP     ////////////////////
+
+#endif
+
    // crufty_printer(); // examine ram with this nonsense function
 
-// int result = _this_ws2812(); // do a NEOPIX thing here
+   // int result = _this_ws2812(); // do a NEOPIX thing here
 
-    printf( "   NEOPIX activity here\n\n");
+   // printf( "   NEOPIX activity here\n\n");
 
 // kludge: bug with flash access in no_flash binary compile (see CMakeLists.txt for the toggle)
 // #undef NO_FLASH_CMAKE
@@ -130,9 +117,16 @@ int main(void) {
 
     // printf("%s", "\n");
     // extern int forth_main();
-    printf( "   wokwi port 30 March 2022\n\n");
+    // printf( "\nwokwi port 30 March 2022\n");
     int result_ing = forth_main();
+    
+    // never executes:
 
+    putchar('_');
+    putchar('_');
+    putchar('?');
+    putchar('_');
+    putchar('_');
     // while(1) {
         // interpreter(); // camelforth
     // }
