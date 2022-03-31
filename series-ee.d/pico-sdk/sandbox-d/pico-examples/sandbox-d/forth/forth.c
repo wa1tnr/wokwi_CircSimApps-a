@@ -1,8 +1,8 @@
-// Wed 30 Mar 23:46:58 UTC 2022
+// Thu 31 Mar 00:29:05 UTC 2022
 
 //  h# 20    enters  decimal 32 literal
 
-// +  and  .s  work mostly as-expected.
+// +  and  .s  wark mostly as-expected.
 
 
 // https://wokwi.com/projects/327506579910820436 current NOW
@@ -67,76 +67,20 @@ char print_string[stack_buffer_length];
 #define RP2040_PICO
 #ifdef RP2040_PICO
 
-// ///////////////////// // #include "forth_c.h"     /////////////////////
-// ///////////////////// // #include "forth_c.h"     /////////////////////
-// #define DATE_STAMP "Mon Feb 28 11:25:51 UTC 2022"
 #define DATE_STAMP "Mon 28 Mar 23:31:49 UTC 2022"
-// #define BRANCH_STAMP  "dvlp-aa                            __"
-// #define COMMIT_STAMP  "49723cf"
-// #define FEATURE_STAMP "+wokwi +auto_load +rewind            "
-// #define MODE_STAMP "copy_to_ram"
 #define MODE_STAMP "copy_to_ram"
-// #define MODE_STAMP "no_flash   "
-// #define MODE_STAMP "no_flash   "
 #define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - " DATE_STAMP "  ");
-// old count reasonable branch stamp: #define DOFILLS_datus ("\200\n\n +flwrite +erase " DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST    \n " MODE_STAMP " mode\n\n            ");
-// #define DOFILLS_datus ("\237\n\n " FEATURE_STAMP DATE_STAMP " \n branch " BRANCH_STAMP " " COMMIT_STAMP " UNDER TEST   \n " MODE_STAMP " mode\n\n");
-// special attempt: make some pointerish things more robust by superstitiously using 'volatile' all over the place ;)
-// surprisingly, all these changes in this commit do compile cleanly.
-
-#if 0
-// mass code disable 28 M_r 2022 23:05:53 first instance of this.
-#endif
 
 #include <stdint.h>
 #include <stdbool.h>
 
-#if 0
-// #include "forth.h"
-// ///////////////////// // #include "forth.h"       /////////////////////
-// ///////////////////// // #include "forth.h"       /////////////////////
-#endif
-
 #define RP2040_PICO               /* for use with Raspberry Pi Pico RP2040 based target */
 #define USB_IFACE                 /* only some implementations */
-
-#if 0
-#endif
-
-// ///////////////////// // #include "forth.h"       /////////////////////
-// ///////////////////// // #include "forth.h"       /////////////////////
 
 /* not sure where this goes 07 M_r 2021 tnr */
 uint32_t getFlKey_counter = 0;
 
-#if 0
-#endif
-
 #ifdef RP2040_PICO
-
-// #include "rp2040_pico_inc.h"
-
-// ///////////////////// // #include "rp2040_pico_inc.h"       ///////////
-// ///////////////////// // #include "rp2040_pico_inc.h"       ///////////
-
-/****h* camelforth-a/src/cf/rp2040_pico/rp2040_pico.inc
- */
-
-// #include "rp2040_pico.h"
-// ///////////////////// // #include "rp2040_pico.h"       ///////////////
-// ///////////////////// // #include "rp2040_pico.h"       ///////////////
-
-// Nothing inserted - exists above  28 Feb 2022 10:55z
-
-// ///////////////////// // #include "rp2040_pico.h"       ///////////////
-// ///////////////////// // #include "rp2040_pico.h"       ///////////////
-
-// #include "rp2040_pico_getkey_usb_inc.h"
-// ///////////////////// // #include "rp2040_pico_getkey_usb_inc.h"   ////
-// ///////////////////// // #include "rp2040_pico_getkey_usb_inc.h"   ////
-
-
-// #include "rp2040_pico.h"
 
 uint8_t getKey(void) {     // hardware-independent wrapper xa
     uint8_t ch_read;
@@ -150,32 +94,7 @@ void queryKey(void) {
     // TODO wa1tnr
 }
 
-// ///////////////////// // #include "rp2040_pico_getkey_usb_inc.h"   ////
-// ///////////////////// // #include "rp2040_pico_getkey_usb_inc.h"   ////
-
-// #include "rp2040_flashkey_inc.h"
-// ///////////////////// // #include "rp2040_flashkey_inc.h"       ///////
-// ///////////////////// // #include "rp2040_flashkey_inc.h"       ///////
-
-// Sun M_r  7 16:57:29 UTC 2021
-// #include "rp2040_pico.h" // redundant? YES.
-// #include "pico/stdlib.h" // redundant?  YES.
-
 #define FL_KEY_BASE 0x10040000 // same as example code SDK // xcc
-
-#if 0
-#endif
-// ENiD,
-
-// ///////////////////// // #include "rp2040_flashkey_inc.h"       ///////
-// ///////////////////// // #include "rp2040_flashkey_inc.h"       ///////
-
-// #include "cut_inc.h"              // string cutter utility, for long USB printf's
-// ///////////////////// // #include "cut_inc.h"       ///////////////////
-// ///////////////////// // #include "cut_inc.h"       ///////////////////
-
-// #include <stdio.h> // redundant?  YES.
-// #include <string.h> // redundant?  YES.
 
 #define BUFFLEN 128
 #define CHOP_LN 5
@@ -321,18 +240,6 @@ rev 2018.9.14.31567
 // ///////////////////// // #include "cut_inc.h"       ///////////////////
 // ///////////////////// // #include "cut_inc.h"       ///////////////////
 
-// ###bookmark-e  is getKey and getFlKey present or not
-
-// 347: uint8_t getKey(void) {     // hardware-independent wrapper xa
-// 393: uint8_t getFlKey(void) {     // hardware-independent wrapper
- 
-// extern uint8_t getKey(void);       // hardware-independent wrapper
-// extern uint8_t getFlKey(void);     // get 'keystroke' from QSPI flashROM RP2040
-
-// extern int _pico_LED();
-
-// #define NULL 0  // already defined for Atmel Start and gcc:
-
 /*
  * Terminal I/O functions
  */
@@ -366,12 +273,6 @@ int getquery(void) {
     return -1;                  /* TODO wa1tnr */
 }
 
-/****f* main/main
- */
-
-// ///////////////////// // #include "rp2040_pico_inc.h"       ///////////
-// ///////////////////// // #include "rp2040_pico_inc.h"       ///////////
-
 #endif
 
 #if 0
@@ -391,12 +292,6 @@ CODE(dot) {        /* temporary definition for testing */
 }
 #endif
 
-// 29 Mar 2022 keep above intact
-
-// #include "pico-LED_c.h"
-// ///////////////////// // #include "pico-LED_c.h"       ////////////////
-// ///////////////////// // #include "pico-LED_c.h"       ////////////////
-
 int _pico_LED() {
     const uint LED_PIN = 25;
     gpio_init(LED_PIN);
@@ -404,12 +299,12 @@ int _pico_LED() {
     // while (true) {
         gpio_put(LED_PIN, 1);
         sleep_ms(250);
+        sleep_ms(250);
         gpio_put(LED_PIN, 0);
+        sleep_ms(250);
         sleep_ms(250);
     // }
 }
-
-
 
 #if 0
 // ///////////////////// // #include "pico-LED_c.h"       ////////////////
@@ -462,16 +357,8 @@ void reflash(void) {  /*  --  */
 #define UART_RX_PIN 1
 
 
-// extern void loop_forth();
-
-
 
 // n_sketch.cpp
-// Wed 30 Mar 10:21:14 UTC 2022 - ONLINE edit
-
-// warn 001: #warning sketch.cpp seen
-
-// #include <Arduino.h>
 
 
 // ###bookmark
@@ -479,19 +366,7 @@ void reflash(void) {  /*  --  */
 #include <string.h> // strcpy
 // #include "pico/stdio.h"
 
-
 #include "pico/stdlib.h"
-
-
-
-
-
-
-
-
-
-
-
 
 #include "memory.h"
 // #include "compatibility.h"
@@ -525,7 +400,10 @@ void _reflashing(void) { }
 
 // extern void _blink_led(void);
 
-void _blink_led(void) { }
+void _blink_led(void) {
+    _pico_LED();
+    // write a '.'
+}
 
 
 #include "forth_defines.h" // textual tags
@@ -934,6 +812,9 @@ void _depth(){
 
 void _huh(){
     // Serial1.write(" ?\n");
+    putchar(' ');
+    putchar('w');
+    putchar('\n');
     _abort();
 }
 
@@ -1015,6 +896,7 @@ void _fetchMCP23017(){
 #ifdef RP2040_VARIANT
 // all the I/O pins needed for the steno keyboard
 void _initGPIO(){
+    _pico_LED();
 #if 0
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(9, INPUT_PULLUP);
@@ -1050,6 +932,7 @@ void _fetchGPIO(){
 
 #ifndef RP2040_VARIANT
 void _initGPIO(){
+#if 0
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(9, INPUT_PULLUP);
     pinMode(10, INPUT_PULLUP);
@@ -1060,9 +943,11 @@ void _initGPIO(){
     pinMode(A3, INPUT_PULLUP);
     pinMode(A4, INPUT_PULLUP);
     pinMode(A5, INPUT_PULLUP);
+#endif
 }
 
 void _fetchGPIO(){
+#if 0
     DUP;
     T=digitalRead(9);
     T|=digitalRead(10)<<1;
@@ -1074,6 +959,7 @@ void _fetchGPIO(){
     T|=digitalRead(A4)<<7;
     T|=digitalRead(A5)<<8;
     T^=0x01ff;
+#endif
 }
 #endif // #ifndef RP2040_VARIANT
 
@@ -1333,6 +1219,7 @@ void pq_loop() {
 
 int forth_main() {
     sleep_ms(100);
+    _pico_LED(); _pico_LED(); _pico_LED();
     uart_init(UART_ID, BAUD_RATE);
 
     gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
@@ -1343,9 +1230,8 @@ int forth_main() {
     // uart_putc_raw(UART_ID, 'A');
 
     sleep_ms(100);
-    uart_puts(UART_ID, "\r\nnew wokwi RPi Pico RP2040  Forth 29 Mar 2022\r\n\r\n");
-
-    uart_puts(UART_ID, " pico-sdk  based\r\n\r\n");
+    uart_puts(UART_ID, "\n  new wokwi RPi Pico RP2040  Forth 31 Mar 2022\r\n");
+    uart_puts(UART_ID, "  pico-sdk +/or wokwi based\r\n");
 
     putchar(' ');
     putchar(' ');
@@ -1368,14 +1254,24 @@ int forth_main() {
     putchar('\r');
     putchar('\n');
 
-    strcpy(print_string, "  greet  Tue 29 Mar 17:58:24 UTC 2022");
+    strcpy(print_string, "  greet  Thu 31 Mar 00:41:02 UTC 2022");
     printf("%s", print_string);
-    putchar('\n');
+    // putchar('\n');
 
+    printf("\ntry:   h# 5 h# 3 over over * . cr .s cr");
+    printf("\ntry:   words\n");
     while(1) {
-        uint8_t ch_key = getKey();
-        putchar(ch_key); // seems okay - no further research yet
+        // uint8_t ch_key = getKey();
+        // putchar(ch_key); // seems okay - no further research yet
         loop_forth();
+        // bug catcher:
+        putchar('_');
+        putchar('_');
+        putchar('?');
+        putchar('L');
+        putchar('_');
+        putchar('_');
+
     }
 }
 
