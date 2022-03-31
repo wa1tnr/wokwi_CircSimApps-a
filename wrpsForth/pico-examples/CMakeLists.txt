@@ -1,3 +1,4 @@
+# Thu 31 Mar 18:18:41 UTC 2022
 cmake_minimum_required(VERSION 3.12)
 
 # Pull in PICO SDK (must be before project)
@@ -26,7 +27,4 @@ if ( CMAKE_COMPILER_IS_GNUCC )
     set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 endif()
 
-# Hardware-specific examples in subdirectories:
-# add_subdirectory(cmake)
-add_subdirectory(sandbox-d)
-# add_subdirectory(system)
+add_subdirectory(wrpsForth)
