@@ -1,22 +1,25 @@
-Thu 31 Mar 01:33:33 UTC 2022  ONLINE edit on wokwi
+Thu 31 Mar 16:47:19 UTC 2022  ONLINE edit on wokwi
+
+  https://wokwi.com/projects/327585255775011410
 
 dvlp-aa  -  nice  functional  Forth.
 
 diagram.json   sandbox-d.c   forth_defines.h
 NOTE.md        forth.c       memory.h
 
+  https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/main/series-ee.d/pico-sdk/sandbox-d
+
 ./c to compile memory.h in gforth.
-  
-  https://wokwi.com/projects/327585255775011410
 
 
-  working arm forth:
+
+  NEWEST_not_current:
 
   https://wokwi.com/projects/327506579910820436
 
   NEW:
 
-  https://wokwi.com/projects/327415555705274962  current Tue 29 Mar 17:58:24 UTC 2022  REUSED OLDER ONE
+  https://wokwi.com/projects/327415555705274962  Tue 29 Mar 17:58:24 UTC 2022  REUSED OLDER ONE
 
   PROOF:
   https://wokwi.com/projects/327496766680203859  shows LCD in use.
