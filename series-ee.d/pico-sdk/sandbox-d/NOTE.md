@@ -1,8 +1,11 @@
-Thu 31 Mar 00:29:05 UTC 2022  ONLINE edit on wokwi
+Thu 31 Mar 01:33:33 UTC 2022  ONLINE edit on wokwi
 
-dvlp-aa
+dvlp-aa  -  nice  functional  Forth.
 
-  regroup - want CMake compatible:
+diagram.json   sandbox-d.c   forth_defines.h
+NOTE.md        forth.c       memory.h
+
+./c to compile memory.h in gforth.
   
   https://wokwi.com/projects/327585255775011410
 
