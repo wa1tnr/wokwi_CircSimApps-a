@@ -4,8 +4,12 @@ Thu 31 Mar 16:47:19 UTC 2022  ONLINE edit on wokwi
 
 dvlp-aa  -  nice  functional  Forth.
 
-diagram.json   sandbox-d.c   forth_defines.h
-NOTE.md        forth.c       memory.h
+Upload only these files, to wokwi.com:
+
+```
+  diagram.json   wrpsForth.c   forth_defines.h
+  NOTE.md        forth.c       memory.h
+```
 
   https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/main/series-ee.d/pico-sdk/sandbox-d
 
