@@ -1,4 +1,4 @@
-// Thu 31 Mar 00:29:05 UTC 2022
+// Thu 31 Mar 16:47:19 UTC 2022
 
 // GOOD ARM Forth seems to 'work' reasonably well but needs much work
 
@@ -132,4 +132,3 @@ int main(void) {
     // }
 }
 // END.
-
