@@ -1017,6 +1017,8 @@ Parameters
 #endif
 
 void _setmask(){
+
+
     // gpio_set_mask (uint32_t mask);
     // gpio_set_mask ((uint32_t) T);
 
@@ -1045,13 +1047,46 @@ void _setmask(){
     }
     DROP;
     DROP;
+
+
 }
 
 void _clrmask() {
+
+    DUP; W=T;
+
+    if (W &= 0x8) {
+        T=0x13; // t t' -- t tmod // first bit
+        gpio_put(T, 0); // DROP; DROP; return;
+    }
+    DROP; DUP; W=T;
+    if (W&=0x4) {
+        T=0x12;
+        gpio_put(T, 0); // DROP; DROP; return;
+    }
+    DROP; DUP; W=T;
+    if (W&=0x2) {
+        T=0x11;
+        gpio_put(T,0); // DROP; DROP; return;
+    }
+    DROP; DUP; W=T;
+    if (W&=0x1) {
+        T=0x10;
+        gpio_put(T,0); // DROP; DROP; return;
+    }
+    DROP;
+    DROP;
+
+
+
+
+
+#if 0
     gpio_put(19, 0);
     gpio_put(18, 0);
     gpio_put(17, 0);
     gpio_put(16, 0);
+#endif
 }
 void _setmask_aa(){
     // gpio_set_mask (uint32_t mask);
