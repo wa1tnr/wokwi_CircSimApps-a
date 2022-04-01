@@ -460,11 +460,13 @@ uint8_t ram[RAMSIZE];
 void _off(){
     int pin = T;
     // digitalWrite(pin, LOW);
+    gpio_put(T, 0);
     DROP;
 }
 
 void _on(){
     int pin = T;
+    gpio_put(T, 1);
     // digitalWrite(pin, HIGH);
     DROP;
 }
@@ -894,9 +896,10 @@ void _fetchMCP23017(){
 
 #ifdef RP2040_VARIANT
 #define FIRST_GPIO 16
-#define LAST_GPIO 19
+#define LAST_GPIO 21
 // all the I/O pins needed for the attached peripheral (HD44780 4-bit, initially)
 // https://github.com/raspberrypi/pico-examples/blob/master/gpio/hello_7segment/hello_7segment.c#L51
+
 void _initGPIO(){
     _pico_LED();
     for (int gpio = FIRST_GPIO; gpio < LAST_GPIO + 1; gpio++) {
@@ -993,6 +996,7 @@ Drive high every GPIO appearing in mask.
 Parameters
    • mask Bitmask of GPIO values to set, as bits 0-29
 #endif
+
 void _setmask(){
     // gpio_set_mask (uint32_t mask);
     gpio_set_mask ((uint32_t) T);
@@ -1001,6 +1005,8 @@ void _setmask(){
 
 // +code clrmask 66,
 void _clrmask(){
+    gpio_clr_mask ((uint32_t) T);
+    DROP;
 }
 
 #if 0
