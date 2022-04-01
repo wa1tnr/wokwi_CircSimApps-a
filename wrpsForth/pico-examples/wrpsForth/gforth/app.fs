@@ -214,7 +214,6 @@
 ;
 [then]
 
-: tell ." Thu 31 Mar 18:18:41 UTC 2022 " cr ;
 
 \ gforth doesn't need a gap between last char and closing quote
 
@@ -222,9 +221,69 @@
 
 : hint ." setupgpio   << now very good demo" cr
        ." setupgpio  initGPIO  h# 13  setmask" cr
-       ." h# 10 on   h# 11 on   thru   h# 15 on" cr ;
+       ." h# 10 on   h# 11 on   thru   h# 15 on" cr
+       cr
+       ." h# f setmask"     cr
+       ." stimex h# 13 off" cr
+       ." stimex h# 12 off" cr
+       ." stimex h# 11 off" cr
+       ." stimex h# 10 off" cr
+       ." h# b setmask" cr
+       ." run   <-- demo" cr
+;
 
-: run 5 #, 3 #, over over cr ." dot S: " .s cr ;
+: run
+
+  15 #, setmask stimex stimex
+  15 #, clrmask stimex stimex
+
+  14 #, setmask stimex stimex
+  14 #, clrmask stimex stimex
+
+  13 #, setmask stimex stimex
+  13 #, clrmask stimex stimex
+
+  12 #, setmask stimex stimex
+  12 #, clrmask stimex stimex
+
+  11 #, setmask stimex stimex
+  11 #, clrmask stimex stimex
+
+  10 #, setmask stimex stimex
+  10 #, clrmask stimex stimex
+
+   9 #, setmask stimex stimex
+   9 #, clrmask stimex stimex
+
+   8 #, setmask stimex stimex
+   8 #, clrmask stimex stimex
+
+   7 #, setmask stimex stimex
+   7 #, clrmask stimex stimex
+
+   6 #, setmask stimex stimex
+   6 #, clrmask stimex stimex
+
+   5 #, setmask stimex stimex
+   5 #, clrmask stimex stimex
+
+   4 #, setmask stimex stimex
+   4 #, clrmask stimex stimex
+
+   3 #, setmask stimex stimex
+   3 #, clrmask stimex stimex
+
+   2 #, setmask stimex stimex
+   2 #, clrmask stimex stimex
+
+   1 #, setmask stimex stimex
+   1 #, clrmask stimex stimex
+;
+
+: bbrun 5 #, 3 #, over over cr ." dot S: " .s cr ;
+
+\ : tell ." Thu 31 Mar 18:18:41 UTC 2022 " cr ;
+: tell ." Fri  1 Apr 22:19:05 UTC 2022 " cr ;
 
 \ : run n867 ;
 
