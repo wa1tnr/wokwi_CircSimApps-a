@@ -188,7 +188,41 @@
 
 ;
 
+: setupgpio ( -- )
+  initGPIO 19 #, setmask
+  16 #, on  stimex
+  16 #, off stimex
+  17 #, on  stimex
+  17 #, off stimex
+  18 #, on  stimex
+  18 #, off stimex
+  19 #, on  stimex
+  19 #, off stimex
+  20 #, on  stimex
+  20 #, off stimex
+  21 #, on  stimex
+  21 #, off stimex
+;  \ verify decimal - 0x13 is decimal 19
+
+0 [if]
+: foo
+  decimal
+  16 17 or hex . 11
+  decimal 16 17 or 18 or 19 or hex . 13
+  decimal 16 17 or 18 or 19 or     . 19
+  decimal 19 hex . 13
+;
+[then]
+
 : tell ." Thu 31 Mar 18:18:41 UTC 2022 " cr ;
+
+\ gforth doesn't need a gap between last char and closing quote
+
+\ so   : foo ." this" ;  \ is just fine.
+
+: hint ." setupgpio   << now very good demo" cr
+       ." setupgpio  initGPIO  h# 13  setmask" cr
+       ." h# 10 on   h# 11 on   thru   h# 15 on" cr ;
 
 : run 5 #, 3 #, over over cr ." dot S: " .s cr ;
 
