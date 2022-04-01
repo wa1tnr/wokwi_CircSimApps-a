@@ -1,4 +1,4 @@
-// Fri 01 Apr 21:02:39 UTC 2022
+// Fri  1 Apr 22:19:05 UTC 2022
 
 // seems to accept 0x00 thru 0x0f as input to 'setmask' word,
 // to manipulate GPIO 16 thru 19.
@@ -1436,12 +1436,14 @@ int forth_main() {
     putchar('\r');
     putchar('\n');
 
-    strcpy(print_string, "  greet  Thu 31 Mar 00:41:02 UTC 2022");
+    strcpy(print_string, "  greet  Fri 01 Apr 22:19:05 UTC 2022");
+                                // Fri  1 Apr 22:19:05 UTC 2022
     printf("%s", print_string);
     // putchar('\n');
 
     printf("\ntry:   h# 5 h# 3 over over * . cr .s cr");
     printf("\ntry:   words\n");
+    printf("\ntry:   run\n");
     while(1) {
         // uint8_t ch_key = getKey();
         // putchar(ch_key); // seems okay - no further research yet
