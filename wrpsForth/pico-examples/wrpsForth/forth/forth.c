@@ -1,4 +1,9 @@
-// Fri 01 Apr 02:27:33 UTC 2022
+// Fri 01 Apr 21:02:39 UTC 2022
+
+// seems to accept 0x00 thru 0x0f as input to 'setmask' word,
+// to manipulate GPIO 16 thru 19.
+// clrmask is now setup to just clear all four bits.
+
 
 // ../gforth/memory.h read by CMakeLists.txt
 
@@ -997,14 +1002,91 @@ Parameters
    • mask Bitmask of GPIO values to set, as bits 0-29
 #endif
 
+
+
+
+#if 0
+
+
+  0x13     0001 0011
+  0x12     0001 0010
+  0x11     0001 0001
+  0x10     0001 0000
+
+
+#endif
+
 void _setmask(){
     // gpio_set_mask (uint32_t mask);
-    gpio_set_mask ((uint32_t) T);
+    // gpio_set_mask ((uint32_t) T);
+
+    // T = T - 0x10;
+
+    DUP; W=T;
+
+    if (W &= 0x8) {
+        T=0x13; // t t' -- t tmod // first bit
+        gpio_put(T, 1); // DROP; DROP; return;
+    }
+    DROP; DUP; W=T;
+    if (W&=0x4) {
+        T=0x12;
+        gpio_put(T, 1); // DROP; DROP; return;
+    }
+    DROP; DUP; W=T;
+    if (W&=0x2) {
+        T=0x11;
+        gpio_put(T,1); // DROP; DROP; return;
+    }
+    DROP; DUP; W=T;
+    if (W&=0x1) {
+        T=0x10;
+        gpio_put(T,1); // DROP; DROP; return;
+    }
+    DROP;
     DROP;
 }
 
+void _clrmask() {
+    gpio_put(19, 0);
+    gpio_put(18, 0);
+    gpio_put(17, 0);
+    gpio_put(16, 0);
+}
+void _setmask_aa(){
+    // gpio_set_mask (uint32_t mask);
+    // gpio_set_mask ((uint32_t) T);
+
+    DUP; W=T;
+    if (W == 0x13) {
+        T=W&=0x13; // t t' -- t tmod // first bit
+        gpio_put(T, 1); DROP; DROP; return;
+    }
+
+    DROP; DUP; W=T;
+    if (W==0x12) {
+        T=W&=0x12;
+        gpio_put(T, 1); DROP; DROP; return;
+    }
+    DROP; DUP; W=T;
+    if (W==0x11) {
+        T=W&0x11;
+        gpio_put(T,1); DROP; DROP; return;
+    }
+    DROP; DUP; W=T;
+    if (W==0x10) {
+        T=W&0x10;
+        gpio_put(T,1); DROP; DROP; return;
+    }
+    DROP;
+    DROP;
+}
+
+
+
+
 // +code clrmask 66,
-void _clrmask(){
+void _clrmask_aa(){
     gpio_clr_mask ((uint32_t) T);
     DROP;
 }
