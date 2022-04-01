@@ -1,4 +1,4 @@
-// Thu 31 Mar 18:18:41 UTC 2022
+// Fri 01 Apr 02:27:33 UTC 2022
 
 // ../gforth/memory.h read by CMakeLists.txt
 
@@ -407,20 +407,17 @@ void _blink_led(void) {
     // write a '.'
 }
 
-
 #include "forth_defines.h" // textual tags
-// #include "timing.h"
 
-// Wed 30 Mar 10:21:14 UTC 2022 - ONLINE edit
-// timing.h
-// Tue  4 Jan 18:15:19 UTC 2022
+// Fri 01 Apr 02:26:29 UTC 2022 - ONLINE edit
 
-// extern void _wait_10_usec(void);
-void _wait_10_usec(void) { }
-// extern void _wait_1000_usec(void);
-void _wait_1000_usec(void) { }
+void _wait_10_usec(void) {
+    sleep_us(10);
+}
 
-// END.
+void _wait_1000_usec(void) {
+    sleep_us(1000);
+}
 
 // Forth registers
 uint32_t T=0; // cached top of data stack
