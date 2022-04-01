@@ -102,27 +102,29 @@ code initGPIO  61 ,
 code @GPIO  62 ,
 code lshift  63 ,
 code rshift  64 ,
+code setmask 65 ,
+code clrmask 66 ,
 \ code Keyboard.begin  67 ,
 \ code Keyboard.press  68 ,
 \ code Keyboard.release  69 ,
 \ code Keyboard.releaseAll  70 ,
 \ code Keyboard.end  71 ,
-code blink 65 ,
-code reflash 66 ,
-code on 67 ,
-code off 68 ,
-code fl@ 69 ,
-code fl! 70 ,
-code cpl 71 ,
-code cmd! 72 , \ new
-code cmd@ 73 , \ new
-code lv0! 74 , \ new
-code lv1! 75 , \ new
-code lv2! 76 , \ new
-code lv3! 77 , \ new
-code tusec 78 ,
-code msec 79 ,
--code /branch  80 ,
+code blink 67 ,
+code reflash 68 ,
+code on 69 ,
+code off 70 ,
+code fl@ 71 ,
+code fl! 72 ,
+code cpl 73 ,
+code cmd! 74 , \ new
+code cmd@ 75 , \ new
+code lv0! 76 , \ new
+code lv1! 77 , \ new
+code lv2! 78 , \ new
+code lv3! 79 , \ new
+code tusec 80 ,
+code msec 81 ,
+-code /branch  82 ,
 
 :m begin (  - a)  here m;
 :m again ( a)  branch [ 2/ ] , m;
