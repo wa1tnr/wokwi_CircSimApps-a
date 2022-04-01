@@ -893,9 +893,17 @@ void _fetchMCP23017(){
 */
 
 #ifdef RP2040_VARIANT
-// all the I/O pins needed for the steno keyboard
+#define FIRST_GPIO 16
+#define LAST_GPIO 19
+// all the I/O pins needed for the attached peripheral (HD44780 4-bit, initially)
+// https://github.com/raspberrypi/pico-examples/blob/master/gpio/hello_7segment/hello_7segment.c#L51
 void _initGPIO(){
     _pico_LED();
+    for (int gpio = FIRST_GPIO; gpio < LAST_GPIO + 1; gpio++) {
+        gpio_init(gpio);
+        gpio_set_dir(gpio, GPIO_OUT); // GPIO_OUT defined by pico-sdk
+    }
+
 #if 0
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(9, INPUT_PULLUP);
@@ -972,6 +980,27 @@ void _rshift(){
     W=T;
     DROP;
     T=T>>W;
+}
+
+// +code setmask 65,
+#if 0
+4.1.9.3.28. gpio_set_mask
+
+static void gpio_set_mask (uint32_t mask)
+
+Drive high every GPIO appearing in mask.
+
+Parameters
+   • mask Bitmask of GPIO values to set, as bits 0-29
+#endif
+void _setmask(){
+    // gpio_set_mask (uint32_t mask);
+    gpio_set_mask ((uint32_t) T);
+    DROP;
+}
+
+// +code clrmask 66,
+void _clrmask(){
 }
 
 #if 0
@@ -1080,24 +1109,55 @@ void (*function[])()={
     _wfetch , _wstore , _dnegate , // 58
     _squote , _nip , //  _initMCP23017 , _fetchMCP23017 , // 62
     _initGPIO , _fetchGPIO , _lshift , _rshift , // 64
+    _setmask , _clrmask , // 66
+
+#if 0
+
+ code lshift  63 ,
+ code rshift  64 ,
+
++code setmask 65,
++code clrmask 66,
+
+-code tusec 78 ,
+-code msec 79 ,
+--code /branch  80 ,
+
++code blink 67 ,
++code reflash 68 ,
++code on 69 ,
++code off 70 ,
++code fl@ 71 ,
++code fl! 72 ,
++code cpl 73 ,
++code cmd! 74 , \ new
++code cmd@ 75 , \ new
++code lv0! 76 , \ new
++code lv1! 77 , \ new
++code lv2! 78 , \ new
++code lv3! 79 , \ new
++code tusec 80 ,
++code msec 81 ,
++-code /branch  82 ,
+#endif
     // _Keyboard_begin , _Keyboard_press ,
     // _Keyboard_release , _Keyboard_releaseAll , _Keyboard_end ,
-    _blink_led , // 65 simple integer count
-    _reflashing , // 66
-    _on , // 67
-    _off , // 68
-    _flfetch, // 69
-    _flstore, // 70
-    _cpl, // 71
-    _cmd_store, // 72
-    _cmd_fetch, // 73 new
-    _lv0_store, // 74
-    _lv1_store, // 75
-    _lv2_store, // 76
-    _lv3_store, // 77
-    _wait_10_usec, // 78
-    _wait_1000_usec, // 79
-    _dropzbranch , // 80
+    _blink_led ,  // 67 simple integer count
+    _reflashing , // 68 // just add two 01 Apr 2022
+    _on ,       // 69
+    _off ,      // 70
+    _flfetch,   // 71
+    _flstore,   // 72
+    _cpl,       // 73
+    _cmd_store, // 74
+    _cmd_fetch, // 75 new
+    _lv0_store, // 76
+    _lv1_store, // 77
+    _lv2_store, // 78
+    _lv3_store, // 79
+    _wait_10_usec, // 80
+    _wait_1000_usec, // 81
+    _dropzbranch , // 82
 };
 
 void _execute(){
