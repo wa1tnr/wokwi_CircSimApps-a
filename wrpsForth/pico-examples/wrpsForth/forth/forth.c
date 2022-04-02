@@ -1,4 +1,4 @@
-// Sat  2 Apr 00:46:57 UTC 2022
+// Sat  2 Apr 01:18:16 UTC 2022
 
 // seems to accept 0x00 thru 0x0f as input to 'setmask' word,
 // to manipulate GPIO 16 thru 19.
