@@ -1,4 +1,4 @@
-// Fri  1 Apr 22:19:05 UTC 2022
+// Sat  2 Apr 00:46:57 UTC 2022
 
 // seems to accept 0x00 thru 0x0f as input to 'setmask' word,
 // to manipulate GPIO 16 thru 19.
@@ -10,7 +10,6 @@
 //  h# 20    enters  decimal 32 literal
 
 // +  and  .s  wark mostly as-expected.
-
 
 // https://wokwi.com/projects/327506579910820436 current NOW
 
@@ -74,7 +73,7 @@ char print_string[stack_buffer_length];
 #define RP2040_PICO
 #ifdef RP2040_PICO
 
-#define DATE_STAMP "Mon 28 Mar 23:31:49 UTC 2022"
+#define DATE_STAMP "Sat  2 Apr 00:46:57 UTC 2022"
 #define MODE_STAMP "copy_to_ram"
 #define VERS_CFORTH ("\103CamelForth in C v0.1 - 14 Feb 2016 - " DATE_STAMP "  ");
 
@@ -363,23 +362,12 @@ void reflash(void) {  /*  --  */
 #define UART_TX_PIN 0
 #define UART_RX_PIN 1
 
-
-
-// n_sketch.cpp
-
-
-// ###bookmark
 #include <stdio.h>
 #include <string.h> // strcpy
-// #include "pico/stdio.h"
-
 #include "pico/stdlib.h"
 
 #include "memory.h"
-// #include "compatibility.h"
 
-
-// Wed 30 Mar 10:21:14 UTC 2022
 
 // warn 002: #warning seen compatibility.h
 
@@ -398,9 +386,6 @@ void reflash(void) {  /*  --  */
 // #was in upstream // include <Keyboard.h>
 // #include "rp2040.h" // rp2040.cpp has routines that belong in main .ino file
 
-// Wed 30 Mar 10:21:14 UTC 2022 - ONLINE edit
-
-// rp2040.h
 
 // extern void _reflashing(void);
 void _reflashing(void) { }
@@ -413,8 +398,6 @@ void _blink_led(void) {
 }
 
 #include "forth_defines.h" // textual tags
-
-// Fri 01 Apr 02:26:29 UTC 2022 - ONLINE edit
 
 void _wait_10_usec(void) {
     sleep_us(10);
@@ -522,7 +505,6 @@ void _branch(){
     I=memory[I];
 }
 
-
 void _zbranch(){
     if(T==0){
         I=memory[I];
@@ -594,7 +576,6 @@ void _dotsh(){
 //  Serial1.print(" ");
 
     putchar(' '); // provisional 29 Mar
-
 
     switch(S){
     case 0:
@@ -810,7 +791,9 @@ void _storeplus(){
     ram[W++]=(T>>8)&0xff;
     DROP;
 }
+
 // ###bookmark
+
 void _depth(){
     DUP;
     T=S-1;
@@ -902,6 +885,7 @@ void _fetchMCP23017(){
 #ifdef RP2040_VARIANT
 #define FIRST_GPIO 16
 #define LAST_GPIO 21
+
 // all the I/O pins needed for the attached peripheral (HD44780 4-bit, initially)
 // https://github.com/raspberrypi/pico-examples/blob/master/gpio/hello_7segment/hello_7segment.c#L51
 
@@ -992,6 +976,7 @@ void _rshift(){
 
 // +code setmask 65,
 #if 0
+
 4.1.9.3.28. gpio_set_mask
 
 static void gpio_set_mask (uint32_t mask)
@@ -1000,32 +985,23 @@ Drive high every GPIO appearing in mask.
 
 Parameters
    • mask Bitmask of GPIO values to set, as bits 0-29
+
 #endif
 
-
-
-
 #if 0
-
-
   0x13     0001 0011
   0x12     0001 0010
   0x11     0001 0001
   0x10     0001 0000
-
-
 #endif
 
 void _setmask(){
-
-
     // gpio_set_mask (uint32_t mask);
     // gpio_set_mask ((uint32_t) T);
 
     // T = T - 0x10;
 
     DUP; W=T;
-
     if (W &= 0x8) {
         T=0x13; // t t' -- t tmod // first bit
         gpio_put(T, 1); // DROP; DROP; return;
@@ -1047,14 +1023,10 @@ void _setmask(){
     }
     DROP;
     DROP;
-
-
 }
 
 void _clrmask() {
-
     DUP; W=T;
-
     if (W &= 0x8) {
         T=0x13; // t t' -- t tmod // first bit
         gpio_put(T, 0); // DROP; DROP; return;
@@ -1076,10 +1048,6 @@ void _clrmask() {
     }
     DROP;
     DROP;
-
-
-
-
 
 #if 0
     gpio_put(19, 0);
@@ -1087,7 +1055,9 @@ void _clrmask() {
     gpio_put(17, 0);
     gpio_put(16, 0);
 #endif
+
 }
+
 void _setmask_aa(){
     // gpio_set_mask (uint32_t mask);
     // gpio_set_mask ((uint32_t) T);
@@ -1116,9 +1086,6 @@ void _setmask_aa(){
     DROP;
     DROP;
 }
-
-
-
 
 // +code clrmask 66,
 void _clrmask_aa(){
@@ -1314,8 +1281,6 @@ void time_out_blinker(void) {
 
 void login_msgs(void) {
 #if 0
-
-
     Serial1.println(RECENT_STAMP);
     Serial1.println(PROGRAM_NAME);
     Serial1.println(IP_NOTICE);
@@ -1327,7 +1292,7 @@ void login_msgs(void) {
     Serial1.println(BRANCH_STAMP);
     Serial1.println();
     Serial1.println(FEATURE_STAMP);
-    Serial1.println(" on wokwi 23:27z");
+    Serial1.println(" on wokwi 01:03z");
 #endif
 }
 
@@ -1394,10 +1359,7 @@ void pq_loop() {
         // blink_core_1();
     }
 }
-// END.
-
-
-
+// ENiD,
 
 int forth_main() {
     sleep_ms(100);
@@ -1412,7 +1374,7 @@ int forth_main() {
     // uart_putc_raw(UART_ID, 'A');
 
     sleep_ms(100);
-    uart_puts(UART_ID, "\n  new wokwi RPi Pico RP2040  Forth 31 Mar 2022\r\n");
+    uart_puts(UART_ID, "\n  new wokwi RPi Pico RP2040  Forth  2 Apr 2022\r\n");
     uart_puts(UART_ID, "  pico-sdk +/or wokwi based\r\n");
 
     putchar(' ');
@@ -1436,7 +1398,7 @@ int forth_main() {
     putchar('\r');
     putchar('\n');
 
-    strcpy(print_string, "  greet  Fri 01 Apr 22:19:05 UTC 2022");
+    strcpy(print_string, "  greet  Sat  2 Apr 00:46:57 UTC 2022");
                                 // Fri  1 Apr 22:19:05 UTC 2022
     printf("%s", print_string);
     // putchar('\n');
