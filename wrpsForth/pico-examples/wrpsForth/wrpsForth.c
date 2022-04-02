@@ -1,8 +1,17 @@
-// Thu 31 Mar 16:47:19 UTC 2022
+// Sat  2 Apr 01:20:25 UTC 2022
 
 // GOOD ARM Forth seems to 'work' reasonably well but needs much work
 
+#if 0
 
+    [ "pico:GP16", "lcd1:D7", "gray", [ "v-160", "h0" ] ],
+    [ "pico:GP17", "lcd1:D6", "gold", [ "v-150", "h0" ] ],
+    [ "pico:GP18", "lcd1:D5", "brown", [ "v-140", "h0" ] ],
+    [ "pico:GP19", "lcd1:D4", "green", [ "v-130", "h0" ] ],
+    [ "pico:GP20", "lcd1:E", "purple", [ "v-70", "h0" ] ],
+    [ "pico:GP21", "lcd1:RS", "blue", [ "v-60", "h0" ] ],
+
+#endif
 
 // wa1tnr
 // was: camelforth
