@@ -1,5 +1,3 @@
-F1 > PacMan > Cancel  (server prank system-wide)
-
 Sat  2 Apr 01:20:25 UTC 2022  ONLINE edit on wokwi
 
   https://wokwi.com/projects/327585255775011410
@@ -14,6 +12,23 @@ NOTE.md        forth.c       memory.hx
   https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/main/series-ee.d/pico-sdk/sandbox-d
 
   ./c to compile memory.h in gforth.
+
+
+  BUGFIX code here:
+
+  https://wokwi.com/projects/327861210310509138
+
+  for bitmask issue w/ gpio_set_mask();
+```cpp
+  #define SET_MASK_AA   0xf // LED's to brighten, bitmask
+
+  void demo_gpio_masking() {
+      thisMask = SET_MASK_AA;
+      thisMask = thisMask * 0x10000;
+      thisMask += 0xffff;
+      gpio_set_mask(thisMask);
+  }
+```
 
 
   NEWEST_not_current:
