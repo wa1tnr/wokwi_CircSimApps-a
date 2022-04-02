@@ -1,4 +1,4 @@
-// Sat  2 Apr 01:18:16 UTC 2022
+// Sat  2 Apr 01:20:25 UTC 2022
 
 // seems to accept 0x00 thru 0x0f as input to 'setmask' word,
 // to manipulate GPIO 16 thru 19.
@@ -1398,7 +1398,7 @@ int forth_main() {
     putchar('\r');
     putchar('\n');
 
-    strcpy(print_string, "  greet  Sat  2 Apr 00:46:57 UTC 2022");
+    strcpy(print_string, "  greet  Sat  2 Apr 01:20:25 UTC 2022");
                                 // Fri  1 Apr 22:19:05 UTC 2022
     printf("%s", print_string);
     // putchar('\n');
