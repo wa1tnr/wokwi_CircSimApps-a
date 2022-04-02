@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "wa1tnr / nis - Sat  2 Apr 00:46:57 UTC 2022",
+  "author": "wa1tnr / nis - Sat  2 Apr 01:20:25 UTC 2022",
   "editor": "wokwi",
   "parts": [
 
@@ -10,7 +10,7 @@
       "top": 0,
       "left": 0,
       "rotate": 270,
-      "attrs": { "builder": "picoh-sdk" }
+      "attrs": { "builder": "pico-sdk" }
     },
 
     { "type": "wokwi-lcd2004",
