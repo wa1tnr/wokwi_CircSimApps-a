@@ -266,8 +266,9 @@ id	main.fs	+106
 stimex	app.fs	+3
 n867	app.fs	+9
 setupgpio	app.fs	+191
-tell	app.fs	+217
-hint	app.fs	+223
-run	app.fs	+227
+hint	app.fs	+222
+run	app.fs	+235
+bbrun	app.fs	+283
+tell	app.fs	+286
 .stack	job.fs	+60
 check	job.fs	+61
