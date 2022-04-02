@@ -1,20 +1,19 @@
-Thu 31 Mar 16:47:19 UTC 2022  ONLINE edit on wokwi
+F1 > PacMan > Cancel  (server prank system-wide)
+
+Sat  2 Apr 01:20:25 UTC 2022  ONLINE edit on wokwi
 
   https://wokwi.com/projects/327585255775011410
 
-dvlp-aa  -  nice  functional  Forth.
+dvlp-aa  -  nice  functional  Forth
 
-Upload only these files, to wokwi.com:
+diagram.json   sandbox-d.c   forth_defines.h
+NOTE.md        forth.c       memory.hx
 
-```
-  diagram.json   wrpsForth.c   forth_defines.h
-  NOTE.md        forth.c       memory.h
-```
+  https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/wrpsForth
 
   https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/main/series-ee.d/pico-sdk/sandbox-d
 
-./c to compile memory.h in gforth.
-
+  ./c to compile memory.h in gforth.
 
 
   NEWEST_not_current:
@@ -45,9 +44,5 @@ Upload only these files, to wokwi.com:
     https://github.com/wa1tnr/camelforth-rp2040-a/tree/main/17-camelforth-a.d/pico-examples
 
     wokwi_CircSimApps-a/series-ee.d/pico-sdk/sandbox-a
-
-  SOFTLINKS explainer:
-
-    https://stackoverflow.com/questions/954560/how-does-git-handle-symbolic-links
 
 END.
