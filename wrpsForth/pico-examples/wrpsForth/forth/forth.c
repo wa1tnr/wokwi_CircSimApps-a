@@ -988,6 +988,14 @@ Parameters
 
 #endif
 
+void _setmask() {
+    T = T * 0x10000;
+    // T += 0xffff;
+    gpio_set_mask(T);
+    DROP;
+    // printf("\nCANONICAL\n");
+}
+
 #if 0
   0x13     0001 0011
   0x12     0001 0010
@@ -995,7 +1003,7 @@ Parameters
   0x10     0001 0000
 #endif
 
-void _setmask(){
+void _setmaskbb(){
     // gpio_set_mask (uint32_t mask);
     // gpio_set_mask ((uint32_t) T);
 
