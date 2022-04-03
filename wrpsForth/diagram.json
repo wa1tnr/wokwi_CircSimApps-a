@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "wa1tnr / nis - Sat  2 Apr 01:20:25 UTC 2022",
+  "author": "wa1tnr / nis - Sun  3 Apr 09:10:34 UTC 2022",
   "editor": "wokwi",
   "parts": [
 
@@ -24,14 +24,14 @@
        "id": "led1",
        "top": -120,
        "left": 400,
-       "attrs": { "color": "brown" }
+       "attrs": { "color": "blue" }
     },
 
     { "type": "wokwi-led",
       "id": "led2",
       "top": -120,
       "left": 370,
-      "attrs": { "color": "red" }
+      "attrs": { "color": "blue" }
     },
 
     {
@@ -39,7 +39,7 @@
       "id": "led3",
       "top": -120,
       "left": 340,
-      "attrs": { "color": "orange" }
+      "attrs": { "color": "blue" }
     },
 
     {
@@ -47,7 +47,7 @@
       "id": "led4",
       "top": -120,
       "left": 310,
-      "attrs": { "color": "yellow" }
+      "attrs": { "color": "blue" }
     },
 
     { "type": "wokwi-led",
@@ -55,14 +55,14 @@
       "top": -120,
       "left": 250,
       "attrs": {
-      "color": "green" }
+      "color": "red" }
     },
 
     { "type": "wokwi-led",
       "id": "led6",
       "top": -120,
       "left": 220,
-      "attrs": { "color": "blue" }
+      "attrs": { "color": "red" }
     },
 
     {
