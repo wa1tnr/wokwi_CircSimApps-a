@@ -1,4 +1,4 @@
-// Sat  2 Apr 01:20:25 UTC 2022
+// Sun  3 Apr 09:00:59 UTC 2022
 
 // seems to accept 0x00 thru 0x0f as input to 'setmask' word,
 // to manipulate GPIO 16 thru 19.
@@ -996,6 +996,13 @@ void _setmask() {
     // printf("\nCANONICAL\n");
 }
 
+void _clrmask() {
+    T = T * 0x10000;
+    gpio_clr_mask(T);
+    DROP;
+    // printf("\nCANONICAL\n");
+}
+
 #if 0
   0x13     0001 0011
   0x12     0001 0010
@@ -1033,7 +1040,7 @@ void _setmaskbb(){
     DROP;
 }
 
-void _clrmask() {
+void _clrmask_bb() {
     DUP; W=T;
     if (W &= 0x8) {
         T=0x13; // t t' -- t tmod // first bit
