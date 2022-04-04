@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "wa1tnr / nis - Sun  3 Apr 09:10:34 UTC 2022",
+  "author": "wa1tnr / nis - Mon  4 Apr 00:26:40 UTC 2022  16x2 LCD",
   "editor": "wokwi",
   "parts": [
 
@@ -13,11 +13,12 @@
       "attrs": { "builder": "pico-sdk" }
     },
 
-    { "type": "wokwi-lcd2004",
-       "id": "lcd1",
-       "top": -340,
-       "left": -150,
-       "attrs": {}
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -340,
+      "left": -150,
+      "attrs": {}
     },
 
     { "type": "wokwi-led",
@@ -146,7 +147,13 @@
     [ "pico:GP19", "led4:A", "green", [ "v-32", "h0", "v-61", "h0" ] ],
     [ "pico:GP18", "led3:A", "brown", [ "v-38", "h0", "v-49", "h0" ] ],
     [ "pico:GP17", "led2:A", "gold", [ "v-44", "h0", "v-37", "h0" ] ],
+    [ "pico:GP16", "led1:A", "gray", [ "v-50", "h0", "v-25", "h0" ] ],
 
-    [ "pico:GP16", "led1:A", "gray", [ "v-50", "h0", "v-25", "h0" ] ]
+    [ "pico:GP16", "lcd1:D7", "gray", [ "v-160", "h0" ] ],
+    [ "pico:GP17", "lcd1:D6", "gold", [ "v-150", "h0" ] ],
+    [ "pico:GP18", "lcd1:D5", "brown", [ "v-140", "h0" ] ],
+    [ "pico:GP19", "lcd1:D4", "green", [ "v-130", "h0" ] ],
+    [ "pico:GP20", "lcd1:E", "purple", [ "v-70", "h0" ] ],
+    [ "pico:GP21", "lcd1:RS", "blue", [ "v-60", "h0" ] ]
   ]
 }
