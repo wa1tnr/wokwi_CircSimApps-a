@@ -1,3 +1,9 @@
+Mon  4 Apr 00:26:40 UTC 2022   ONLINE edit on wokwi
+
+  lcd 16x2 substituted - real hardware on-hand locally. ;)
+
+  TODO: series-ff-qc quick copy no hist 02 apr 02:56z
+     
 Sat  2 Apr 01:20:25 UTC 2022  ONLINE edit on wokwi
 
   https://wokwi.com/projects/327585255775011410
