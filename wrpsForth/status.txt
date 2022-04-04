@@ -1,0 +1,8 @@
+status.txt
+
+Builds clean in pico-sdk and produces an .UF2:
+
+  commit a5d0e23c3987b1ef1c027f8348c81373d3b809f0
+  Date:   Mon  4 Apr 03:25:18 UTC 2022
+
+END.
