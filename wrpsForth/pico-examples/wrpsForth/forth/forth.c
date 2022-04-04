@@ -399,8 +399,8 @@ void _blink_led(void) {
 
 #include "forth_defines.h" // textual tags
 
-void _wait_10_usec(void) {
-    sleep_us(10);
+void _wait_1_usec(void) {
+    sleep_us(1);
 }
 
 void _wait_1000_usec(void) {
@@ -1260,7 +1260,7 @@ void (*function[])()={
     _lv1_store, // 77
     _lv2_store, // 78
     _lv3_store, // 79
-    _wait_10_usec, // 80
+    _wait_1_usec, // 80
     _wait_1000_usec, // 81
     _dropzbranch , // 82
 };
