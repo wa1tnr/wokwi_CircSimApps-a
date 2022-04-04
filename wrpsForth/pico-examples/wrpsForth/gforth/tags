@@ -276,7 +276,8 @@ dark	hd44780_lcd.fs	+50
 bright	hd44780_lcd.fs	+51
 testus	hd44780_lcd.fs	+53
 testms	hd44780_lcd.fs	+68
-testvv	hd44780_lcd.fs	+77
+pulsed	hd44780_lcd.fs	+77
+testvv	hd44780_lcd.fs	+80
 stimex	app.fs	+3
 n867	app.fs	+9
 setupgpio	app.fs	+191
