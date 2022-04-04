@@ -263,6 +263,13 @@ msga	main.fs	+39
 msgb	main.fs	+48
 noppp	main.fs	+102
 id	main.fs	+106
+.E	hd44780_lcd.fs	+7
+.RS	hd44780_lcd.fs	+8
+clr	hd44780_lcd.fs	+10
+setb	hd44780_lcd.fs	+11
+instruction	hd44780_lcd.fs	+13
+data	hd44780_lcd.fs	+17
+testvv	hd44780_lcd.fs	+21
 stimex	app.fs	+3
 n867	app.fs	+9
 setupgpio	app.fs	+191
@@ -270,5 +277,5 @@ hint	app.fs	+222
 run	app.fs	+235
 bbrun	app.fs	+283
 tell	app.fs	+286
-.stack	job.fs	+60
-check	job.fs	+61
+.stack	job.fs	+61
+check	job.fs	+62
