@@ -74,6 +74,9 @@
 \ for testus and testms:
 \     03:05z 04 Apr 2022: both tests give about 2 seconds of LED ON time.
 
+: pulsed ( -- ) ." pulsed ( -- ) "
+  ." dark h# 100 ms bright h# 200 ms dark cr" cr ;
+
 : testvv ." hd44780 LCD  02:45z" cr cr
   ." try:  testus  or  testms to see LED blink for a 2 second interval." cr
 ;
