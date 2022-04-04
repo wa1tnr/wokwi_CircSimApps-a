@@ -52,7 +52,8 @@ include ./core.fs  \ core Forth words
 include ./libtnr.fs \ local library
 include ./libglyph.fs \ local library
 include ./main.fs  \ application code
-include ./app.fs \ after main.fs
+include ./hd44780_lcd.fs \ after main.fs
+include ./app.fs \ after hd44780_lcd.fs
 
 \ headers \ tuck headers into end of dictionary
 host thp @ target-image - 2/ dict !-t \ patch start of dictionary
