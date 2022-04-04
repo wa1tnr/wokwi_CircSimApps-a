@@ -1,6 +1,10 @@
-Mon  4 Apr 00:26:40 UTC 2022   ONLINE edit on wokwi
+Mon  4 Apr 01:01:04 UTC 2022   ONLINE edit on wokwi
 
   lcd 16x2 substituted - real hardware on-hand locally. ;)
+  
+  hd44780 LCD driver (in Forth) upstream example code:
+
+  https://github.com/wa1tnr/amrforth-v6_4-linux/blob/master/amrforth/www.amresearch.com/v6/appnotes/appnote001.zip
 
   TODO: series-ff-qc quick copy no hist 02 apr 02:56z
      
