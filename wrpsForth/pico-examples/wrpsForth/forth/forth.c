@@ -1108,6 +1108,17 @@ void _clrmask_aa(){
     DROP;
 }
 
+
+// mask value gpio_put_masked
+
+void _gpio_put_masked() { // ( mask value  -- )
+    W = T * 0x10000; // GPIO 16+
+    DROP;
+    T = T * 0x10000;
+    gpio_put_masked(W, T);
+    DROP;
+}
+
 #if 0
 void _Keyboard_begin(){
     Keyboard.begin();
@@ -1215,6 +1226,7 @@ void (*function[])()={
     _squote , _nip , //  _initMCP23017 , _fetchMCP23017 , // 62
     _initGPIO , _fetchGPIO , _lshift , _rshift , // 64
     _setmask , _clrmask , // 66
+    _gpio_put_masked , // 67
 
 #if 0
 
@@ -1247,22 +1259,22 @@ void (*function[])()={
 #endif
     // _Keyboard_begin , _Keyboard_press ,
     // _Keyboard_release , _Keyboard_releaseAll , _Keyboard_end ,
-    _blink_led ,  // 67 simple integer count
-    _reflashing , // 68 // just add two 01 Apr 2022
-    _on ,       // 69
-    _off ,      // 70
-    _flfetch,   // 71
-    _flstore,   // 72
-    _cpl,       // 73
-    _cmd_store, // 74
-    _cmd_fetch, // 75 new
-    _lv0_store, // 76
-    _lv1_store, // 77
-    _lv2_store, // 78
-    _lv3_store, // 79
-    _wait_1_usec, // 80
-    _wait_1000_usec, // 81
-    _dropzbranch , // 82
+    _blink_led ,  // 68 simple integer count
+    _reflashing , // 69 // just add two 01 Apr 2022
+    _on ,       // 70
+    _off ,      // 71
+    _flfetch,   // 72
+    _flstore,   // 73
+    _cpl,       // 74
+    _cmd_store, // 75
+    _cmd_fetch, // 76
+    _lv0_store, // 77
+    _lv1_store, // 78
+    _lv2_store, // 79
+    _lv3_store, // 80
+    _wait_1_usec, // 81
+    _wait_1000_usec, // 82
+    _dropzbranch , // 83
 };
 
 void _execute(){
