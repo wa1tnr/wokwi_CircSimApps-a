@@ -283,8 +283,8 @@
 : bbrun 5 #, 3 #, over over cr ." dot S: " .s cr ;
 
 \ : tell ." Thu 31 Mar 18:18:41 UTC 2022 " cr ;
-: tell ." Fri  1 Apr 22:19:05 UTC 2022 " cr ;
 
 \ : run n867 ;
 
+: tell ." Wed  6 Apr 21:19:52 UTC 2022 " cr ;
 \ end.
