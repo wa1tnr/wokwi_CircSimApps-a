@@ -1,5 +1,33 @@
 \ hd44780_lcd.fs  4 April 2022
 
+\ long pin on the right, resistor on short pin to ground
+\ that makes long pin anode
+\ red led  2.2k limiting resistor
+\ all measured 2.167 k
+\ LED's double-spaced and straddle center gap breadboard
+\ hookup wire cut custom lengths to reach IDE headers in breadboard other columns nearby same side
+
+\ Pinout right to left progressing higher in number:
+
+\ skip 1-8 and 8 is a ground
+\ 9-12 four pins are GP6 thru GP9
+\ pin 13 is a ground
+\ pins 14 and 15 map to GP10 and GP11
+\ GP12 on pin 16 is available and unused here.
+\ pins 17 thru 20 entirely unavailable (no headers)
+
+\ GP6 in Red
+\ GP7 in Orange
+\ GP8 in Yellow
+\ GP9 in Green
+\ GROUND - fifth pin of this array right to left
+\ GP10 in Blue
+\ GP11 in Violet
+
+\ GP11 GP10 GP9 GP8  Viol Blue Gree Yell  data bus
+\ GP7 GP6 control .E .RS or swapped in Orange Red (GP7 GP6)
+
+
 \ void _gpio_put_masked() // ( mask value  -- )
 \ mask value gpio_put_masked
 
@@ -297,7 +325,7 @@ decimal 65 hex . 40 ok
   $3  #, clrmask \ clear control bits
   setmask \ TOS written to data bits
 
-
+  drop \ balance stack kludge
 
 ;
 
