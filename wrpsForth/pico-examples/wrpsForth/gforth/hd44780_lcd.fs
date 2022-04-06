@@ -263,6 +263,25 @@ decimal 65 hex . 40 ok
 : clr clrmask ;
 : setb setmask ;
 
+: gpm gpio_put_masked ; ( mask value -- ) \ alias
+: orl $3f #, gpm ; ( mask -- )
+: anl invert 0 #,  gpm ; ( mask -- )
+
+\ illustrative:
+
+\ h# 3 orl cr  \ set gang of pins no resets
+\ h# 30 orl cr \ set gang of pins no sets
+
+\ h# $3f h# c gpm cr  \ set and reset in one go
+
+\ h# 3 orl cr  \ set gang of pins no resets
+\ h# 30 orl cr
+\ h# 3f h# c gpm cr
+\ h# 3f h# 3f gpm cr
+\ h# c anl
+
+\ %001100 anl
+
 : instruction
   \  initGPIO
   .RS clr ;
@@ -385,8 +404,6 @@ decimal 65 hex . 40 ok
 : testvv ." hd44780 LCD  02:45z" cr cr
   ." try:  testus  or  testms to see LED blink for a 2 second interval." cr
 ;
-
-: gpm gpio_put_masked ; ( mask value -- ) \ alias
 
 : init 0x63 #, negate dup 1+ dup 1+ cr .s cr ;
 
