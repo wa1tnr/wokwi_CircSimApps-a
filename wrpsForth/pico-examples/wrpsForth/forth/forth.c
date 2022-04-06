@@ -1,9 +1,24 @@
-// Sun  3 Apr 09:10:34 UTC 2022
+// Wed  6 Apr 13:10:32 UTC 2022
+
+// GPIO 6 7 8 9 10 and 11 now in use (real hardware)
+// setmask and clrmask now operate on this array,
+// binary normalized.
+
+// e.g. 'h# 2 setmask'  lights up GP7 only.
+//      'h# c setmask'  lights up GP8 and GP9
+//      'h# 3f setmask'  lights up  GP11 10 9 8 7 and 6 (all six LED's)
+
+//   5  4  3  2  1  0
+//  11 10 09 08 07 06
+
+// Use 'clrmask' to clear the same bits as with 'setmask'.
+
+
+
+// OLD/wokwi:
 
 // seems to accept 0x00 thru 0x0f as input to 'setmask' word,
 // to manipulate GPIO 16 thru 19.
-// clrmask is now setup to just clear all four bits.
-
 
 // ../gforth/memory.h read by CMakeLists.txt
 
@@ -883,8 +898,10 @@ void _fetchMCP23017(){
 */
 
 #ifdef RP2040_VARIANT
-#define FIRST_GPIO 16
-#define LAST_GPIO 21
+// #define FIRST_GPIO 16
+#define FIRST_GPIO 6
+// #define LAST_GPIO 21
+#define LAST_GPIO 12 // no symmetry old and new
 
 // all the I/O pins needed for the attached peripheral (HD44780 4-bit, initially)
 // https://github.com/raspberrypi/pico-examples/blob/master/gpio/hello_7segment/hello_7segment.c#L51
@@ -989,18 +1006,23 @@ Parameters
 #endif
 
 void _setmask() {
-    T = T * 0x10000;
-    // T += 0xffff;
+    // PRETTY GOOD BUT WRONG FOR THIS APPLICATION:
+    // W = T; T = 32 << W;
+    // T = T * 0x10000;
+    // W = T ;
+    // T = W * 2 * 2 * 2 * 2 * 2 * 2 ;
+    // T = W * 32 ;
+    // T = W * %100000 ;
+    W = T ; T = W * 0x40 ; // 32
     gpio_set_mask(T);
     DROP;
-    // printf("\nCANONICAL\n");
 }
 
 void _clrmask() {
-    T = T * 0x10000;
+    // T = W * 2 * 2 * 2 * 2 * 2 * 2 ;
+    W = T; T = W * 0x40 ;
     gpio_clr_mask(T);
     DROP;
-    // printf("\nCANONICAL\n");
 }
 
 #if 0
