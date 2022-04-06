@@ -352,16 +352,27 @@ void crufty_printer(void) {
     // printf("%s", dofilldatus);
 }
 
-// rp2040_reflash.inc
+#define WOKWI_COMPILED
+#undef WOKWI_COMPILED
 
+#ifdef WOKWI_COMPILED
 #warning no bootrom code
-// #include "pico/bootrom.h"
-
-#if 0
-void reflash(void) {  /*  --  */
-    reset_usb_boot(0, 0);
-}
 #endif
+
+#ifndef WOKWI_COMPILED
+// rp2040_reflash.inc
+#warning has bootrom code
+#include "pico/bootrom.h"
+#endif
+
+// #if 0
+void reflash(void) {  /*  --  */
+#ifndef WOKWI_COMPILED
+    reset_usb_boot(0, 0);
+#endif
+}
+// #endif
+
 // ///////////////////// // #include "rp2040_reflash_inc.h"     //////////
 // ///////////////////// // #include "rp2040_reflash_inc.h"     //////////
 
@@ -403,7 +414,9 @@ void reflash(void) {  /*  --  */
 
 
 // extern void _reflashing(void);
-void _reflashing(void) { }
+void _reflashing(void) {
+    reflash();
+}
 
 // extern void _blink_led(void);
 
@@ -807,8 +820,6 @@ void _storeplus(){
     DROP;
 }
 
-// ###bookmark
-
 void _depth(){
     DUP;
     T=S-1;
@@ -1005,6 +1016,8 @@ Parameters
 
 #endif
 
+#define GLOBMASK 0x40
+
 void _setmask() {
     // PRETTY GOOD BUT WRONG FOR THIS APPLICATION:
     // W = T; T = 32 << W;
@@ -1013,14 +1026,14 @@ void _setmask() {
     // T = W * 2 * 2 * 2 * 2 * 2 * 2 ;
     // T = W * 32 ;
     // T = W * %100000 ;
-    W = T ; T = W * 0x40 ; // 32
+    W = T ; T = W * GLOBMASK ;
     gpio_set_mask(T);
     DROP;
 }
 
 void _clrmask() {
     // T = W * 2 * 2 * 2 * 2 * 2 * 2 ;
-    W = T; T = W * 0x40 ;
+    W = T ; T = W * GLOBMASK ; // W = T ; T = W * 0x40 ;
     gpio_clr_mask(T);
     DROP;
 }
@@ -1133,13 +1146,148 @@ void _clrmask_aa(){
 
 // mask value gpio_put_masked
 
+// h# 0 h# 3 gpm  resets two LSB's xxxx00
+// h# 3f #3 3 gpm sets two LSB's   xxxx11
+
+// h# 3f h# 3f gpm cr  sets all six bits 111111
+// h# 0 h# 3f gpm cr  resets all six bits 000000
+
+
+// h# 3f h# 3f gpm cr  sets all six bits 111111
+// h# 3f h# 0 gpm cr  no change - does not reset any bits
+
+// so the mask, with all bits set, only sets bits
+// and doesn't reset any bits,
+// no matter what value is passed on TOS.
+
+// h# 1f h# 3f gpm cr   does not set the top bit even though 'value' has it set
+// so the mask prevents contents of value from changing the state of that bit
+
+// h# 1f h# 0f gpm cr
+
+// h# 7f h# f gpm cr   sets four low-order bits only
+// h# 3f h# 30 gpm cr  sets two  highest-order bits only resets no bits
+
+// h# 3f h# 3f gpm cr  sets all six bits 111111
+// h# 1a h# 0 gpm cr   resets no bits when all were set
+
+// mask of 0x1a is %00011010   the value of zero didn't do anything
+
+// init
+// h# 3f h# 3f gpm cr          sets all six bits  %111111
+//                                   0x1a is      %011010
+// h# 1a invert h# 3f gpm cr      results in:     %100101
+// so an exact bit-flip masked positions.
+
+
+// new series, W and T reversed (after all the above experiments):
+
+// h# 3f h# 3f gpm cr          sets all six bits %111111
+// h# 1f h# 0 gpm            resets masked bits  %100000
+
+// h# 3f h# 3f gpm cr          sets all six bits %111111
+// h# 1f h# 4 gpm cr                       gives %100100
+
+// so, 1f means that 0x20 bit (highest bit) was protected from a reset.
+// and  4 means that 0x04 bit (third from bottom) was protected from a reset.
+// and  24 was the resulting bit pattern.
+// so 0x04 was the values to AND with.
+
+// in gforth:
+
+// Type `bye' to exit
+// hex $3f  ok
+// .s cr <1> 3F
+ // ok
+// : binary 2 base ! ;  ok
+// binary .s <1> 111111  ok
+// hex  ok
+// 4 and  ok
+// binary .s <1> 100  ok
+// hex $20 or  ok
+// binary .s  <1> 100100  ok
+
+// so in this example the person was AND'ing bits inside the mask
+// with the bits outside the mask protected (they don't get reset).
+// h# 3f h# 3f gpm
+
+// The mask chooses which bits are operated on; the value indicates
+// if they get set or reset.
+
+// h# 8 h# 8 gpm cr  %001000
+// h# 8 h# 0 gpm cr  %000000
+
+// h# 3f h# 3f gpm cr        %111111
+// h# c h# 0 gpm cr          %110011
+// h# c invert h# 3f gpm cr  %110011
+// h# c invert h#  0 gpm cr  %000000
+
+// SUMMARY: the behavior seems to map to something discussed
+// in the documentation - it can be learned interactively
+// and then intuited.
+
+// Seems correct as-is.
+
+// More testing needed to confirm that, and to
+// make good use of this function. ;)
+
+
+
+// This utterance had a predicted response:
+
+// h# 3f h# 3f gpm cr    %111111
+// h# 3 invert h# a 2* 2* gpm  %101011
+
+// so, 'h# 3 invert' (the mask) permitted operation on all bits except %xxxx11 places (2^1 and 2^0).
+
+// and 'h# a 2* 2*' left-shifted $a two places.
+
+// the result was that $a was written to the bits, but left-shifted two places,
+
+// and, importantly, the two lowest bits were protected from any changes.
+
+// some bits got reset, as the bits began as all set %111111.
+
+
+
+// light all six bits.
+// Do not protect any bits.
+// Input value ($b) and left shift it, two places.
+// Write the bits to the register:
+
+// h# 3f dup gpm cr             %111111
+// h# 0 invert h# b 2* 2* gpm   %101100
+
+// so here, the utterance:
+//    'h# 0 invert' is the same as a mask of %111111 (no bits are protected).
+// The binary value %1011 ($b) is present in the output, left-shifted two places.
+
+// ###bookmark
+
 void _gpio_put_masked() { // ( mask value  -- )
-    W = T * 0x10000; // GPIO 16+
+    W = T * GLOBMASK ; // GPIO 6+ // W = T * 0x10000; // GPIO 16+
     DROP;
-    T = T * 0x10000;
-    gpio_put_masked(W, T);
+    T = T * GLOBMASK ; // T = T * 0x10000;
+    gpio_put_masked(T, W); // reversed 15:19z 06 Apr
     DROP;
 }
+
+// ###bookmark
+
+// #include <stdio.h>
+// #include "pico/stdlib.h"
+#include "hardware/watchdog.h"
+
+void _wdog() {
+    watchdog_enable(100, 1);
+    for (uint i = 0; i < 5; i++) {
+        printf("Updating watchdog %d\n", i);
+        watchdog_update();
+    }
+    printf("Waiting to be rebooted by watchdog\n");
+    while(1);
+}
+
 
 #if 0
 void _Keyboard_begin(){
@@ -1249,6 +1397,7 @@ void (*function[])()={
     _initGPIO , _fetchGPIO , _lshift , _rshift , // 64
     _setmask , _clrmask , // 66
     _gpio_put_masked , // 67
+    _wdog , // 68
 
 #if 0
 
@@ -1281,22 +1430,22 @@ void (*function[])()={
 #endif
     // _Keyboard_begin , _Keyboard_press ,
     // _Keyboard_release , _Keyboard_releaseAll , _Keyboard_end ,
-    _blink_led ,  // 68 simple integer count
-    _reflashing , // 69 // just add two 01 Apr 2022
-    _on ,       // 70
-    _off ,      // 71
-    _flfetch,   // 72
-    _flstore,   // 73
-    _cpl,       // 74
-    _cmd_store, // 75
-    _cmd_fetch, // 76
-    _lv0_store, // 77
-    _lv1_store, // 78
-    _lv2_store, // 79
-    _lv3_store, // 80
-    _wait_1_usec, // 81
-    _wait_1000_usec, // 82
-    _dropzbranch , // 83
+    _blink_led ,  // 69 simple integer count
+    _reflashing , // 70 // just add two 01 Apr 2022
+    _on ,       // 71
+    _off ,      // 72
+    _flfetch,   // 73
+    _flstore,   // 74
+    _cpl,       // 75
+    _cmd_store, // 76
+    _cmd_fetch, // 77
+    _lv0_store, // 78
+    _lv1_store, // 79
+    _lv2_store, // 80
+    _lv3_store,      // 81
+    _wait_1_usec,    // 82
+    _wait_1000_usec, // 83
+    _dropzbranch ,   // 84
 };
 
 void _execute(){
@@ -1447,14 +1596,35 @@ int forth_main() {
     putchar('\r');
     putchar('\n');
 
-    strcpy(print_string, "  greet  Sun  3 Apr 09:10:34 UTC 2022");
-                                // Fri  1 Apr 22:19:05 UTC 2022
+
+    strcpy(print_string, "  wrpsForth");
     printf("%s", print_string);
+
+    strcpy(print_string, "   for RPi Pico RP2040\n");
+    printf("%s", print_string);
+
+    strcpy(print_string, "  greet  Wed  6 Apr 16:09:05 UTC 2022\n");
+                               //  Wed  6 Apr 16:09:05 UTC 2022
+    printf("%s", print_string);
+
     // putchar('\n');
 
-    printf("\ntry:   h# 5 h# 3 over over * . cr .s cr");
-    printf("\ntry:   words\n");
-    printf("\ntry:   run\n");
+    strcpy(print_string, "\ntry:   h# 5 h# 3 over over * . cr .s cr");
+    printf("%s", print_string);
+
+    strcpy(print_string, "\ntry:   h# 3f dup gpm cr   ");
+    printf("%s", print_string);
+
+    putchar('\\');
+    // strcpy(print_string, '\');
+    // printf("%s", print_string);
+
+    // strcpy(print_string, "gpm");
+    strcpy(print_string, " gpm takes two arguments, ( mask value -- )\n");
+    printf("%s", print_string);
+
+    printf("\ntry:   words    init    init-lcd    run\n");
+
     while(1) {
         // uint8_t ch_key = getKey();
         // putchar(ch_key); // seems okay - no further research yet
