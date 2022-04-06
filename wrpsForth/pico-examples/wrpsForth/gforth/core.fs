@@ -105,27 +105,29 @@ code rshift  64 ,
 code setmask 65 ,
 code clrmask 66 ,
 code gpio_put_masked 67 ,
+code wdog 68 ,
 \ code Keyboard.begin  67 ,
 \ code Keyboard.press  68 ,
 \ code Keyboard.release  69 ,
 \ code Keyboard.releaseAll  70 ,
 \ code Keyboard.end  71 ,
-code blink 68 ,
-code reflash 69 ,
-code on 70 ,
-code off 71 ,
-code fl@ 72 ,
-code fl! 73 ,
-code cpl 74 ,
-code cmd! 75 , \ new
-code cmd@ 76 , \ new
-code lv0! 77 , \ new
-code lv1! 78 , \ new
-code lv2! 79 , \ new
-code lv3! 80 , \ new
-code tusec 81 ,
-code msec 82 ,
--code /branch  83 ,
+code blink 69 ,
+code reflash 70 ,
+code on 71 ,
+
+code off 72 ,
+code fl@ 73 ,
+code fl! 74 ,
+code cpl 75 ,
+code cmd! 76 , \ new
+code cmd@ 77 , \ new
+code lv0! 78 , \ new
+code lv1! 79 , \ new
+code lv2! 80 , \ new
+code lv3! 81 , \ new
+code tusec 82 ,
+code msec 83 ,
+-code /branch  84 ,
 
 :m begin (  - a)  here m;
 :m again ( a)  branch [ 2/ ] , m;

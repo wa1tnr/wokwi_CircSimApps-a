@@ -386,6 +386,8 @@ decimal 65 hex . 40 ok
   ." try:  testus  or  testms to see LED blink for a 2 second interval." cr
 ;
 
+: gpm gpio_put_masked ; ( mask value -- ) \ alias
+
 : init 0x63 #, negate dup 1+ dup 1+ cr .s cr ;
 
 \  END.
