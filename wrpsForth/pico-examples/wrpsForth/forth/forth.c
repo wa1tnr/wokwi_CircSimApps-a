@@ -1262,6 +1262,26 @@ void _clrmask_aa(){
 //    'h# 0 invert' is the same as a mask of %111111 (no bits are protected).
 // The binary value %1011 ($b) is present in the output, left-shifted two places.
 
+
+
+// Binary counter:
+
+// h# 3f h# 1 gpm cr
+// h# 3f h# 2 gpm cr
+// h# 3f h# 3 gpm cr
+// h# 3f h# 4 gpm cr
+
+// if the mask is $3f then the bits get set or reset
+// according to the value.
+
+// All individual bits are actively written as 1 or 0.
+
+// Light every other LED, then shift it:
+
+// h# 3f h# 15 gpm cr  %010101
+// h# 3f h# 2a gpm cr  %101010
+
+
 // ###bookmark
 
 void _gpio_put_masked() { // ( mask value  -- )
