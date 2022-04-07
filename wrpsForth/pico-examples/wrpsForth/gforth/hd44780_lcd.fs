@@ -309,7 +309,7 @@ decimal 65 hex . 40 ok
 
 \ : pulseout-E-10  (  - ) [ asm  .E cpl ] 100 us [ asm  .E cpl ] ;
 
-: xxpulseout-E-10  (  - )  .E setb 100 #, us .E clr ;
+\ : xxpulseout-E-10  (  - )  .E setb 100 #, us .E clr ;
 : pulseout-E  (  - )  .E setb 800 #, ms .E clr ;
 : poute pulseout-E ;
 
@@ -322,7 +322,7 @@ decimal 65 hex . 40 ok
 
 
 
-: write-lcd  ( c - )
+: xxwrite-lcd  ( c - )
   \ mask value gpio_put_masked
   \ 000010 pins anl
   \ 000010
@@ -340,6 +340,9 @@ decimal 65 hex . 40 ok
 
   $3d #, clrmask \ reset all but the one bit
   $2  #, setmask \ Instruction mode, clear data bus.
+  \ %111101
+  \ %
+  \ %
   dup
   $3  #, clrmask \ clear control bits
   setmask \ TOS written to data bits
@@ -348,6 +351,66 @@ decimal 65 hex . 40 ok
 
 ;
 
+: wait
+  250 #, ms
+  250 #, ms
+  250 #, ms
+  250 #, ms
+  250 #, ms
+  250 #, ms
+;
+
+\ : orl $3f #, gpm ; ( mask -- )
+\ : anl invert 0 #,  gpm ; ( mask -- )
+
+: pins 1 #, drop ; \ syntax sugar
+
+: write-lcd  ( c - )
+\ - Based on working BASIC code.
+	\ [ in-assembler
+	\ %00001011 # pins anl ]  \ amr instruction
+        \ %000010   # pins anl \ without USART
+        $2 #, anl \ .RS setb \ data wrpsForth  four data bit set to zero the 11 is USART
+        wait
+	dup \ both wrpsForth and amrForth - for split nybble
+	\ [ in-assembler
+	\ SP inc  Apop
+	\ %11110000 # A anl
+        $f0 #, and \ reset TOS lower four bits wrpsForth
+
+  	\ A pins orl ] \ amrForth
+        2/ 2/ orl \ right-shift data wrpsForth
+        wait
+	pulseout-E
+        wait
+	$10 #, * \ left-shift nybble
+	\ [ in-assembler
+	\ SP inc  Apop
+	\ %00001011 # pins anl \ amr
+        $2 #, anl \ instruction wrpsForth  four data bit set to zero the 11 is USART
+        wait
+	\ A pins orl ]
+        2/ 2/ orl \ wrpsForth
+        wait
+	pulseout-E
+        wait
+	;
+
+\ ###bookmark
+\ h# ff orl .s --> -99 -98 -97  cr 
+\ h# 2 anl .s --> -99 -98 -97  cr 
+\ h# 41 dup .s --> -99 -98 -97 65 65  cr 
+\ h# f0 and .s --> -99 -98 -97 65 64  cr 
+\ 2/ 2/ .s --> -99 -98 -97 65 16  cr 
+\ orl .s --> -99 -98 -97 65  cr 
+\ pulseout-E .s --> -99 -98 -97 65  cr 
+\ pulseout-E .s --> -99 -98 -97 65  cr 
+\ h# 10 * .s --> -99 -98 -97 1040  cr 
+\ h# 400 - .s --> -99 -98 -97 16  cr 
+\ h# 2 anl .s --> -99 -98 -97 16  cr 
+\ 2/ 2/ .s --> -99 -98 -97 4  cr 
+\ orl .s --> -99 -98 -97  cr 
+
 
 : init-lcd ( -- )
   clrbits    \ %00000011 # pins mov \ Set command mode, 0 command.
@@ -355,16 +418,27 @@ decimal 65 hex . 40 ok
   200 #, ms  \ wait 200 ms for LCD reset.
   clrbits
   $c #, setmask \ %00110000 # pins mov \ Init instruction
+  wait
   pulseout-E 100 #, ms
+  wait
   pulseout-E 100 #, ms
+  wait
   pulseout-E 100 #, ms
+  wait
   clrbits
+  wait
   $8 #, setmask
+  wait
   pulseout-E 100 #, ms
+  wait
   $28 #, write-lcd 100 #, ms
+  wait
   $0e #, write-lcd  10 #, ms
+  wait
   $01 #, write-lcd 100 #, ms
+  wait
   $02 #, write-lcd  10 #, ms
+  wait
   data
 ;
 
@@ -404,6 +478,8 @@ decimal 65 hex . 40 ok
 : testvv ." hd44780 LCD  02:45z" cr cr
   ." try:  testus  or  testms to see LED blink for a 2 second interval." cr
 ;
+
+: tell ." Thu  7 Apr 07:12:59 UTC 2022" cr ;
 
 : init 0x63 #, negate dup 1+ dup 1+ cr .s cr ;
 
