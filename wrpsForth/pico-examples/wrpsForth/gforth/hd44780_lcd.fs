@@ -322,7 +322,7 @@ decimal 65 hex . 40 ok
 
 
 
-: xxwrite-lcd  ( c - )
+: xxw_rite-lcd  ( c - )
   \ mask value gpio_put_masked
   \ 000010 pins anl
   \ 000010
