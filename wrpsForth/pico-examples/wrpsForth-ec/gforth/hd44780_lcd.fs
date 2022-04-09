@@ -1,4 +1,6 @@
-\ hd44780_lcd.fs  4 April 2022
+\ hd44780_lcd.fs
+
+\ Sat  9 Apr 15:59:14 UTC 2022
 
 \ long pin on the right, resistor on short pin to ground
 \ that makes long pin anode
