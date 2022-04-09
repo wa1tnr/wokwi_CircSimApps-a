@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "wa1tnr / nis - Mon  4 Apr 00:26:40 UTC 2022  16x2 LCD",
+  "author": "wa1tnr / nis - Sat  9 Apr 15:59:14 UTC 2022  16x2 LCD",
   "editor": "wokwi",
   "parts": [
 
@@ -16,8 +16,8 @@
     {
       "type": "wokwi-lcd1602",
       "id": "lcd1",
-      "top": -340,
-      "left": -150,
+      "top": -350,
+      "left": 150,
       "attrs": {}
     },
 
@@ -142,18 +142,18 @@
     [ "r5:2", "r6:2", "black", [ "v10", "h0" ] ],
     [ "r6:2", "pico:GND.1", "black", [ "v100", "h0" ] ],
     
-    [ "pico:GP21", "led6:A", "blue", [ "v-20", "h0", "v-85", "h0" ] ],
-    [ "pico:GP20", "led5:A", "purple", [ "v-26", "h0", "v-73", "h0" ] ],
-    [ "pico:GP19", "led4:A", "green", [ "v-32", "h0", "v-61", "h0" ] ],
-    [ "pico:GP18", "led3:A", "brown", [ "v-38", "h0", "v-49", "h0" ] ],
-    [ "pico:GP17", "led2:A", "gold", [ "v-44", "h0", "v-37", "h0" ] ],
-    [ "pico:GP16", "led1:A", "gray", [ "v-50", "h0", "v-25", "h0" ] ],
+    [ "pico:GP11", "led6:A", "blue", [ "v10", "h0", "v45", "h0" ] ],
+    [ "pico:GP10", "led5:A", "purple", [ "v30", "h0", "v55", "h0" ] ],
+    [ "pico:GP9", "led4:A", "green", [ "v50", "h0", "v65", "h0" ] ],
+    [ "pico:GP8", "led3:A", "brown", [ "v70", "h0", "v75", "h0" ] ],
+    [ "pico:GP7", "led2:A", "gold", [ "v90", "h0", "v84", "h0" ] ],
+    [ "pico:GP6", "led1:A", "gray", [ "v110", "h0", "v95", "h0" ] ],
 
-    [ "pico:GP16", "lcd1:D7", "gray", [ "v-160", "h0" ] ],
-    [ "pico:GP17", "lcd1:D6", "gold", [ "v-150", "h0" ] ],
-    [ "pico:GP18", "lcd1:D5", "brown", [ "v-140", "h0" ] ],
-    [ "pico:GP19", "lcd1:D4", "green", [ "v-130", "h0" ] ],
-    [ "pico:GP20", "lcd1:E", "purple", [ "v-70", "h0" ] ],
-    [ "pico:GP21", "lcd1:RS", "blue", [ "v-60", "h0" ] ]
+    [ "pico:GP11", "lcd1:D7", "gray", [ "h-3", "v60", "h440", "v-370", "h0" ] ],
+    [ "pico:GP10", "lcd1:D6", "gold", [ "h-3", "v90", "h440", "v-390", "h0" ] ],
+    [ "pico:GP9", "lcd1:D5", "brown", [ "h-3", "v120", "h450", "v-412", "h0" ] ],
+    [ "pico:GP8", "lcd1:D4", "green", [ "h-3", "v150", "h450", "v-435", "h0" ] ],
+    [ "pico:GP6", "lcd1:E", "purple", [ "h-3", "v210", "h450", "v-485", "h0" ] ],
+    [ "pico:GP7", "lcd1:RS", "blue",  [ "h-3",  "v180", "h430", "v-450", "h0" ] ]
   ]
 }
