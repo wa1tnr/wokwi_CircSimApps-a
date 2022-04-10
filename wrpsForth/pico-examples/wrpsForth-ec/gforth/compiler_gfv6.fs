@@ -95,6 +95,9 @@ create _comma  1 c, char , c, \ 32 c,  \ modified
 : spit ( a n)  save-fid write-file abort" write error" ;
 : crlf  _crlf count spit ;
 : spaced _space count spit ;
+
+\ w fetch (w@) added for use with gforth v6 - comment out if using gforth v7
+: w@   ( a - n)   dup c@ swap 1+ c@ 256 * or ; \ not for gforth v7
 : save  (  - )
 	0 to save-fid   s" ./memory.h" delete-file drop
 	s" ./memory.h" r/w create-file abort" Error creating memory.h" to save-fid

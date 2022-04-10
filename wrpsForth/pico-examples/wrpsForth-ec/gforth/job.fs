@@ -47,7 +47,8 @@ include ./vtags.fs use-tags
 0 constant start  \ Reset vector.
 $2000 constant target-size
 
-include ./compiler.fs
+\ include ./compiler.fs \ gforth v7
+include ./compiler_gfv6.fs \ kludge for gforth v6
 include ./core.fs  \ core Forth words
 include ./libtnr.fs \ local library
 include ./libglyph.fs \ local library

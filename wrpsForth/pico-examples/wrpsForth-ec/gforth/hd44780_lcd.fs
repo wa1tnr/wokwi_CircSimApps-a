@@ -463,7 +463,8 @@ decimal 65 hex . 40 ok
 \ for testus and testms:
 \     03:05z 04 Apr 2022: both tests give about 2 seconds of LED ON time.
 
-: init 0x63 #, negate dup 1+ dup 1+ cr .s cr ;
+\ : init 0x63 #, negate dup 1+ dup 1+ cr .s cr ;
+: init $63 #, negate dup 1+ dup 1+ cr .s cr ;
 
 : wwaa
   $2d #, write-lcd cr \ - minus
@@ -540,6 +541,7 @@ decimal 65 hex . 40 ok
   wwzz \ main payload
   wwee signoff ; \ signed ;
 
-: tell ." Sat  9 Apr 13:50:08 UTC 2022" cr ;
+: xtell ." Sun 10 Apr 13:50:08 UTC 2022" cr ;
+: tell ." Sun 10 Apr 11:16:21 UTC 2022" cr ;
 
 \  END.
