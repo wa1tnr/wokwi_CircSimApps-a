@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "author": "wa1tnr / nis - Sun  10 Apr 23:00:50 UTC 2022  16x2 LCD",
+  "author": "wa1tnr / nis - Sun  10 Apr 23:50:10 UTC 2022  16x2 LCD",
   "editor": "wokwi",
   "parts": [
     {
       "type": "wokwi-pi-pico",
       "id": "pico",
-      "top": -75,
-      "left": 0,
-      "rotate": 90,
+      "top": -125,
+      "left": 80,
+      "rotate": 180,
       "attrs": { "builder": "pico-sdk" }
     },
     { "type": "wokwi-lcd1602", "id": "lcd1", "top": -350, "left": 170, "attrs": {} },
@@ -70,39 +70,33 @@
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],
     [ "pico:GP1", "$serialMonitor:TX", "", [] ],
-
-    [ "pico:VBUS", "lcd1:VDD", "red", [ "v90", "h-220", "*", "v80" ] ],
-
-    [ "lcd1:VSS", "lcd1:RW", "black", [ "v30", "h0" ] ],
-    [ "pico:GND.4", "lcd1:VSS", "black", [ "v-80", "*", "h0" ] ],
-
-    [ "led1:C", "r1:1", "brown", [ "h-5", "v10", "*", "h0" ] ],
-    [ "led2:C", "r2:1", "red", [ "h-5", "v10", "*", "h0" ] ],
-    [ "led3:C", "r3:1", "orange", [ "h-5", "v10", "*", "h0" ] ],
-    [ "led4:C", "r4:1", "gold", [ "h-5", "v10", "*", "h0" ] ],
-    [ "led5:C", "r5:1", "green", [ "h-5", "v10", "*", "h0" ] ],
-    [ "led6:C", "r6:1", "blue", [ "h-5", "v10", "*", "h0" ] ],
-
-    [ "pico:GND.8", "r6:2", "black", [ "v50", "h0" ] ],
-
-    [ "r1:2", "r2:2", "black", [ "v10", "h0" ] ],
-    [ "r2:2", "r3:2", "black", [ "v10", "h0" ] ],
-    [ "r3:2", "r4:2", "black", [ "v10", "h0" ] ],
-    [ "r4:2", "r5:2", "black", [ "v10", "h0" ] ],
-    [ "r5:2", "r6:2", "black", [ "v10", "h0" ] ],
-
-    [ "pico:GP6", "led1:A", "purple", [ "v-22", "h0" ] ],
-    [ "pico:GP7", "led2:A", "blue", [ "v-30", "h0" ] ],
-    [ "pico:GP8", "led3:A", "green", [ "v-38", "h0" ] ],
-    [ "pico:GP9", "led4:A", "brown", [ "v-46", "h0" ] ],
-    [ "pico:GP10", "led5:A", "gold", [ "v-54", "h0" ] ],
-    [ "pico:GP11", "led6:A", "gray", [ "v-62", "h0" ] ],
-
+    [ "pico:VBUS", "lcd1:VDD", "red", [
+      "h-40", "*", "v20" ] ],
+    [ "lcd1:VSS", "lcd1:RW", "black", [ "v40", "h0" ] ],
+    [ "pico:GND.4", "lcd1:VSS", "black", [ "h0" ] ],
+    [ "led1:C", "r1:1", "lightGrey", [ "h-5", "v10", "*", "h0" ] ],
+    [ "led2:C", "r2:1", "lightGrey", [ "h-5", "v10", "*", "h0" ] ],
+    [ "led3:C", "r3:1", "lightGrey", [ "h-5", "v10", "*", "h0" ] ],
+    [ "led4:C", "r4:1", "lightGrey", [ "h-5", "v10", "*", "h0" ] ],
+    [ "led5:C", "r5:1", "lightGrey", [ "h-5", "v10", "*", "h0" ] ],
+    [ "led6:C", "r6:1", "lightGrey", [ "h-5", "v10", "*", "h0" ] ],
+    [ "pico:GND.1", "r6:2", "black", [ "h40", "v38", "h0" ] ],
+    [ "r1:2", "r2:2", "lightGrey", [ "v10", "h0" ] ],
+    [ "r2:2", "r3:2", "lightGrey", [ "v10", "h0" ] ],
+    [ "r3:2", "r4:2", "lightGrey", [ "v10", "h0" ] ],
+    [ "r4:2", "r5:2", "lightGrey", [ "v10", "h0" ] ],
+    [ "r5:2", "r6:2", "lightGrey", [ "v10", "h0" ] ],
+    [ "pico:GP6", "led1:A", "purple", [ "h0" ] ],
+    [ "pico:GP7", "led2:A", "blue", [ "h0" ] ],
+    [ "pico:GP8", "led3:A", "green", [ "h0" ] ],
+    [ "pico:GP9", "led4:A", "brown", [ "h0" ] ],
+    [ "pico:GP10", "led5:A", "gold", [ "h0" ] ],
+    [ "pico:GP11", "led6:A", "gray", [ "h0" ] ],
     [ "led1:A", "lcd1:E", "purple", [ "v12", "h10", "*", "v50" ] ],
     [ "led2:A", "lcd1:RS", "blue", [ "v12", "h10", "*", "v60" ] ],
-    [ "led3:A", "lcd1:D4", "green", [ "v232", "h100", "*", "v40" ] ],
-    [ "led4:A", "lcd1:D5", "brown", [ "v256", "h180", "*", "v30" ] ],
-    [ "led5:A", "lcd1:D6", "gold", [ "v275", "h280", "*", "v20" ] ],
-    [ "led6:A", "lcd1:D7", "gray", [ "v295", "h340", "*", "v10" ] ]
+    [ "led3:A", "lcd1:D4", "green", [ "v222", "h90", "*", "v40" ] ],
+    [ "led4:A", "lcd1:D5", "brown", [ "v236", "h140", "*", "v30" ] ],
+    [ "led5:A", "lcd1:D6", "gold", [ "v255", "h220", "*", "v20" ] ],
+    [ "led6:A", "lcd1:D7", "gray", [ "v275", "h270", "*", "v10" ] ]
   ]
 }
