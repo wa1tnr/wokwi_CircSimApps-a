@@ -541,7 +541,7 @@ decimal 65 hex . 40 ok
   wwzz \ main payload
   wwee signoff ; \ signed ;
 
-: xtell ." Sun 10 Apr 13:50:08 UTC 2022" cr ;
-: tell ." Sun 10 Apr 11:16:21 UTC 2022" cr ;
+\ : xtell ." Sun 10 Apr 13:50:08 UTC 2022" cr ;
+: tell ." Sun 10 Apr 13:25:49 UTC 2022" cr ;
 
 \  END.
