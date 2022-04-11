@@ -1,4 +1,10 @@
 // an ESP32 thing
+// Mon 11 Apr 2022   16:45 UTC
+
+// https://wokwi.com/projects/328662137808355923
+
+
+// https://github.com/wa1tnr/wokwi_CircSimApps-a/blob/dvlp-aa/esp32.d/project-aa.d/diagram.json
 
 extern "C" {
     #include <stdio.h>
