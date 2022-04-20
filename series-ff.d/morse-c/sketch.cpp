@@ -1,6 +1,6 @@
-// Wed 20 Apr 19:24:28 UTC 2022 indent applied offline
+// Wed 20 Apr 19:43:56 UTC 2022 wokwi online edit
 
-#define ID_IN_SERIAL_MON(x) Serial.println("yj331d-bb")
+#define ID_IN_SERIAL_MON(x) Serial.println("yj331d-cc")
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 
@@ -77,8 +77,6 @@ void single_shot () {
 
 void do_max_state () {
     Serial.println ("MAX_STATE reached.");
-
-
     for (int outer = 4; outer > 0; outer--) {
         for (int a = 0; a < 8; a = a + 1) {
             pixels.setPixelColor ((a * outer), pixels.Color (21, 199, 21));
@@ -92,8 +90,8 @@ void do_max_state () {
 #define OVER_FLOW_A 0
 
 bool single_shot_b = true;
-
 bool idle = true;
+bool pressed_note = true;
 
 void loop () {
     // bool single_shot_b = true;
@@ -118,13 +116,20 @@ void loop () {
         } while (!expired_timer);
 
         Serial.print ("  timer has expired.  Button presses: ");
-        Serial.print (bpressed);
+        Serial.print ((bpressed + 1));
 
         State++;
 
         if (State) {
             Serial.print ("  State: ");
             Serial.println (State);
+        }
+
+        if (pressed_note) {
+            pressed_note = false;
+            Serial.print("\n   NOTE: count of button presses starts with '2'.");
+            Serial.print("\n         The machine begins in State 1,");
+            Serial.print("\n         without a button-press, on a cold reset.\n\n");
         }
     }
 
