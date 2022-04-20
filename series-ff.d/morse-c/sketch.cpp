@@ -1,6 +1,6 @@
-// Wed 20 Apr 19:43:56 UTC 2022 wokwi online edit
+// Wed 20 Apr 19:49:53 UTC 2022 indent offline edit rvim
 
-#define ID_IN_SERIAL_MON(x) Serial.println("yj331d-cc")
+#define ID_IN_SERIAL_MON(x) Serial.println("yj331d-dd")
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 
@@ -94,7 +94,6 @@ bool idle = true;
 bool pressed_note = true;
 
 void loop () {
-    // bool single_shot_b = true;
     uint32_t time_stamp = millis ();
     Botton = digitalRead (BOTTONIN);
     if (Botton == LOW) {
@@ -127,9 +126,9 @@ void loop () {
 
         if (pressed_note) {
             pressed_note = false;
-            Serial.print("\n   NOTE: count of button presses starts with '2'.");
-            Serial.print("\n         The machine begins in State 1,");
-            Serial.print("\n         without a button-press, on a cold reset.\n\n");
+            Serial.print ("\n   NOTE: count of button presses starts with '2'.");
+            Serial.print ("\n         The machine begins in State 1,");
+            Serial.print ("\n         without a button-press, on a cold reset.\n\n");
         }
     }
 
@@ -140,10 +139,8 @@ void loop () {
 
     case 1:
         if (!idle) {
-
             idle = true;
             Serial.print ("   IDLE SOON  ");
-
             for (int a = 0; a < 31; a = a + 1) {
                 pixels.setPixelColor (a, pixels.Color (0, 0, 0));
             }
@@ -153,11 +150,8 @@ void loop () {
 
     case 2:
         if (!idle) {
-
             idle = true;
             Serial.print ("   IDLE SOON  ");
-
-
             for (int a = 0; a < 31; a = a + 1) {
                 pixels.setPixelColor (a, pixels.Color (183, 21, 184));
             }
@@ -167,14 +161,9 @@ void loop () {
 
     case 3:
         if (!idle) {
-
             idle = true;
             Serial.print ("   IDLE SOON  ");
-
             Serial.println (" idle-guarded in the current slot ");
-
-
-
             for (int a = 0; a < 31; a = a + 1) {
                 pixels.setPixelColor (a, pixels.Color (250, 0, 250));
             }
@@ -184,14 +173,8 @@ void loop () {
 
     case 4:
         if (!idle) {
-
-
             idle = true;
             Serial.print ("   IDLE SOON  ");
-
-
-
-
             for (int a = 0; a < 8; a = a + 1) {
                 pixels.setPixelColor (a, pixels.Color (199, 21, 21));
             }
@@ -202,17 +185,11 @@ void loop () {
 
     case 5:
         if (!idle) {
-
-
             idle = true;
             Serial.print ("   IDLE SOON  ");
-
-
-
             if (single_shot_b) {
                 single_shot_b = false;
                 single_shot ();
-                // State = 0;
                 break;
             }
         } // not idle
@@ -224,7 +201,6 @@ void loop () {
         break;
 
     default:
-        // single_shot_b = false;
         Serial.println ("DEFAULT seen");
         if (State > (MAX_STATE - 1)) {
             State = 0;
