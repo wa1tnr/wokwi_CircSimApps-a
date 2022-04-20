@@ -1,6 +1,6 @@
-// Wed 20 Apr 20:14:57 UTC 2022 wokwi online edit
+// Wed 20 Apr 20:19:45 UTC 2022 indent rvim offline edit
 
-#define ID_IN_SERIAL_MON(x) Serial.println("yj331e-aa")
+#define ID_IN_SERIAL_MON(x) Serial.println("yj331e-bb")
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 
@@ -133,6 +133,7 @@ void loop () {
     }
 
     switch (State) {
+
     case 0:
         digitalWrite (PINLED, LOW);
         break;
@@ -198,7 +199,7 @@ void loop () {
     case 6:
         if (!idle) {
             idle = true;
-            colorWipe(0xc0ffee, 3);
+            colorWipe (0xc0ffee, 3);
             Serial.print ("   IDLE SOON  ");
         } // not idle
         break;
@@ -206,7 +207,7 @@ void loop () {
     case 7:
         if (!idle) {
             idle = true;
-            colorWipe(0xffc0ee, 3);
+            colorWipe (0xffc0ee, 3);
             Serial.print ("   IDLE SOON  ");
         } // not idle
         break;
