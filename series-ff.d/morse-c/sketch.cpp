@@ -66,27 +66,27 @@ void setup () {
 uint16_t bpressed = 0;
 
 
-void single_shot() {
-    Serial.println("singleShot() reached.");
+void single_shot () {
+    Serial.println ("singleShot() reached.");
     for (int outer = 4; outer > 0; outer--) {
         for (int a = 0; a < 8; a = a + 1) {
-            pixels.setPixelColor ((a*outer), pixels.Color (199, 21, 21));
+            pixels.setPixelColor ((a * outer), pixels.Color (199, 21, 21));
         }
-            pixels.show ();
-            Serial.write('j');
+        pixels.show ();
+        Serial.write ('j');
     }
 }
 
-void do_max_state() {
-    Serial.println("MAX_STATE reached.");
+void do_max_state () {
+    Serial.println ("MAX_STATE reached.");
 
 
     for (int outer = 4; outer > 0; outer--) {
         for (int a = 0; a < 8; a = a + 1) {
-            pixels.setPixelColor ((a*outer), pixels.Color (21, 199, 21));
+            pixels.setPixelColor ((a * outer), pixels.Color (21, 199, 21));
         }
-            pixels.show ();
-            Serial.write('x');
+        pixels.show ();
+        Serial.write ('x');
     }
 }
 
@@ -101,7 +101,7 @@ void loop () {
     if (Botton == LOW) {
         Serial.println (" button LOW ");
         bool expired_timer = false;
-        Serial.write('r');
+        Serial.write ('r');
         do {
             uint32_t local_time = millis ();
             uint32_t time_difference = (local_time - time_stamp);
@@ -121,7 +121,8 @@ void loop () {
         State++;
 
         if (State) {
-            Serial.print("  State: "); Serial.println(State);
+            Serial.print ("  State: ");
+            Serial.println (State);
         }
     }
 
@@ -160,9 +161,9 @@ void loop () {
         break;
 
     case 5:
-        if(single_shot_b) {
+        if (single_shot_b) {
             single_shot_b = false;
-            single_shot();
+            single_shot ();
             // State = 0;
             break;
         }
@@ -170,12 +171,12 @@ void loop () {
 
     case (MAX_STATE + OVER_FLOW_A):
         State = 0;
-        do_max_state();
+        do_max_state ();
         break;
 
     default:
         // single_shot_b = false;
-        Serial.println("DEFAULT seen");
+        Serial.println ("DEFAULT seen");
         if (State > (MAX_STATE - 1)) {
             State = 0;
         }
