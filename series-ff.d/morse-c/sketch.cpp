@@ -1,6 +1,6 @@
-// Wed 20 Apr 19:49:53 UTC 2022 indent offline edit rvim
+// Wed 20 Apr 19:59:22 UTC 2022 wokwi online edit
 
-#define ID_IN_SERIAL_MON(x) Serial.println("yj331d-dd")
+#define ID_IN_SERIAL_MON(x) Serial.println("yj331e-aa")
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 
@@ -86,7 +86,7 @@ void do_max_state () {
     }
 }
 
-#define MAX_STATE 6
+#define MAX_STATE 8
 #define OVER_FLOW_A 0
 
 bool single_shot_b = true;
@@ -192,6 +192,20 @@ void loop () {
                 single_shot ();
                 break;
             }
+        } // not idle
+        break;
+
+    case 6:
+        if (!idle) {
+            idle = true;
+            Serial.print ("   IDLE SOON  ");
+        } // not idle
+        break;
+
+    case 7:
+        if (!idle) {
+            idle = true;
+            Serial.print ("   IDLE SOON  ");
         } // not idle
         break;
 
