@@ -1,6 +1,6 @@
-// Wed 20 Apr 19:23:16 UTC 2022
+// Wed 20 Apr 19:24:28 UTC 2022 indent applied offline
 
-#define ID_IN_SERIAL_MON(x) Serial.println("yj331d-aa")
+#define ID_IN_SERIAL_MON(x) Serial.println("yj331d-bb")
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 
@@ -10,7 +10,7 @@
 #define BRIGHTNESS 254 // 100
 
 int Botton;
-int State = 1;  // trial 18:18 UTC Wed 20 Apr
+int State = 1; // trial 18:18 UTC Wed 20 Apr
 
 #define LED_COUNT 32
 #define RGB_STRIP_PIN 5
@@ -136,41 +136,44 @@ void loop () {
     case 1:
         if (!idle) {
 
-        idle = true; Serial.print("   IDLE SOON  ");
+            idle = true;
+            Serial.print ("   IDLE SOON  ");
 
-        for (int a = 0; a < 31; a = a + 1) {
-            pixels.setPixelColor (a, pixels.Color (0, 0, 0));
-        }
-        pixels.show ();
+            for (int a = 0; a < 31; a = a + 1) {
+                pixels.setPixelColor (a, pixels.Color (0, 0, 0));
+            }
+            pixels.show ();
         } // not idle
         break;
 
     case 2:
         if (!idle) {
 
-        idle = true; Serial.print("   IDLE SOON  ");
+            idle = true;
+            Serial.print ("   IDLE SOON  ");
 
 
-        for (int a = 0; a < 31; a = a + 1) {
-            pixels.setPixelColor (a, pixels.Color (183, 21, 184));
-        }
-        pixels.show ();
+            for (int a = 0; a < 31; a = a + 1) {
+                pixels.setPixelColor (a, pixels.Color (183, 21, 184));
+            }
+            pixels.show ();
         } // not idle
         break;
 
     case 3:
         if (!idle) {
 
-        idle = true; Serial.print("   IDLE SOON  ");
+            idle = true;
+            Serial.print ("   IDLE SOON  ");
 
-        Serial.println(" idle-guarded in the current slot ");
+            Serial.println (" idle-guarded in the current slot ");
 
 
 
-        for (int a = 0; a < 31; a = a + 1) {
-            pixels.setPixelColor (a, pixels.Color (250, 0, 250));
-        }
-        pixels.show ();
+            for (int a = 0; a < 31; a = a + 1) {
+                pixels.setPixelColor (a, pixels.Color (250, 0, 250));
+            }
+            pixels.show ();
         } // not idle
         break;
 
@@ -178,33 +181,35 @@ void loop () {
         if (!idle) {
 
 
-        idle = true; Serial.print("   IDLE SOON  ");
+            idle = true;
+            Serial.print ("   IDLE SOON  ");
 
 
 
 
-        for (int a = 0; a < 8; a = a + 1) {
-            pixels.setPixelColor (a, pixels.Color (199, 21, 21));
-        }
-        pixels.show ();
+            for (int a = 0; a < 8; a = a + 1) {
+                pixels.setPixelColor (a, pixels.Color (199, 21, 21));
+            }
+            pixels.show ();
         } // not idle
-        Serial.println(" it idles in the current slot ");
+        Serial.println (" it idles in the current slot ");
         break;
 
     case 5:
         if (!idle) {
 
 
-        idle = true; Serial.print("   IDLE SOON  ");
+            idle = true;
+            Serial.print ("   IDLE SOON  ");
 
 
 
-        if (single_shot_b) {
-            single_shot_b = false;
-            single_shot ();
-            // State = 0;
-            break;
-        }
+            if (single_shot_b) {
+                single_shot_b = false;
+                single_shot ();
+                // State = 0;
+                break;
+            }
         } // not idle
         break;
 
