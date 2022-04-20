@@ -1,4 +1,4 @@
-// Wed 20 Apr 19:59:22 UTC 2022 wokwi online edit
+// Wed 20 Apr 20:14:57 UTC 2022 wokwi online edit
 
 #define ID_IN_SERIAL_MON(x) Serial.println("yj331e-aa")
 #include <Arduino.h>
@@ -198,6 +198,7 @@ void loop () {
     case 6:
         if (!idle) {
             idle = true;
+            colorWipe(0xc0ffee, 3);
             Serial.print ("   IDLE SOON  ");
         } // not idle
         break;
@@ -205,6 +206,7 @@ void loop () {
     case 7:
         if (!idle) {
             idle = true;
+            colorWipe(0xffc0ee, 3);
             Serial.print ("   IDLE SOON  ");
         } // not idle
         break;
@@ -222,5 +224,7 @@ void loop () {
         break;
     }
 }
+
+// https://github.com/wa1tnr/wokwi_CircSimApps-a/blob/dvlp-aa/series-ff.d/morse-c/sketch.cpp
 
 // END.
