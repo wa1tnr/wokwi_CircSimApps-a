@@ -1,7 +1,6 @@
-// Wed 20 Apr 18:11:41 UTC 2022
-// Wed 20 Apr 17:56:19 UTC 2022 - online edit
+// Wed 20 Apr 19:23:16 UTC 2022
 
-#define ID_IN_SERIAL_MON(x) Serial.println("yj329c-ee")
+#define ID_IN_SERIAL_MON(x) Serial.println("yj331d-aa")
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 
@@ -11,7 +10,7 @@
 #define BRIGHTNESS 254 // 100
 
 int Botton;
-int State = 0;
+int State = 1;  // trial 18:18 UTC Wed 20 Apr
 
 #define LED_COUNT 32
 #define RGB_STRIP_PIN 5
@@ -65,7 +64,6 @@ void setup () {
 #define HYSTERESIS 350
 uint16_t bpressed = 0;
 
-
 void single_shot () {
     Serial.println ("singleShot() reached.");
     for (int outer = 4; outer > 0; outer--) {
@@ -94,11 +92,15 @@ void do_max_state () {
 #define OVER_FLOW_A 0
 
 bool single_shot_b = true;
+
+bool idle = true;
+
 void loop () {
     // bool single_shot_b = true;
     uint32_t time_stamp = millis ();
     Botton = digitalRead (BOTTONIN);
     if (Botton == LOW) {
+        idle = false; // allow one event
         Serial.println (" button LOW ");
         bool expired_timer = false;
         Serial.write ('r');
@@ -132,41 +134,78 @@ void loop () {
         break;
 
     case 1:
+        if (!idle) {
+
+        idle = true; Serial.print("   IDLE SOON  ");
+
         for (int a = 0; a < 31; a = a + 1) {
             pixels.setPixelColor (a, pixels.Color (0, 0, 0));
         }
         pixels.show ();
+        } // not idle
         break;
 
     case 2:
+        if (!idle) {
+
+        idle = true; Serial.print("   IDLE SOON  ");
+
+
         for (int a = 0; a < 31; a = a + 1) {
             pixels.setPixelColor (a, pixels.Color (183, 21, 184));
         }
         pixels.show ();
+        } // not idle
         break;
 
     case 3:
+        if (!idle) {
+
+        idle = true; Serial.print("   IDLE SOON  ");
+
+        Serial.println(" idle-guarded in the current slot ");
+
+
+
         for (int a = 0; a < 31; a = a + 1) {
             pixels.setPixelColor (a, pixels.Color (250, 0, 250));
         }
         pixels.show ();
+        } // not idle
         break;
 
     case 4:
+        if (!idle) {
+
+
+        idle = true; Serial.print("   IDLE SOON  ");
+
+
+
+
         for (int a = 0; a < 8; a = a + 1) {
             pixels.setPixelColor (a, pixels.Color (199, 21, 21));
         }
         pixels.show ();
-        // Serial.println(" it idles in the current slot ");
+        } // not idle
+        Serial.println(" it idles in the current slot ");
         break;
 
     case 5:
+        if (!idle) {
+
+
+        idle = true; Serial.print("   IDLE SOON  ");
+
+
+
         if (single_shot_b) {
             single_shot_b = false;
             single_shot ();
             // State = 0;
             break;
         }
+        } // not idle
         break;
 
     case (MAX_STATE + OVER_FLOW_A):
