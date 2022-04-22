@@ -91,7 +91,8 @@ void do_max_state () {
 
 bool single_shot_b = true;
 bool idle = true;
-bool pressed_note = true;
+bool pressed_note = true; //  tell operator about something
+                          //  on very first button press
 
 void loop () {
     uint32_t time_stamp = millis ();
