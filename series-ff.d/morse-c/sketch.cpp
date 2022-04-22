@@ -1,15 +1,20 @@
-// Wed 20 Apr 20:19:45 UTC 2022 indent rvim offline edit
+// Fri 22 Apr 18:05:10 UTC 2022 spelling correction rvim offline edit
+
+// recent:
+// commit 24a263dbcbd389b06aa90f1bc9a1abcbd588a5c0
+// Date:   Fri Apr 22 17:57:34 UTC 2022
+//   why pressed_note bool exists
 
 #define ID_IN_SERIAL_MON(x) Serial.println("yj331e-bb")
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 
 #define PINLED 13
-#define BOTTONOUT 3
-#define BOTTONIN 4
+#define BUTTONOUT 3
+#define BUTTONIN 4
 #define BRIGHTNESS 254 // 100
 
-int Botton;
+int Button;
 int State = 1; // trial 18:18 UTC Wed 20 Apr
 
 #define LED_COUNT 32
@@ -47,9 +52,9 @@ void setup () {
     Serial.println ("");
     ID_IN_SERIAL_MON (x);
 
-    pinMode (BOTTONOUT, OUTPUT);
-    digitalWrite (BOTTONOUT, LOW);
-    pinMode (BOTTONIN, INPUT_PULLUP);
+    pinMode (BUTTONOUT, OUTPUT);
+    digitalWrite (BUTTONOUT, LOW);
+    pinMode (BUTTONIN, INPUT_PULLUP);
     pinMode (PINLED, OUTPUT);
 
     blink_pinled ();
@@ -96,8 +101,8 @@ bool pressed_note = true; //  tell operator about something
 
 void loop () {
     uint32_t time_stamp = millis ();
-    Botton = digitalRead (BOTTONIN);
-    if (Botton == LOW) {
+    Button = digitalRead (BUTTONIN);
+    if (Button == LOW) {
         idle = false; // allow one event
         Serial.println (" button LOW ");
         bool expired_timer = false;
