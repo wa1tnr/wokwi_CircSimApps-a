@@ -1,11 +1,11 @@
-// Fri 22 Apr 18:05:10 UTC 2022 spelling correction rvim offline edit
+// Fri 22 Apr 18:29:51 UTC 2022 add second idle-current-slot message (commented here)
 
-// recent:
+// recent -- now older; not in sync with current:
 // commit 24a263dbcbd389b06aa90f1bc9a1abcbd588a5c0
 // Date:   Fri Apr 22 17:57:34 UTC 2022
 //   why pressed_note bool exists
 
-#define ID_IN_SERIAL_MON(x) Serial.println("yj331e-bb")
+#define ID_IN_SERIAL_MON(x) Serial.println("yj331e-dd")
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 
@@ -176,6 +176,7 @@ void loop () {
             }
             pixels.show ();
         } // not idle
+        // Serial.println (" it idles in the current slot: 3 ");
         break;
 
     case 4:
@@ -187,7 +188,7 @@ void loop () {
             }
             pixels.show ();
         } // not idle
-        Serial.println (" it idles in the current slot ");
+        Serial.println (" it idles in the current slot: 4 ");
         break;
 
     case 5:
