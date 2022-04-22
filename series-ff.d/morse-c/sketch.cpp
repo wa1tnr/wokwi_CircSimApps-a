@@ -1,9 +1,9 @@
-// Fri 22 Apr 18:29:51 UTC 2022 add second idle-current-slot message (commented here)
+// Fri 22 Apr 18:43:23 UTC 2022 offline edit
 
-// recent -- now older; not in sync with current:
-// commit 24a263dbcbd389b06aa90f1bc9a1abcbd588a5c0
-// Date:   Fri Apr 22 17:57:34 UTC 2022
-//   why pressed_note bool exists
+// recent:
+// commit 109d7aa7622c40641f038066d133f771a33296b7
+// Date:   Fri Apr 22 18:41:40 UTC 2022
+//   adds timestamp
 
 #define ID_IN_SERIAL_MON(x) Serial.println("yj331e-dd")
 #include <Arduino.h>
