@@ -6,6 +6,10 @@ LATEST:
 
   https://wokwi.com/projects/329465139607634514
 
+WITH LIGHT TIMER:
+
+  https://wokwi.com/projects/329766162591122003    _added 23 April 2022 21:37 UTC_
+
 OLDER:
 
   https://wokwi.com/projects/329462634451567186
