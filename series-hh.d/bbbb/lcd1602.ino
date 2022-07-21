@@ -24,12 +24,11 @@ void loop() {
   uint32_t result = raw_ms - prev_ms;
   Serial.print(result); Serial.print(" ");
 
-  if (result > 4000) {
-    prev_ms = curr_ms;
+  if (result > 800) {
     curr_ms = raw_ms;
+    prev_ms = curr_ms;
     Serial.write('z'); Serial.write(' ');
   }
-
 }
-// 04:39:22z
+// 06:37:54z
 // END.
