@@ -1,6 +1,22 @@
-// LCD1602 to Arduino Uno connection example
+// n_sketch_clock_lcd.cpp
+// Fri 22 Jul 18:16:42 UTC 2022
 
+// from: wokwi's LCD1602 to Arduino Uno connection example
+
+#include <Arduino.h> // if empty .INO then this is required
 #include <LiquidCrystal.h>
+
+
+#undef AVR_UNO_SELECTED
+#if defined(ARDUINO_AVR_UNO)
+    #define AVR_UNO_SELECTED
+/*
+#elif defined(ARDUINO_AVR_PRO)
+    #define NOT_AVR_UNO_SELECTED
+*/
+#else
+    #error Unsupported board selection.
+#endif
 
 #define START_MS 0
 
