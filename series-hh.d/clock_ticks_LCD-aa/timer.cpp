@@ -77,7 +77,7 @@ void setup_gpio(void) {
   digitalWrite(LED_pin, LOW);
 }
 
-void setup() {
+void setup_old_timer() {
   setup_serial();
   setup_gpio();
   setup_timer();
@@ -100,7 +100,7 @@ void sweeping(void) {
   }
 }
 
-void loop() {
+void loop_old_timer() {
   // put your main code here, to run repeatedly:
   // blink(LED_pin);
   sweeping();
