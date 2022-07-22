@@ -10,10 +10,9 @@
 #undef AVR_UNO_SELECTED
 #if defined(ARDUINO_AVR_UNO)
     #define AVR_UNO_SELECTED  // local flag specific to this very program ;)
-/*
-#elif defined(ARDUINO_AVR_PRO)
-    #define NOT_AVR_UNO_SELECTED
-*/
+
+#elif defined(__AVR_ATmega2560__)
+    #define MEGA_2560_SELECTED
 #else
     #error Unsupported board selection.
 #endif
