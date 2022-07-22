@@ -1,5 +1,5 @@
 // n_sketch_clock_lcd.cpp
-// Fri 22 Jul 18:16:42 UTC 2022
+// Fri 22 Jul 18:44:52 UTC 2022 - online edit
 
 // from: wokwi's LCD1602 to Arduino Uno connection example
 
@@ -9,7 +9,7 @@
 
 #undef AVR_UNO_SELECTED
 #if defined(ARDUINO_AVR_UNO)
-    #define AVR_UNO_SELECTED
+    #define AVR_UNO_SELECTED  // local flag specific to this very program ;)
 /*
 #elif defined(ARDUINO_AVR_PRO)
     #define NOT_AVR_UNO_SELECTED
