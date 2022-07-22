@@ -1,11 +1,8 @@
 // n_sketch_clock_lcd.cpp
-// Fri 22 Jul 18:44:52 UTC 2022 - online edit
-
-// from: wokwi's LCD1602 to Arduino Uno connection example
+// Fri 22 Jul 19:30:27 UTC 2022 - +mega offline edit
 
 #include <Arduino.h> // if empty .INO then this is required
 #include <LiquidCrystal.h>
-
 
 #undef AVR_UNO_SELECTED
 #if defined(ARDUINO_AVR_UNO)
