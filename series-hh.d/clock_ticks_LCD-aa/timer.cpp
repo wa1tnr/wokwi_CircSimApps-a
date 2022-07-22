@@ -1,13 +1,12 @@
-// Fri 22 Jul 19:30:27 UTC 2022
+// Fri 22 Jul 19:55:12 UTC 2022
 
-// n_sketch_t-c-b.cpp
+// was: series gg, n_sketch_t-c-b.cpp
 
 // https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/series-gg.d/timer-counter-b
 
 // RTTYVARG:
 
 // https://wokwi.com/projects/326239532234048084
-
 
 // AND_THEN (here):
 // https://wokwi.com/projects/326235653444469332
@@ -83,7 +82,7 @@ void setup_old_timer() {
   setup_timer();
 }
 
-#define SLOWNESS ((1*100)+177)
+#define SLOWNESS ((1*400)+177) // was ((1*100)+177) before  Fri 22 Jul 19:55:12 UTC 2022
 #define UPNESS   38  // RTTY MARK
 #define DOWNNESS 54  // RTTY SPACE
 
