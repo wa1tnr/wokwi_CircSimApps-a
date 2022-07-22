@@ -1,6 +1,8 @@
 on wokwi
 
-  https://wokwi.com/projects/337765583146713682
+project: https://wokwi.com/projects/337909128942846547 recent
+
+old:  https://wokwi.com/projects/337765583146713682
 
 base 60 clock thing
 
