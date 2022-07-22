@@ -1,4 +1,4 @@
-// Fri 22 Jul 19:55:12 UTC 2022
+// Fri 22 Jul 20:24:21 UTC 2022
 
 // was: series gg, n_sketch_t-c-b.cpp
 
@@ -76,7 +76,7 @@ void setup_gpio(void) {
   digitalWrite(LED_pin, LOW);
 }
 
-void setup_old_timer() {
+void setup_old_timer_mega_2560() {
   setup_serial();
   setup_gpio();
   setup_timer();
@@ -99,7 +99,7 @@ void sweeping(void) {
   }
 }
 
-void loop_old_timer() {
+void loop_old_timer_mega_2560() {
   // put your main code here, to run repeatedly:
   // blink(LED_pin);
   sweeping();

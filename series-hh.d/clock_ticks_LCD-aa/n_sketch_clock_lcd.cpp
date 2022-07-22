@@ -1,5 +1,5 @@
 // n_sketch_clock_lcd.cpp
-// Fri 22 Jul 19:55:12 UTC 2022 - +mega +space_aliens offline edit
+// Fri 22 Jul 20:24:21 UTC 2022 - +mega +space_aliens offline edit
 
 #include <Arduino.h> // if empty .INO then this is required
 #include <LiquidCrystal.h>
@@ -18,7 +18,9 @@
 
 LiquidCrystal lcd(12, 11, 10, 9, 8, 7);
 
-extern void setup_old_timer();
+#ifdef MEGA_2560_SELECTED
+    extern void setup_old_timer_mega_2560();
+#endif
 
 void setup_lcd() {
   lcd.begin(16, 2);
@@ -26,7 +28,7 @@ void setup_lcd() {
 }
 
 void setup() {
-  setup_old_timer();
+  setup_old_timer_mega_2560();
   Serial.write(' ');
   setup_lcd();
 }
@@ -39,10 +41,12 @@ uint32_t prev_ms = START_MS;
 
 uint16_t clock = 0;
 
-extern void loop_old_timer();
+#ifdef MEGA_2560_SELECTED
+    extern void loop_old_timer_mega_2560();
+#endif
 
 void loop() {
-  loop_old_timer(); // zero effort to check this
+  loop_old_timer_mega_2560(); // zero effort to check this
 
 
   raw_ms = millis();
