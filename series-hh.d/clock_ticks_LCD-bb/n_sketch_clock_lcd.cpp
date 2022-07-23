@@ -1,8 +1,10 @@
 // n_sketch_clock_lcd.cpp
-// Fri 22 Jul 22:02:19 UTC 2022 - +mega +space_aliens offline edit
+// Sat 23 Jul 00:10:05 UTC 2022 - +mega +space_aliens offline edit
 
 #include <Arduino.h> // if empty .INO then this is required
 #include <LiquidCrystal.h>
+
+#include "MsTimer2.h"
 
 #undef AVR_UNO_SELECTED
 #if defined(ARDUINO_AVR_UNO)
@@ -20,6 +22,21 @@ LiquidCrystal lcd(12, 11, 10, 9, 8, 7);
 
 #ifdef MEGA_2560_SELECTED
     extern void setup_old_timer_mega_2560();
+    const int led_pin = LED_BUILTIN;
+
+void flash() {
+  static boolean output = HIGH;
+  digitalWrite(led_pin, output);
+  output = !output;
+}
+
+void setupMsTimer2() {
+  pinMode(led_pin, OUTPUT);
+
+  MsTimer2::set(500, flash); // 500ms period
+  MsTimer2::start();
+}
+
 #endif
 
 void setup_lcd() {
@@ -31,6 +48,7 @@ void setup() {
   setup_old_timer_mega_2560();
   Serial.write(' ');
   setup_lcd();
+  setupMsTimer2();
 }
 
 uint32_t raw_ms = millis();
