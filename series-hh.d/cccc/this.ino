@@ -37,7 +37,7 @@ void action() {
 void loop() {
     bool was_waiting = reading();
     if (was_waiting) {
-      action();
+        action();
     }
 }
 
