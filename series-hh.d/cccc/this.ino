@@ -1,4 +1,4 @@
-// Thu 17 Nov 01:14:04 UTC 2022
+// Thu 17 Nov 01:24:14 UTC 2022
 // https://wokwi.com/projects/348532661122237011
 
 void setup() {
@@ -8,6 +8,12 @@ void setup() {
 
 char ch, junk;
 uint16_t junk_count;
+
+void echo_char() {
+    Serial.print(
+        (char) (ch + 0)
+    );
+}
 
 bool reading() {
     int available = Serial.available();
@@ -23,7 +29,7 @@ bool reading() {
             junk_count++; // placeholder for ASCII 10 detect
         }
     }
-    Serial.print((char) (ch + 1));
+    echo_char();
     return waiting;
 }
 
@@ -37,7 +43,7 @@ void action() {
 void loop() {
     bool was_waiting = reading();
     if (was_waiting) {
-        action();
+      action();
     }
 }
 
