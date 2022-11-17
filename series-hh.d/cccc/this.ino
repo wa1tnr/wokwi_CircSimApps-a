@@ -1,4 +1,4 @@
-// Thu 17 Nov 00:55:29 UTC 2022
+// Thu 17 Nov 01:14:04 UTC 2022
 // https://wokwi.com/projects/348532661122237011
 
 void setup() {
@@ -9,11 +9,11 @@ void setup() {
 char ch, junk;
 uint16_t junk_count;
 
-void scan_loop() {
+bool reading() {
     int available = Serial.available();
     bool waiting = available > 1;
     if (!waiting) {
-        return;
+        return waiting;
     }
     Serial.print("  SERIAL seen  ");
     ch = Serial.read(); // read the keystroke
@@ -24,19 +24,21 @@ void scan_loop() {
         }
     }
     Serial.print((char) (ch + 1));
+    return waiting;
 }
 
 void action() {
-    // if (ch == 'b') {
-    if (ch == 98) {
+    if (ch == 98) { // if (ch == 'b')
         ch = '\0'; // null
         Serial.print("  SAW 'b'  ");
     }
 }
 
 void loop() {
-    scan_loop();
-    action();
+    bool was_waiting = reading();
+    if (was_waiting) {
+      action();
+    }
 }
 
 // END.
