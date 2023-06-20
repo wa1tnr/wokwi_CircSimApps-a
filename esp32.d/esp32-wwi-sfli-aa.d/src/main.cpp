@@ -421,7 +421,8 @@ void setup() {
     Serial.begin(9600);
     while (!Serial)
         ;
-    Serial.println("Forth-like interpreter:");
+    Serial.println("Forth-like interpreter:\n");
+    Serial.println("18658305 wokwi");
     words();
     Serial.println();
 }
