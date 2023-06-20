@@ -2,6 +2,9 @@
 #include <Arduino.h>
 
 /* https://github.com/CharleyShattuck/Feather-M0-interpreter */
+/* full platformio.ini support: */
+/* https://wokwi.com/projects/368015555974451201 */
+
 /* PROOF: */
 /* https://wokwi.com/projects/368013124460743681 */ /* 20 Jun 2023 01:12z */
 
