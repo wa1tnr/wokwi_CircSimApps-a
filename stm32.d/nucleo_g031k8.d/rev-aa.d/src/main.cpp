@@ -180,9 +180,12 @@ NAMED(_wigg, "wiggle");
 void wigg() {
     int a = pop();
     pinMode(a, OUTPUT);
-    Serial.print("  blue LED_BUILTIN is D2  ");
-    Serial.println("  red LED is D23 ");
-    Serial.print("  type:  23 wiggle ");
+    Serial.println(" ");
+    Serial.println(" ");
+    Serial.println("  LD4 .. the green LED_BUILTIN .. is D200  ");
+    Serial.println("  the red LED is D30 ");
+    Serial.print("  type:   30 wiggle ");
+    Serial.println(" or  type:  200 wiggle ");
     for (int i = 0; i < WIGGLES; i++) {
         digitalWrite(a, HIGH);
         delay(spd * 3 * 3);
@@ -432,7 +435,7 @@ void setup() {
     while (!Serial)
         ;
     Serial.println("Forth-like interpreter:\n");
-    Serial.println("https://wokwi.com/projects/368016633403153409 wokwi");
+    Serial.println(" https://wokwi.com/projects/368033492187226113    nucleo wokwi");
     words();
     Serial.println();
 }
