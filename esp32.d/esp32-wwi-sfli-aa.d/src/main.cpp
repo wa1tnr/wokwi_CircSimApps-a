@@ -2,9 +2,6 @@
 #include <Arduino.h>
 
 /* https://github.com/CharleyShattuck/Feather-M0-interpreter */
-/* full platformio.ini support: */
-/* https://wokwi.com/projects/368015555974451201 */
-
 /* PROOF: */
 /* https://wokwi.com/projects/368013124460743681 */ /* 20 Jun 2023 01:12z */
 
@@ -179,7 +176,9 @@ NAMED(_wigg, "wiggle");
 void wigg() {
     int a = pop();
     pinMode(a, OUTPUT);
-    Serial.print("  LED pin 2  ");
+    Serial.print("  blue LED_BUILTIN is D2  ");
+    Serial.println("  red LED is D23 ");
+    Serial.print("  type:  23 wiggle ");
     for (int i = 0; i < WIGGLES; i++) {
         digitalWrite(a, HIGH);
         delay(spd * 3 * 3);
@@ -429,7 +428,7 @@ void setup() {
     while (!Serial)
         ;
     Serial.println("Forth-like interpreter:\n");
-    Serial.println("18658305 wokwi");
+    Serial.println("https://wokwi.com/projects/368016633403153409 wokwi");
     words();
     Serial.println();
 }
@@ -440,4 +439,5 @@ void loop() {
     runword();
 }
 
+// 20 June 02:08z
 // END.
