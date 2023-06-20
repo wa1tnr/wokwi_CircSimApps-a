@@ -1,6 +1,8 @@
 
 #   pio project init --board adafruit_feather_esp32_v2
 
+# https://wokwi.com/projects/368033492187226113  nucleo 64 Tue 20 June 2023  06:40z
+
 all:
 	pio run
 
