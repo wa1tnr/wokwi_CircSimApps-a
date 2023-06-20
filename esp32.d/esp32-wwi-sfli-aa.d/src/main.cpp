@@ -1,4 +1,5 @@
 /* upstream: */
+#include <Arduino.h>
 
 /* https://github.com/CharleyShattuck/Feather-M0-interpreter */
 /* PROOF: */
