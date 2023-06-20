@@ -1,11 +1,9 @@
-/* upstream: */
 #include <Arduino.h>
 
 /* https://github.com/CharleyShattuck/Feather-M0-interpreter */
-/* PROOF: */
-/* https://wokwi.com/projects/368013124460743681 */ /* 20 Jun 2023 01:12z */
 
-/* https://wokwi.com/projects/368012792418658305 */ /* 20 Jun 2023 01:07z */
+/* https://wokwi.com/projects/368018020799345665 */ /* 20 Jun 2023 02:32z */
+
 /* Tiny interpreter,
    similar to myforth's Standalone Interpreter
    This example code is in the public domain */
