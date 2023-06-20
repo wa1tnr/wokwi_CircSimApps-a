@@ -1,6 +1,9 @@
 /* upstream: */
 
 /* https://github.com/CharleyShattuck/Feather-M0-interpreter */
+/* PROOF: */
+/* https://wokwi.com/projects/368013124460743681 */ /* 20 Jun 2023 01:12z */
+
 /* https://wokwi.com/projects/368012792418658305 */ /* 20 Jun 2023 01:07z */
 /* Tiny interpreter,
    similar to myforth's Standalone Interpreter
