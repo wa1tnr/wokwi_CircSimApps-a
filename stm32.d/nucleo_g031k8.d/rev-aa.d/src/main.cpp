@@ -1,12 +1,11 @@
-/* upstream: */
+/* NUCLEO  C031C6 */
 #include <Arduino.h>
-/* 20 June https://wokwi.com/projects/368028996703622145   nucleo */
+/* wa1tnr https://wokwi.com/projects/368112159606410241  Wed 21 Jun 03:25:02 UTC 2023 */
 
 /* https://github.com/CharleyShattuck/Feather-M0-interpreter */
 
-/* Tue 20 Jun 03:02:25 UTC 2023 */
 
-/* uri here */
+/* 20 June https://wokwi.com/projects/368028996703622145   nucleo */
 
 /* https://wokwi.com/projects/368020117772308481 */
 
@@ -301,31 +300,49 @@ int locate() {
     //  Serial.println("    locate   BEGINS here:  ");
 
     for (int i = entries - 1; i >= 1; i--) {
+        // strcpy(namebuf, dictionary[i].name);
 
-        //    Serial.print("  entries: ");
-        //    Serial.println(entries);
+#ifdef DEBUG_AABA
+        // char namebuf[maxtib];  maxtib is 16
+        char* buffer_ptr = (char * ) namebuf ;
+        int buffer_addr = (int) buffer_ptr;
 
-        //    strcpy(namebuf, dictionary[i].name);
+        push(buffer_addr - 16); // show 3 line memory dump
 
-        //    memcpy(namebuf, dictionary[i].name, sizeof(dictionary[i].name));
+        Serial.println();
+        for (int count = 3 ; count > 0; count --) {
+            // iterates 3 then 2 then 1
+            Serial.println();
+            dumpRAM();
+        }
+        Serial.println(" ");
+#endif
 
-        //    BUG:  memcpy probably omitted the null at the end of TIB
+        int name_size = 15;
 
-        //    NOPE: sizeof is inappropriately applied and gives likely 4 always.
 
-        memcpy(namebuf, dictionary[i].name, 12); // NULL was dropped!
 
-        // Serial.print(" this is: ");
-        // Serial.print(namebuf);
-        // Serial.println(":  end buffer.");
 
+        // populate namebuf from current dictionary entry
+        memcpy(namebuf, dictionary[i].name, name_size);
+
+#ifdef DEBUG_BBCB  // have already: AABA
+        // good indication it's somewhat correct:
+        int len = strlen(namebuf);
+
+        Serial.print("  ");
+        Serial.print(namebuf);
+        Serial.print(" strlen: ");
+        Serial.println(len);
+#endif
         if (!strcmp(tib, namebuf)) {
+            namebuf[0] = '\0';
+            tib[0] = '\0';
             //      namebuf[0] = '\0';
             //      tib[0] = '\0';
             return i;
         }
     }
-
     return 0;
 }
 
@@ -434,7 +451,8 @@ void setup() {
     Serial.begin(9600);
     while (!Serial)
         ;
-    Serial.println("Forth-like interpreter:\n");
+    Serial.println("Forth-like interpreter:");
+    Serial.println("    536871082  is  0x200000AA    use  536870912 for 0x0000 \n");
     Serial.println(" https://wokwi.com/projects/368033492187226113    nucleo wokwi");
     words();
     Serial.println();

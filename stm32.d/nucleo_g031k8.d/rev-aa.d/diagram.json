@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "wa1tnr  https://wokwi.com/projects/368033492187226113  Tue 20 Jun 06:38 UTC 2023",
+  "author": "wa1tnr https://wokwi.com/projects/368112159606410241  Wed 21 Jun 03:25:02 UTC 2023",
   "editor": "wokwi",
   "parts": [
     {
@@ -9,11 +9,28 @@
       "top": -37.71,
       "left": -264.45,
       "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 245.87,
+      "left": -365.8,
+      "attrs": { "color": "red", "flip": "" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 353.82,
+      "left": -322.27,
+      "attrs": { "value": "1000" }
     }
   ],
   "connections": [
     [ "$serialMonitor:TX", "nucleo:PA3", "", [] ],
-    [ "$serialMonitor:RX", "nucleo:PA2", "", [] ]
+    [ "$serialMonitor:RX", "nucleo:PA2", "", [] ],
+    [ "nucleo:A0", "led1:A", "green", [ "h33.62", "v93.47", "h-143.33", "v-14", "h1.33" ] ],
+    [ "nucleo:GND.6", "r1:2", "black", [ "h43.62", "v5.61" ] ],
+    [ "led1:C", "r1:1", "green", [ "v2", "h-9.77", "v16", "h-40.67", "v51.33" ] ]
   ],
   "dependencies": {}
 }
