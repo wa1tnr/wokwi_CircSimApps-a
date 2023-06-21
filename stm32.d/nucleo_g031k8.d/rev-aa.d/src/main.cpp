@@ -1,7 +1,6 @@
 /* NUCLEO  C031C6 */
 #include <Arduino.h>
-/* wa1tnr https://wokwi.com/projects/368112159606410241  Wed 21 Jun 03:25:02 UTC
- * 2023 */
+/* wa1tnr  https://wokwi.com/projects/368121790980127745  Wed 21 Jun 05:59:35 UTC 2023 */
 
 /* https://github.com/CharleyShattuck/Feather-M0-interpreter */
 
@@ -473,7 +472,7 @@ void setup() {
   Serial.println(
       "    536871082  is  0x200000AA    use  536870912 for 0x0000 \n");
   Serial.println(
-      " https://wokwi.com/projects/368033492187226113    nucleo wokwi");
+      " https://wokwi.com/projects/368121790980127745    nucleo wokwi");
   Serial.println("Bottom of flashROM 0x08000000  134217728");
   words();
   Serial.println();
