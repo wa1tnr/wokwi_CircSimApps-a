@@ -1,6 +1,6 @@
 /* NUCLEO  C031C6 */
 #include <Arduino.h>
-/* wa1tnr https://wokwi.com/projects/368112159606410241  Wed 21 Jun 03:25:02 UTC 2023 */
+/* wa1tnr https://wokwi.com/projects/368118809895165953  Wed 21 Jun 05:12:25 UTC 2023 */
 
 /* https://github.com/CharleyShattuck/Feather-M0-interpreter */
 
@@ -217,6 +217,19 @@ void output() { pinMode(pop(), OUTPUT); }
 NAMED(_input_pullup, "input_pullup");
 void input_pullup() { pinMode(pop(), INPUT_PULLUP); }
 
+
+
+/* print CR, LF or both */
+
+#define LOCAL_LINE_ENDING 0x0a
+
+NAMED(_cr, "cr");
+void cr_() {
+    Serial.write(LOCAL_LINE_ENDING);
+}
+
+
+
 /* dump 16 bytes of RAM in hex with ascii on the side */
 void dumpRAM() {
     char buffer[9] = "";
@@ -275,7 +288,8 @@ const entry dictionary[] = {
     {_over, over},     {_add, add},       {_and, and_},
     {_or, or_},        {_xor, xor_},      {_invert, invert},
     {_negate, negate}, {_dotS, dotS},     {_dotShex, dotShex},
-    {_dot, dot},       {_dotHEX, dotHEX}, {_delay, del},
+    {_dot, dot},       {_cr, cr_},
+    {_dotHEX, dotHEX}, {_delay, del},
     {_high, high},     {_low, low},       {_in, in},
     {_input, input},   {_output, output}, {_input_pullup, input_pullup},
     {_wigg, wigg},     {_dumpr, rdumps},  {_speed, speed}};
@@ -448,12 +462,13 @@ void runword() {
 /* Arduino main loop */
 
 void setup() {
-    Serial.begin(9600);
+    Serial.begin(115200);
     while (!Serial)
         ;
     Serial.println("Forth-like interpreter:");
     Serial.println("    536871082  is  0x200000AA    use  536870912 for 0x0000 \n");
     Serial.println(" https://wokwi.com/projects/368033492187226113    nucleo wokwi");
+    Serial.println("Bottom of flashROM 0x08000000  134217728");
     words();
     Serial.println();
 }
@@ -464,5 +479,5 @@ void loop() {
     runword();
 }
 
-// 20 June 02:08z
+// 21 June 05:14z
 // END.
