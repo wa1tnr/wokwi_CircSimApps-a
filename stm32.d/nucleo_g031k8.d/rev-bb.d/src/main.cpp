@@ -220,6 +220,16 @@ void output() { pinMode(pop(), OUTPUT); }
 NAMED(_input_pullup, "input_pullup");
 void input_pullup() { pinMode(pop(), INPUT_PULLUP); }
 
+/* print CR, LF or both */
+
+#define LOCAL_LINE_ENDING 0x0a
+
+NAMED(_cr, "cr");
+void cr_() { Serial.write(LOCAL_LINE_ENDING); }
+
+NAMED(_nvic_reset, "reset");
+void nvic_reset_() { NVIC_SystemReset(); }
+
 /* dump 16 bytes of RAM in hex with ascii on the side */
 void dumpRAM() {
     char buffer[9] = "";
