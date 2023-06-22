@@ -1,8 +1,9 @@
 /* NUCLEO  C031C6 */
 #include <Arduino.h>
-/* wa1tnr  https://wokwi.com/projects/368121790980127745  Wed 21 Jun 05:59:35 UTC 2023 */
+/* wa1tnr https://wokwi.com/projects/368269677501930497  Thu 22 Jun 21:10:06 UTC 2023 */
 
 /* https://github.com/CharleyShattuck/Feather-M0-interpreter */
+
 
 /* 20 June https://wokwi.com/projects/368028996703622145   nucleo */
 
@@ -14,8 +15,8 @@
 
 /* Structure of a dictionary entry */
 typedef struct {
-  const char *name;
-  void (*function)();
+    const char *name;
+    void (*function)();
 } entry;
 
 /* Data stack for parameter passing
@@ -42,15 +43,15 @@ byte pos;
 
 /* push n to top of data stack */
 void push(int n) {
-  p = (p + 1) & STKMASK;
-  TOS = n;
+    p = (p + 1) & STKMASK;
+    TOS = n;
 }
 
 /* return top of stack */
 int pop() {
-  int n = TOS;
-  p = (p - 1) & STKMASK;
-  return n;
+    int n = TOS;
+    p = (p - 1) & STKMASK;
+    return n;
 }
 
 /* Global delay timer */
@@ -59,11 +60,11 @@ int spd = 15;
 /* top of stack becomes current spd */
 NAMED(_speed, "speed");
 void speed() {
-  Serial.print("  range:  8 to 25  ");
-  int parm = pop();
-  spd = max(8, parm);
-  parm = min(25, spd);
-  spd = parm;
+    Serial.print("  range:  8 to 25  ");
+    int parm = pop();
+    spd = max(8, parm);
+    parm = min(25, spd);
+    spd = parm;
 }
 
 /* discard top of stack */
@@ -73,8 +74,8 @@ void drop() { pop(); }
 /* recover dropped stack item */
 NAMED(_back, "back");
 void back() {
-  for (int i = 1; i < STKSIZE; i++)
-    drop();
+    for (int i = 1; i < STKSIZE; i++)
+        drop();
 }
 
 /* copy top of stack */
@@ -84,51 +85,51 @@ void dup() { push(TOS); }
 /* exchange top two stack items */
 NAMED(_swap, "swap");
 void swap() {
-  int a;
-  int b;
-  a = pop();
-  b = pop();
-  push(a);
-  push(b);
+    int a;
+    int b;
+    a = pop();
+    b = pop();
+    push(a);
+    push(b);
 }
 
 /* copy second on stack to top */
 NAMED(_over, "over");
 void over() {
-  int a;
-  int b;
-  a = pop();
-  b = pop();
-  push(b);
-  push(a);
-  push(b);
+    int a;
+    int b;
+    a = pop();
+    b = pop();
+    push(b);
+    push(a);
+    push(b);
 }
 /* add top two items */
 NAMED(_add, "+");
 void add() {
-  int a = pop();
-  TOS = a + TOS;
+    int a = pop();
+    TOS = a + TOS;
 }
 
 /* bitwise and top two items */
 NAMED(_and, "and");
 void and_() {
-  int a = pop();
-  TOS = a & TOS;
+    int a = pop();
+    TOS = a & TOS;
 }
 
 /* inclusive or top two items */
 NAMED(_or, "or");
 void or_() {
-  int a = pop();
-  TOS = a | TOS;
+    int a = pop();
+    TOS = a | TOS;
 }
 
 /* exclusive or top two items */
 NAMED(_xor, "xor");
 void xor_() {
-  int a = pop();
-  TOS = a ^ TOS;
+    int a = pop();
+    TOS = a ^ TOS;
 }
 
 /* invert all bits in top of stack */
@@ -142,54 +143,62 @@ void negate() { TOS = -(TOS); }
 /* destructively display top of stack, decimal */
 NAMED(_dot, ".");
 void dot() {
-  Serial.print(pop());
-  Serial.print(" ");
+    Serial.print(pop());
+    Serial.print(" ");
 }
 
 /* destructively display top of stack, hex */
 NAMED(_dotHEX, ".h");
 void dotHEX() {
-  Serial.print(0xffff & pop(), HEX);
-  Serial.print(" ");
+    Serial.print(0xffff & pop(), HEX);
+    Serial.print(" ");
 }
 
 /* display whole stack, hex */
 NAMED(_dotShex, ".sh");
 void dotShex() {
-  for (int i = 0; i < STKSIZE; i++)
-    dotHEX();
+    for (int i = 0; i < STKSIZE; i++)
+        dotHEX();
 }
 
 /* display whole stack, decimal */
 NAMED(_dotS, ".s");
 void dotS() {
-  for (int i = 0; i < STKSIZE; i++)
-    dot();
+    for (int i = 0; i < STKSIZE; i++)
+        dot();
 }
 
 /* delay TOS # of milliseconds */
 NAMED(_delay, "delay");
 void del() { delay(pop()); }
 
-#define WIGGLES 7 // blinks
+#define WIGGLES 4 // blinks
 
 /* Toggle pin at TOS and delay(spd), repeat... */
 NAMED(_wigg, "wiggle");
 void wigg() {
-  int a = pop();
-  pinMode(a, OUTPUT);
-  Serial.println(" ");
-  Serial.println(" ");
-  Serial.println("  LD4 .. the green LED_BUILTIN .. is D200  ");
-  Serial.println("  the red LED is D30 ");
-  Serial.print("  type:   30 wiggle ");
-  Serial.println(" or  type:  200 wiggle ");
-  for (int i = 0; i < WIGGLES; i++) {
-    digitalWrite(a, HIGH);
-    delay(spd * 3 * 3);
-    digitalWrite(a, LOW);
-    delay(spd * 9 * 3);
-  }
+    int a = pop();
+    pinMode(a, OUTPUT);
+
+    Serial.println(" ");
+
+
+#ifdef WIGGLE_PRINTS
+    Serial.println(" ");
+    Serial.println("  LD4 .. the green LED_BUILTIN .. is D200  ");
+    Serial.println("  the red LED is D30 ");
+    Serial.print("  type:   30 wiggle ");
+    Serial.println(" or  type:  200 wiggle ");
+#endif
+
+
+
+    for (int i = 0; i < WIGGLES; i++) {
+        digitalWrite(a, HIGH);
+        delay(spd * 3 * 3);
+        digitalWrite(a, LOW);
+        delay(spd * 9 * 3);
+    }
 }
 
 /* TOS is pin number, set it HIGH */
@@ -216,49 +225,39 @@ void output() { pinMode(pop(), OUTPUT); }
 NAMED(_input_pullup, "input_pullup");
 void input_pullup() { pinMode(pop(), INPUT_PULLUP); }
 
-/* print CR, LF or both */
-
-#define LOCAL_LINE_ENDING 0x0a
-
-NAMED(_cr, "cr");
-void cr_() { Serial.write(LOCAL_LINE_ENDING); }
-
-NAMED(_nvic_reset, "reset");
-void nvic_reset_() { NVIC_SystemReset(); }
-
 /* dump 16 bytes of RAM in hex with ascii on the side */
 void dumpRAM() {
-  char buffer[9] = "";
-  char *ram;
-  int p = pop();
-  ram = (char *)p;
-  sprintf(buffer, "%4x", p); // was 4x
-  Serial.print(buffer);
-  Serial.print("   ");
-  for (int i = 0; i < 16; i++) {
-    char c = *ram++;
-    sprintf(buffer, " %2x", (c & 0xff));
+    char buffer[9] = "";
+    char *ram;
+    int p = pop();
+    ram = (char *)p;
+    sprintf(buffer, "%4x", p); // was 4x
     Serial.print(buffer);
-  }
-  ram = (char *)p;
-  Serial.print("   ");
-  for (int i = 0; i < 16; i++) {
-    buffer[0] = *ram++;
-    if (buffer[0] > 0x7f || buffer[0] < ' ')
-      buffer[0] = '.';
-    buffer[1] = '\0';
-    Serial.print(buffer);
-  }
-  push(p + 16);
+    Serial.print("   ");
+    for (int i = 0; i < 16; i++) {
+        char c = *ram++;
+        sprintf(buffer, " %2x", (c & 0xff));
+        Serial.print(buffer);
+    }
+    ram = (char *)p;
+    Serial.print("   ");
+    for (int i = 0; i < 16; i++) {
+        buffer[0] = *ram++;
+        if (buffer[0] > 0x7f || buffer[0] < ' ')
+            buffer[0] = '.';
+        buffer[1] = '\0';
+        Serial.print(buffer);
+    }
+    push(p + 16);
 }
 
 /* dump 256 bytes of RAM */
 NAMED(_dumpr, "dump");
 void rdumps() {
-  for (int i = 0; i < 16; i++) {
-    Serial.println();
-    dumpRAM();
-  }
+    for (int i = 0; i < 16; i++) {
+        Serial.println();
+        dumpRAM();
+    }
 }
 
 /* End of Forth interpreter words */
@@ -277,212 +276,212 @@ void nop() {}
 NAMED(_words, "words");
 void words();
 
+/* strobe the wired LEDs */
+NAMED(_strobes, "strobes");
+void strobes() {
+    for (int index = 16; index < 24; index++) {
+        push(index); dup(); dotS(); drop();
+        wigg();
+    }
+}
+
 /* table of names and function addresses in flash */
-const entry dictionary[] = {{_nop, nop},         {_words, words},
-                            {_dup, dup},         {_drop, drop},
-                            {_back, back},       {_swap, swap},
-                            {_over, over},       {_add, add},
-                            {_and, and_},        {_or, or_},
-                            {_xor, xor_},        {_invert, invert},
-                            {_negate, negate},   {_dotS, dotS},
-                            {_dotShex, dotShex}, {_dot, dot},
-                            {_cr, cr_},          {_nvic_reset, nvic_reset_},
-                            {_dotHEX, dotHEX},   {_delay, del},
-                            {_high, high},       {_low, low},
-                            {_in, in},           {_input, input},
-                            {_output, output},   {_input_pullup, input_pullup},
-                            {_wigg, wigg},       {_dumpr, rdumps},
-                            {_speed, speed}};
+const entry dictionary[] = {
+    {_nop, nop},       {_words, words},   {_strobes, strobes},
+    {_dup, dup},
+    {_drop, drop},     {_back, back},     {_swap, swap},
+    {_over, over},     {_add, add},       {_and, and_},
+    {_or, or_},        {_xor, xor_},      {_invert, invert},
+    {_negate, negate}, {_dotS, dotS},     {_dotShex, dotShex},
+    {_dot, dot},       {_dotHEX, dotHEX}, {_delay, del},
+    {_high, high},     {_low, low},       {_in, in},
+    {_input, input},   {_output, output}, {_input_pullup, input_pullup},
+    {_wigg, wigg},     {_dumpr, rdumps},  {_speed, speed}};
 
 /* Number of words in the dictionary */
 const int entries = sizeof dictionary / sizeof dictionary[0];
 
 /* Display all words in dictionary */
 void words() {
-  for (int i = entries - 1; i >= 0; i--) {
-    strcpy(namebuf, dictionary[i].name);
-    Serial.print(namebuf);
-    Serial.print(" ");
-  }
+    for (int i = entries - 1; i >= 0; i--) {
+        strcpy(namebuf, dictionary[i].name);
+        Serial.print(namebuf);
+        Serial.print(" ");
+    }
 }
 
 /* Find a word in the dictionary, returning its position */
 int locate() {
 
-  //  GOOD spot to print something to help user understand prgrm flow.
+    //  GOOD spot to print something to help user understand prgrm flow.
 
-  //  Serial.println("    locate   BEGINS here:  ");
+    //  Serial.println("    locate   BEGINS here:  ");
 
-  for (int i = entries - 1; i >= 1; i--) {
-    // strcpy(namebuf, dictionary[i].name);
+    for (int i = entries - 1; i >= 1; i--) {
+        // strcpy(namebuf, dictionary[i].name);
 
 #ifdef DEBUG_AABA
-    // char namebuf[maxtib];  maxtib is 16
-    char *buffer_ptr = (char *)namebuf;
-    int buffer_addr = (int)buffer_ptr;
+        // char namebuf[maxtib];  maxtib is 16
+        char* buffer_ptr = (char * ) namebuf ;
+        int buffer_addr = (int) buffer_ptr;
 
-    push(buffer_addr - 16); // show 3 line memory dump
+        push(buffer_addr - 16); // show 3 line memory dump
 
-    Serial.println();
-    for (int count = 3; count > 0; count--) {
-      // iterates 3 then 2 then 1
-      Serial.println();
-      dumpRAM();
-    }
-    Serial.println(" ");
+        Serial.println();
+        for (int count = 3 ; count > 0; count --) {
+            // iterates 3 then 2 then 1
+            Serial.println();
+            dumpRAM();
+        }
+        Serial.println(" ");
 #endif
 
-    int name_size = 15;
+        int name_size = 15;
 
-    // populate namebuf from current dictionary entry
-    memcpy(namebuf, dictionary[i].name, name_size);
 
-#ifdef DEBUG_BBCB // have already: AABA
-    // good indication it's somewhat correct:
-    int len = strlen(namebuf);
 
-    Serial.print("  ");
-    Serial.print(namebuf);
-    Serial.print(" strlen: ");
-    Serial.println(len);
+
+        // populate namebuf from current dictionary entry
+        memcpy(namebuf, dictionary[i].name, name_size);
+
+#ifdef DEBUG_BBCB  // have already: AABA
+        // good indication it's somewhat correct:
+        int len = strlen(namebuf);
+
+        Serial.print("  ");
+        Serial.print(namebuf);
+        Serial.print(" strlen: ");
+        Serial.println(len);
 #endif
-    if (!strcmp(tib, namebuf)) {
-      namebuf[0] = '\0';
-      tib[0] = '\0';
-      //      namebuf[0] = '\0';
-      //      tib[0] = '\0';
-      return i;
+        if (!strcmp(tib, namebuf)) {
+            namebuf[0] = '\0';
+            tib[0] = '\0';
+            //      namebuf[0] = '\0';
+            //      tib[0] = '\0';
+            return i;
+        }
     }
-  }
-  return 0;
+    return 0;
 }
 
 /* Is the word in tib a number? */
 int isNumber() {
-  char *endptr;
-  strtol(tib, &endptr, 0);
-  if (endptr == tib)
-    return 0;
-  if (*endptr != '\0')
-    return 0;
-  return 1;
+    char *endptr;
+    strtol(tib, &endptr, 0);
+    if (endptr == tib)
+        return 0;
+    if (*endptr != '\0')
+        return 0;
+    return 1;
 }
 
 /* Convert number in tib */
 int number() {
-  char *endptr;
-  return (int)strtol(tib, &endptr, 0);
+    char *endptr;
+    return (int)strtol(tib, &endptr, 0);
 }
 
 char ch;
 
 void ok() {
-  if (ch == '\n')
-    Serial.println("ok"); // was \r
+    if (ch == '\n')
+        Serial.println("ok"); // was \r
 }
 
 /* Incrementally read command line from serial port */
 byte reading() {
-  if (!Serial.available())
+    if (!Serial.available())
+        return 1;
+    ch = Serial.read();
+    if (ch == '\r')
+        return 1;
+    if (ch == '\n')
+        return 0;
+    if (ch == ' ')
+        return 0;
+    if (pos < maxtib) {
+        tib[pos++] = ch;
+        tib[pos] = 0;
+    }
     return 1;
-  ch = Serial.read();
-  if (ch == '\r')
-    return 1;
-  if (ch == '\n')
-    return 0;
-  if (ch == ' ')
-    return 0;
-  if (pos < maxtib) {
-    tib[pos++] = ch;
-    tib[pos] = 0;
-  }
-  return 1;
 }
 
 /* Block on reading the command line from serial port */
 /* then echo each word */
 void readword() {
-  pos = 0;
-  tib[0] = 0;
-  while (reading())
-    ;
-  Serial.print(tib);
-  Serial.print(" ");
+    pos = 0;
+    tib[0] = 0;
+    while (reading())
+        ;
+    Serial.print(tib);
+    Serial.print(" ");
 }
 
 /* Run a word via its name */
 void runword() {
 
-  // Serial.println("  this is runword     ");
+    // Serial.println("  this is runword     ");
 
 #ifdef MY_DEBUG_PRINTS
-  Serial.print(" DEBUG runword: ");
-  Serial.print(tib);
-  Serial.print("  ");
-  delay(100);
-  char *tib_ptr = (char *)tib;
-  uint32_t tib_adr = (uint32_t)tib_ptr;
-  push(10);
-  push(tib_adr);
-  Serial.print("  pushed.  ");
-  dotS();
-  Serial.println("   y   ");
-  Serial.println(" ");
-  dumpRAM();
-  Serial.println(" ");
-  Serial.println("  That was dumpRAM(); ");
-  Serial.println(" ");
-  Serial.print(tib_adr);
-  Serial.print("   x   ");
+    Serial.print(" DEBUG runword: ");
+    Serial.print(tib);
+    Serial.print("  ");
+    delay(100);
+    char *tib_ptr = (char *)tib;
+    uint32_t tib_adr = (uint32_t)tib_ptr;
+    push(10);
+    push(tib_adr);
+    Serial.print("  pushed.  ");
+    dotS();
+    Serial.println("   y   ");
+    Serial.println(" ");
+    dumpRAM();
+    Serial.println(" ");
+    Serial.println("  That was dumpRAM(); ");
+    Serial.println(" ");
+    Serial.print(tib_adr);
+    Serial.print("   x   ");
 #endif
 
-  int place = locate();
+    int place = locate();
 
-  //  Serial.println(" ");
+    //  Serial.println(" ");
 
-  //  Serial.println("  place is possibly assigned to output of fn locate();
-  //  sweet.");
+    //  Serial.println("  place is possibly assigned to output of fn locate();
+    //  sweet.");
 
-  if (place != 0) {
-    dictionary[place].function();
-    ok();
-    return;
-  }
-  if (isNumber()) {
-    push(number());
-    ok();
-    return;
-  }
-  Serial.println("?");
+    if (place != 0) {
+        dictionary[place].function();
+        ok();
+        return;
+    }
+    if (isNumber()) {
+        push(number());
+        ok();
+        return;
+    }
+    Serial.println("?");
 }
 
 /* Arduino main loop */
 
 void setup() {
-  Serial.begin(115200);
-  while (!Serial)
-    ;
-
-  // push(30); input();
-  // push(200); input();
-
-  Serial.println();
-  Serial.println();
-  Serial.println("Forth-like interpreter:");
-  Serial.println(
-      "    536871082  is  0x200000AA    use  536870912 for 0x0000 \n");
-  Serial.println(
-      " https://wokwi.com/projects/368121790980127745    nucleo wokwi");
-  Serial.println("Bottom of flashROM 0x08000000  134217728");
-  words();
-  Serial.println();
+    Serial.begin(9600);
+    while (!Serial)
+        ;
+    Serial.println("Forth-like interpreter:");
+    Serial.println("    536871082  is  0x200000AA    use  536870912 for 0x0000 \n");
+    Serial.println(" https://wokwi.com/projects/368033492187226113    nucleo wokwi");
+    words();
+    Serial.println();
+    // strobes();
 }
 
 void loop() {
-  readword();
-  // Serial.print("      the loop     ");
-  runword();
+    readword();
+    // Serial.print("      the loop     ");
+    runword();
 }
 
-// 20 June 05:53z
+// 20 June 02:08z
 // END.
