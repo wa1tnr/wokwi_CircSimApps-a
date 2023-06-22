@@ -1,13 +1,8 @@
 /* NUCLEO  C031C6 */
 #include <Arduino.h>
-/* wa1tnr https://wokwi.com/projects/368269677501930497  Thu 22 Jun 21:10:06 UTC 2023 */
+/* wa1tnr https://wokwi.com/projects/368272552521237505  Thu 22 Jun 21:55:43 UTC 2023 */
 
 /* https://github.com/CharleyShattuck/Feather-M0-interpreter */
-
-
-/* 20 June https://wokwi.com/projects/368028996703622145   nucleo */
-
-/* https://wokwi.com/projects/368020117772308481 */
 
 /* Tiny interpreter,
    similar to myforth's Standalone Interpreter
@@ -471,7 +466,7 @@ void setup() {
         ;
     Serial.println("Forth-like interpreter:");
     Serial.println("    536871082  is  0x200000AA    use  536870912 for 0x0000 \n");
-    Serial.println(" https://wokwi.com/projects/368033492187226113    nucleo wokwi");
+    Serial.println(" https://wokwi.com/projects/368272552521237505    nucleo C031C6 on wokwi");
     words();
     Serial.println();
     // strobes();
