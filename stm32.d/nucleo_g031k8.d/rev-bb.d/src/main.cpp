@@ -1,7 +1,6 @@
 /* NUCLEO  C031C6 */
 #include <Arduino.h>
-/* wa1tnr  https://wokwi.com/projects/368287952068294657  Fri 23 Jun 02:00:34
- * UTC 2023 */
+/* wa1tnr  https://wokwi.com/projects/368289867812576257  Fri 23 Jun 2:31:35 UTC 2023 */
 
 /* https://github.com/CharleyShattuck/Feather-M0-interpreter */
 
@@ -488,14 +487,15 @@ void runword() {
 /* Arduino main loop */
 
 void setup() {
-    Serial.begin(9600);
+    Serial.begin(115200);
     while (!Serial)
         ;
+    Serial.write(' ');
     Serial.println();
     Serial.println("Forth-like interpreter:");
     Serial.println(
         "    536871082  is  0x200000AA    use  536870912 for 0x0000 \n");
-    Serial.println(" https://wokwi.com/projects/368272552521237505    nucleo "
+    Serial.println(" https://wokwi.com/projects/368289867812576257    nucleo "
                    "C031C6 on wokwi");
     words();
     Serial.println();
