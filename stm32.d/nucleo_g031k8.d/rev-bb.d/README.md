@@ -4,7 +4,8 @@ Ported to the Nucleo C031C6 USD $10 Arduino-compatible (and centric) board from 
 
 Current project on wokwi:
 
-  https://wokwi.com/projects/368287952068294657
+  https://wokwi.com/projects/368289115276803073
+
 
 Fri 23 Jun 02:00:34 UTC 2023
 
