@@ -1,8 +1,10 @@
 /* NUCLEO  C031C6 */
 #include <Arduino.h>
-/* wa1tnr  https://wokwi.com/projects/368299970327122945  Fri 23 Jun 5:14:45 UTC 2023 */
 
-/* https://github.com/CharleyShattuck/Feather-M0-interpreter */
+/*  wa1tnr  https://wokwi.com/projects/368342926546418689  */
+/*  Fri 23 Jun 16:37:24 UTC 2023 */
+
+/*  https://github.com/CharleyShattuck/Feather-M0-interpreter */
 
 /* Tiny interpreter,
    similar to myforth's Standalone Interpreter
@@ -55,10 +57,10 @@ int spd = 15;
 /* top of stack becomes current spd */
 NAMED(_speed, "speed");
 void speed() {
-    Serial.print("  range:  8 to 25  ");
+    Serial.print("  range:  4 to 21  ");
     int parm = pop();
-    spd = max(8, parm);
-    parm = min(25, spd);
+    spd = max(4, parm);
+    parm = min(21, spd);
     spd = parm;
 }
 
@@ -167,11 +169,30 @@ void dotS() {
 NAMED(_delay, "delay");
 void del() { delay(pop()); }
 
+void bad_gpio() {
+    Serial.print("Bad GPIO pin number!");
+    // push(13); // shuffle it to D13, safe to do.
+    drop();
+    push(13);
+}
+
+void no_gpio() {
+    dup(); // for test
+    int test = pop(); // no more extra copies
+    if (test == 36) {
+        bad_gpio();
+        return;
+    }
+    if (test == 40) {
+        bad_gpio();
+    }
+}
 #define WIGGLES 4 // blinks
 
 /* Toggle pin at TOS and delay(spd), repeat... */
-NAMED(_wigg, "wiggle");
-void wigg() {
+NAMED(_wiggle, "wiggle");
+void wiggle() {
+    no_gpio();
     int a = pop();
     pinMode(a, OUTPUT);
 
@@ -278,15 +299,70 @@ void nop() {}
 NAMED(_words, "words");
 void words();
 
+
+NAMED(_dow, "dow");
+void dow() { // dup output wiggle
+    dup(); dotS(); output(); wiggle(); // cr_();
+}
+
+void strobings() {
+        dup();
+        dotS();
+        drop();
+        wiggle();
+}
+
+
+
+/* strobe all ports */
+NAMED(_strall, "strall");
+void strall() {
+    int accum = pop(); // need a starting port pin number
+    int start = max(0, accum); // zero or greater
+    accum = start;
+    start = min(253, accum); // 253 or less
+    for (int port = start; port < 255; port++) {
+        push(port); strobings();
+    }
+}
+
+/*  findings */
+
+/*
+ *    PB7 = D0
+ *    PB6 = D1
+ *   PA10 = D2
+ *    PB3 = D3
+ *   PB10 = D4
+ *    PB4 = D5
+ *    PB5 = D6
+ *   PA15 = D7
+ *    PA9 = D8
+ *    PC7 = D9
+ *  PB0.2 = D10
+ *    PA7 = D11
+ *    PA6 = D12
+ *    PA5 = D13  LED_BUILTIN
+ *    PB9 = D14
+ *    PB8 = D15
+ *    PA3 =
+ * 192-197  lights up A0 thru A5
+ * 200 lights up D13
+ * 203 lights up PA8/D41
+ * 204 lights up D19
+ * 
+ * 
+ * 
+ */
+
 /* strobe the wired LEDs */
 NAMED(_strobes, "strobes");
 void strobes() {
     for (int index = 16; index < 24; index++) {
-        push(index);
-        dup();
-        dotS();
-        drop();
-        wigg();
+        push(index); strobings();
+    }
+    for (int index = 30; index < 36; index++) {
+        push(index); strobings();
     }
 }
 
@@ -294,6 +370,7 @@ void strobes() {
 const entry dictionary[] = {{_nop, nop},
                             {_nvic_reset, nvic_reset_},
                             {_cr, cr_},
+                            {_strall, strall},
                             {_strobes, strobes},
                             {_words, words},
                             {_dup, dup},
@@ -318,7 +395,8 @@ const entry dictionary[] = {{_nop, nop},
                             {_input, input},
                             {_output, output},
                             {_input_pullup, input_pullup},
-                            {_wigg, wigg},
+                            {_wiggle, wiggle},
+                            {_dow, dow},
                             {_dumpr, rdumps},
                             {_speed, speed}};
 
@@ -495,7 +573,7 @@ void setup() {
     Serial.println("Forth-like interpreter:");
     Serial.println(
         "    536871082  is  0x200000AA    use  536870912 for 0x0000 \n");
-    Serial.println(" https://wokwi.com/projects/368299970327122945  nucleo "
+    Serial.println(" https://wokwi.com/projects/368342926546418689  nucleo "
                    "C031C6 on wokwi");
     words();
     Serial.println();
