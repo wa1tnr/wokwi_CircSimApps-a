@@ -1,6 +1,7 @@
 /* NUCLEO  C031C6 */
 #include <Arduino.h>
-/* wa1tnr  https://wokwi.com/projects/368287952068294657  Fri 23 Jun 02:00:34 UTC 2023 */
+/* wa1tnr  https://wokwi.com/projects/368287952068294657  Fri 23 Jun 02:00:34
+ * UTC 2023 */
 
 /* https://github.com/CharleyShattuck/Feather-M0-interpreter */
 
@@ -177,7 +178,6 @@ void wigg() {
 
     Serial.println(" ");
 
-
 #ifdef WIGGLE_PRINTS
     Serial.println(" ");
     Serial.println("  LD4 .. the green LED_BUILTIN .. is D200  ");
@@ -185,8 +185,6 @@ void wigg() {
     Serial.print("  type:   30 wiggle ");
     Serial.println(" or  type:  200 wiggle ");
 #endif
-
-
 
     for (int i = 0; i < WIGGLES; i++) {
         digitalWrite(a, HIGH);
@@ -285,24 +283,45 @@ void words();
 NAMED(_strobes, "strobes");
 void strobes() {
     for (int index = 16; index < 24; index++) {
-        push(index); dup(); dotS(); drop();
+        push(index);
+        dup();
+        dotS();
+        drop();
         wigg();
     }
 }
 
 /* table of names and function addresses in flash */
-const entry dictionary[] = {
-    {_nop, nop},     {_nvic_reset, nvic_reset_}, {_cr, cr_},
-    {_strobes, strobes},
-    {_words, words}, {_dup, dup},
-    {_drop, drop},     {_back, back},     {_swap, swap},
-    {_over, over},     {_add, add},       {_and, and_},
-    {_or, or_},        {_xor, xor_},      {_invert, invert},
-    {_negate, negate}, {_dotS, dotS},     {_dotShex, dotShex},
-    {_dot, dot},       {_dotHEX, dotHEX}, {_delay, del},
-    {_high, high},     {_low, low},       {_in, in},
-    {_input, input},   {_output, output}, {_input_pullup, input_pullup},
-    {_wigg, wigg},     {_dumpr, rdumps},  {_speed, speed}};
+const entry dictionary[] = {{_nop, nop},
+                            {_nvic_reset, nvic_reset_},
+                            {_cr, cr_},
+                            {_strobes, strobes},
+                            {_words, words},
+                            {_dup, dup},
+                            {_drop, drop},
+                            {_back, back},
+                            {_swap, swap},
+                            {_over, over},
+                            {_add, add},
+                            {_and, and_},
+                            {_or, or_},
+                            {_xor, xor_},
+                            {_invert, invert},
+                            {_negate, negate},
+                            {_dotS, dotS},
+                            {_dotShex, dotShex},
+                            {_dot, dot},
+                            {_dotHEX, dotHEX},
+                            {_delay, del},
+                            {_high, high},
+                            {_low, low},
+                            {_in, in},
+                            {_input, input},
+                            {_output, output},
+                            {_input_pullup, input_pullup},
+                            {_wigg, wigg},
+                            {_dumpr, rdumps},
+                            {_speed, speed}};
 
 /* Number of words in the dictionary */
 const int entries = sizeof dictionary / sizeof dictionary[0];
@@ -328,13 +347,13 @@ int locate() {
 
 #ifdef DEBUG_AABA
         // char namebuf[maxtib];  maxtib is 16
-        char* buffer_ptr = (char * ) namebuf ;
-        int buffer_addr = (int) buffer_ptr;
+        char *buffer_ptr = (char *)namebuf;
+        int buffer_addr = (int)buffer_ptr;
 
         push(buffer_addr - 16); // show 3 line memory dump
 
         Serial.println();
-        for (int count = 3 ; count > 0; count --) {
+        for (int count = 3; count > 0; count--) {
             // iterates 3 then 2 then 1
             Serial.println();
             dumpRAM();
@@ -344,13 +363,10 @@ int locate() {
 
         int name_size = 15;
 
-
-
-
         // populate namebuf from current dictionary entry
         memcpy(namebuf, dictionary[i].name, name_size);
 
-#ifdef DEBUG_BBCB  // have already: AABA
+#ifdef DEBUG_BBCB // have already: AABA
         // good indication it's somewhat correct:
         int len = strlen(namebuf);
 
@@ -475,9 +491,12 @@ void setup() {
     Serial.begin(9600);
     while (!Serial)
         ;
+    Serial.println();
     Serial.println("Forth-like interpreter:");
-    Serial.println("    536871082  is  0x200000AA    use  536870912 for 0x0000 \n");
-    Serial.println(" https://wokwi.com/projects/368272552521237505    nucleo C031C6 on wokwi");
+    Serial.println(
+        "    536871082  is  0x200000AA    use  536870912 for 0x0000 \n");
+    Serial.println(" https://wokwi.com/projects/368272552521237505    nucleo "
+                   "C031C6 on wokwi");
     words();
     Serial.println();
     // strobes();
@@ -489,5 +508,5 @@ void loop() {
     runword();
 }
 
-// 20 June 02:08z
+// 23 June 02:22z
 // END.
