@@ -1,16 +1,11 @@
 // empty sketch
 
-// late project uri contains all the one below does:
+// wa1tnr  https://wokwi.com/projects/368285453397580801  Fri 23 Jun 01:21:55 UTC 2023 */
 
+
+
+// old:
 // https://wokwi.com/projects/368272747143238657
-
-
-
-
-// normal project uri (earlier edit, no real changes):
-
-// wa1tnr https://wokwi.com/projects/368272552521237505  Thu 22 Jun 21:55:43 UTC 2023
-
 
 // https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/stm32.d/nucleo_g031k8.d/rev-bb.d
 
