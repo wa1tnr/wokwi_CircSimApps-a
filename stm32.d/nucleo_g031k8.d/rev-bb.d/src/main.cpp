@@ -292,7 +292,10 @@ void strobes() {
 
 /* table of names and function addresses in flash */
 const entry dictionary[] = {
-    {_nop, nop},       {_words, words},   {_strobes, strobes},
+    {_nop, nop},
+    {_nvic_reset, nvic_reset_}, {_cr, cr_},
+    {_strobes, strobes},
+    {_words, words},
     {_dup, dup},
     {_drop, drop},     {_back, back},     {_swap, swap},
     {_over, over},     {_add, add},       {_and, and_},
