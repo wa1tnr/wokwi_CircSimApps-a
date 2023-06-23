@@ -1,11 +1,12 @@
 // empty sketch
 
-// wa1tnr  https://wokwi.com/projects/368285453397580801  Fri 23 Jun 01:21:55 UTC 2023 */
+// https://wokwi.com/projects/368288028202255361
 
 
 
-// old:
-// https://wokwi.com/projects/368272747143238657
+// normal project uri (earlier edit, no real changes):
+
+// wa1tnr  https://wokwi.com/projects/368287952068294657  Fri 23 Jun 02:00:34 UTC 2023
 
 // https://github.com/wa1tnr/wokwi_CircSimApps-a/tree/dvlp-aa/stm32.d/nucleo_g031k8.d/rev-bb.d
 
