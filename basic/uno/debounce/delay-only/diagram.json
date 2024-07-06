@@ -12,15 +12,24 @@
       "attrs": {}
     },
     {
+      "type": "wokwi-gate-not",
+      "id": "gate5",
+      "top": 198,
+      "left": 372.8,
+      "attrs": {}
+    },
+
+    {
       "type": "wokwi-pushbutton",
       "id": "btn1",
-      "top": 220,
+      "top": 250,
       "left": 390,
       "attrs": {
         "color": "green",
         "label": "Ctrl+Click: press and hold until next click"
       }
     },
+
     {
       "type": "wokwi-led",
       "id": "led1",
@@ -32,6 +41,16 @@
       }
     },
     {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 12,
+      "left": 458,
+      "attrs": {
+        "color": "cyan",
+        "flip": ""
+      }
+    },
+    {
       "type": "wokwi-resistor",
       "id": "r1",
       "top": 339.6,
@@ -39,6 +58,9 @@
       "rotate": 90,
       "attrs": { "value": "1000" }
     },
+
+
+
     {
       "type": "wokwi-resistor",
       "id": "r2",
@@ -46,16 +68,28 @@
       "left": 380,
       "rotate": 90,
       "attrs": { "value": "2200" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 110,
+      "left": 440,
+      "rotate": 90,
+      "attrs": {"value": "2200"}
     }
   ],
   "connections": [
     ["uno:GND.1", "r2:2", "black", ["h30", "v-10", "h10", "v10", "h1"]],
+    [ "r2:2", "r3:2", "white", ["v15", "h1"] ],
     ["led1:C", "r2:1", "green", ["v15", "h1"]],
+    ["led2:C", "r3:1", "green", ["v15", "h1"]],
     ["led1:A", "uno:8", "white", ["v15", "h-20", "v149", "h-12"]],
-    ["uno:5", "btn1:2.l", "orange", ["v0"]],
     ["uno:GND.3", "r1:2", "black", ["h-40", "v180", "h-1"]],
     ["r1:1", "btn1:2.l", "green", ["h0", "v-48"]],
-    ["uno:5V", "btn1:1.r", "red", ["h-40", "v-200", "h370", "v55"]]
+    ["gate5:OUT", "led2:A", "brown", ["h14", "v-70", "h10"]],
+    ["uno:5", "btn1:2.l", "gold", ["h-5", "v8", "h-27", "v-8"]],
+    ["gate5:IN", "uno:8", "blue", ["h-5", "v8", "h-27", "v-8"]],
+    ["uno:5V", "btn1:1.r", "red", ["h-40", "v-200", "h410", "v55"]]
   ],
   "dependencies": {}
 }
