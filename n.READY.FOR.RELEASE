@@ -1,13 +1,11 @@
-0.1.0-pre-alpha READY.FOR.RELEASE
+0.1.1-pre-alpha READY.FOR.RELEASE
 
-last commit 031f35d8e1ac1fb8169d2960a8e2fff8e12a0c10
+last commit d0d02f005021ad04986a5c14662a4de36efd5afb
 
-Date:   Sun Dec  5 14:01:55 UTC 2021
+Date:   Sun Jul  7 00:58:25 UTC 2024
 
-    Blinkie demo program - COMPLETE.
+    Last commit this session
 
-    NOTE: must connect to the CDC/ACM serial (USB)
-         or your 'Serial' port (USART, for example) for
-         the program to do anything. ;)
+            new file:   status.project.md
 
     On branch dvlp-aa
