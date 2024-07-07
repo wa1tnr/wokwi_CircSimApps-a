@@ -5,7 +5,7 @@ export CURRENT=sbx-cc
 export PICO_SDK_PATH=../../pico-sdk
 
 # change this line to point to the dev toolchain:
-# export SOME_BIN_DIR=$HOME/this/dir/bin
+export SOME_BIN_DIR=$HOME/this/dir/bin
 
 # EXAMPLE for LINE 6 changes (your local compiler)
 #
