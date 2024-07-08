@@ -1,0 +1,50 @@
+
+#     pio project init --board uno_r4_wifi
+
+all:	distclean build install
+
+.PHONY:	all
+
+build:
+	pio run
+
+projinitAREYOUSURE:
+	pio project init --board uno_r4_wifi
+
+acli_board:
+	arduino-cli board list | grep renesas
+
+devlist:
+	pio device list
+
+# Hardware ID: USB VID:PID=1A86:55D4 SER=54B0005774 LOCATION=2-1.4:1.0
+# Description: USB Single Serial
+
+nsterm:
+	sleep 2; ./picot-uno-r4.sh /dev/ttyACM0
+
+term:
+	sleep 2; ./picot-uno-r4.sh /dev/ttyACM0
+
+upload:
+	pio run -t upload
+
+install: upload term
+
+upgrade:
+	pio upgrade
+
+pkgupdate:
+	pio pkg update
+
+pkglist:
+	pio pkg list
+
+outdated:
+	pio pkg outdated
+
+clean:
+	pio run -t clean
+
+distclean: clean
+	rm -rf ./.pio
